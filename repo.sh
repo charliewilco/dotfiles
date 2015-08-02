@@ -1,7 +1,7 @@
 # Initial Directory
 
-mkdir ~/Projects-test/
-cd ~/Projects-test/
+mkdir ~/Projects/
+cd ~/Projects/
 
 mkdir oss
 cd oss
