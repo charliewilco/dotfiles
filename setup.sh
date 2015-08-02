@@ -35,4 +35,4 @@ npm install -g babel bower browser-sync browserify caniuse-cmd cssstats dark-mod
 brew install caskroom/cask/brew-cask
 
 # Cask Install a Ton of Things
-brew cask install alfred dropbox google-chrome hammerspoon imageoptim keepingyouawake slack sketch screenhero sketch-toolbox
+brew cask install alfred dropbox github google-chrome hammerspoon imageoptim keepingyouawake slack sketch screenhero sketch-toolbox
