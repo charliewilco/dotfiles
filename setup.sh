@@ -1,9 +1,10 @@
-# Xcode Nonsense
-xcodebuild -licence
-
 # Show Hidden Files
 defaults write com.apple.finder AppleShowAllFiles YES
 killall Finder
+
+
+# Clean Up Homebrew
+rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
 
 # Install Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
