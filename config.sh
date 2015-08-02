@@ -28,6 +28,8 @@ cd ~/Downloads
 wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement.zip
 unzip InputSystemFontReplacement.zip
 
+mv ~/Downloads/InputSystemFontReplacement_1.11/InputSystem_Fonts/*.ttf /Library/Fonts/
+
 echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
 
 svn export https://github.com/altercation/solarized/trunk/iterm2-colors-solarized
