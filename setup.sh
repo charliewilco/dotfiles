@@ -11,7 +11,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 
 # Install git
-brew install git svn wget hub
+brew install git svn wget hub watchman
 
 # Update brew
 brew update
@@ -43,4 +43,4 @@ npm install -g babel bower browser-sync browserify caniuse-cmd cssstats dark-mod
 brew install caskroom/cask/brew-cask
 
 # Cask Install a Ton of Things
-brew cask install alfred dropbox github google-chrome hammerspoon imageoptim keepingyouawake slack sketch screenhero sketch-toolbox
+brew cask install 1password alfred dropbox github google-chrome hammerspoon imageoptim keepingyouawake slack sketch screenhero sketch-toolbox
