@@ -55,4 +55,4 @@ npm install -g webpack yo gulp-cli@0.2.0
 brew install caskroom/cask/brew-cask
 
 # Cask Install a Ton of Things
-brew cask install 1password alfred dropbox github google-chrome hammerspoon imageoptim keepingyouawake slack sketch screenhero sketch-toolbox
+brew cask install 1password alfred dropbox github google-chrome hammerspoon imageoptim keepingyouawake rdio slack sketch screenhero sketch-toolbox
