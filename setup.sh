@@ -9,7 +9,6 @@ rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
 # Install Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-
 # Install git
 brew install git svn wget hub watchman
 
