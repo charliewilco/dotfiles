@@ -20,6 +20,9 @@ brew update
 brew install node
 brew install mongodb
 
+# Update NPM
+npm update -g npm
+
 # Install Oh My ZSH
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
@@ -38,21 +41,50 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Install Common Node Globals
 ## Breaking up the Install List Yields Less Errors
-npm install -g babel bower browser-sync browserify
-npm install -g caniuse-cmd cssstats dark-mode
-npm install -g ember-cli express-generator forever
-npm install -g gulp gulp-devtools huxley imageoptim-cli
-npm install -g jade karma-cli node-inspector
-npm install -g node-libs-browser node-slack-cli nodemon
-npm install -g npm npm-name pageres-cli parker phantomjs
-npm install -g psi rimraf sails sails-generate-backend-gulp
-npm install -g sails-generate-frontend-gulp sails-generate-gulpfile
-npm install -g sails-generate-new-gulp sane-cli stylus supervisor
-npm install -g surge svgo tmi trash vulcanize
-npm install -g webpack yo gulp-cli@0.2.0
+npm install -g babel
+npm install -g bower
+npm install -g browser-sync
+npm install -g browserify
+npm install -g caniuse-cmd
+npm install -g cssstats
+npm install -g dark-mode
+npm install -g ember-cli
+npm install -g express-generator
+npm install -g forever
+npm install -g gulp
+npm install -g gulp-devtools
+npm install -g huxley
+npm install -g imageoptim-cli
+npm install -g jade
+npm install -g karma-cli
+npm install -g node-inspector
+npm install -g node-libs-browser
+npm install -g node-slack-cli
+npm install -g nodemon
+npm install -g npm-name
+npm install -g pageres-cli
+npm install -g parker
+npm install -g phantomjs
+npm install -g psi
+npm install -g rimraf
+npm install -g sails
+npm install -g sails-generate-backend-gulp
+npm install -g sails-generate-frontend-gulp
+npm install -g sails-generate-gulpfile
+npm install -g sails-generate-new-gulp
+npm install -g sane-cli
+npm install -g stylus
+npm install -g supervisor
+npm install -g surge
+npm install -g svgo tmi
+npm install -g trash
+npm install -g vulcanize
+npm install -g webpack
+npm install -g yo
+npm install -g gulp-cli@0.2.0
 
 # Brew Casks
 brew install caskroom/cask/brew-cask
 
 # Cask Install a Ton of Things
-brew cask install 1password alfred dropbox github google-chrome hammerspoon imageoptim keepingyouawake rdio slack sketch screenhero sketch-toolbox
+brew cask install 1password alfred cloud dropbox github google-chrome hammerspoon imageoptim keepingyouawake rdio slack sketch screenhero sketch-toolbox
