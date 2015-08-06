@@ -16,6 +16,8 @@ mv ./zshrc ~/.zshrc
 
 # Git Config
 mv ./gitconfig ~/.gitconfig
+mv ./gitignore ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
 
 # Hammerspoon
 mv ./hammerspoon ~/.hammerspoon/init.lua
