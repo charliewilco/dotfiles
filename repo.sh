@@ -13,7 +13,7 @@ hub clone charlespeters/bow
 hub clone charlespeters/boilerplate-metalsmith-gulp-jade metalsmith-boilerplate
 
 # Obsidian.css
-cd ~/Projects-test/
+cd ~/Projects/
 mkdir obsidian
 cd obsidian
 
@@ -27,7 +27,7 @@ hub clone obsidiancss/testing
 
 
 # Arsenal UI
-cd ~/Projects-test/
+cd ~/Projects/
 mkdir arsenal
 cd arsenal
 
