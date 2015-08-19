@@ -30,9 +30,17 @@ sh repo.sh
 
 This uses the great [`hub`](https://hub.github.com/) command line utility to install all my current public projects on Github.
 
-## Licence
-MIT
+## Contributing
 
+First off, you're awesome for wanting to contribute. Second, please take a second to go over a few things to make this process simpler for everyone. Third, you're awesome.
+
+### Pull Requests
+- [Fork](https://github.com/charlespeters/thunder#fork-destination-box) this repo.
+- Push to your fork and submit a pull request.
+- Please provide a short explanation of why you made the changes you made.
+
+## License
+MIT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
