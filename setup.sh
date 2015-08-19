@@ -48,11 +48,13 @@ npm install -g caniuse-cmd
 npm install -g cssstats
 npm install -g dark-mode
 npm install -g ember-cli
+npm install -g eslint
+npm install -g eslint-plugin-react
 npm install -g express-generator
 npm install -g forever
 npm install -g gulp
 npm install -g gulp-devtools
-npm install -g huxley
+npm install -g huxley-cli
 npm install -g imageoptim-cli
 npm install -g jade
 npm install -g karma-cli
@@ -79,6 +81,8 @@ npm install -g svgo tmi
 npm install -g trash
 npm install -g vulcanize
 npm install -g webpack
+npm install -g watchify
+npm install -g wifi-password
 npm install -g yo
 npm install -g gulp-cli@0.2.0
 
