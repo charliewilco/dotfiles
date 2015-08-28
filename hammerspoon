@@ -1,4 +1,5 @@
-local hyper = {"cmd", "alt", "ctrl", "shift"}
+local hyper = {"cmd", "alt", "ctrl"}
+local hyperS = {"cmd", "alt", "ctrl", "shift"}
 local chrome = 72
 hs.window.animationDuration = 0
 
@@ -128,17 +129,55 @@ hs.hotkey.bind(hyper, "5", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind(hyper, "D", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+hs.hotkey.bind(hyperS, "Up", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
 
-  f.x = max.x
-  f.y = max.y
-  f.w = 1600
-  f.h = 800
-  win:setFrame(f)
+
+    f.y = max.y / 2
+    f.w = max.w / 2
+    f.h = max.h / 2
+    win:setFrame(f)
+end)
+
+hs.hotkey.bind(hyperS, "Down", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = f.x
+    f.y = max.y + (max.h / 2)
+    f.h = max.h / 2
+
+    win:setFrame(f)
+end)
+
+
+hs.hotkey.bind(hyperS, "Left", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x
+    f.w = max.w / 2
+
+    win:setFrame(f)
+end)
+
+hs.hotkey.bind(hyperS, "Right", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x + (max.w / 2)
+    f.w = max.w / 2
+
+    win:setFrame(f)
 end)
 
 hs.hotkey.bind(hyper, "R", function()
