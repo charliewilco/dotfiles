@@ -84,14 +84,18 @@ alias npmr='trash node_modules; npm cache clean; npm install; npm start'
 
 # Project Directories
 alias cdg='cd ~/Projects/'
+alias cda='cd ~/Projects/apps/'
 alias cdb='cd ~/Projects/bpxl/'
 alias cdp='cd ~/Projects/personal/'
+alias cdo='cd ~/Projects/oss/'
 
 # Individual Project Directories
 alias arwhd='cd ~/Projects/personal/arwhd/'
 alias charles='cd ~/Projects/personal/charlespeters-jekyll/'
 alias vws='cd ~/Projects/personal/viewsourc_es/'
 
+alias cherry-squishee='cd ~/Projects/cherry-squishee/'
+alias cherry-gen='cd ~/Projects/generator-cherry-squishee/'
 alias typo='cd ~/Projects/typothetical/'
 alias icons='cd ~/Projects/oss/justafewicons/'
 alias arsenal='cd ~/Projects/oss/arsenal/'
