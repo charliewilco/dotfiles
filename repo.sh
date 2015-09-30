@@ -10,7 +10,8 @@ cd oss
 hub clone charlespeters/justafewicons
 hub clone charlespeters/type-findings
 hub clone charlespeters/bow
-hub clone charlespeters/metalsmith-gulp-boilerplate metalsmith-boilerplate
+hub clone charlespeters/thunder
+hub clone charlespeters/ironsmith-demo ironsmith
 hub clone davatron5000/FitText.js
 
 # Obsidian.css
@@ -23,6 +24,16 @@ hub clone obsidiancss/obsidian.settings
 hub clone obsidiancss/obsidian.custom-selectors
 hub clone obsidiancss/obsidian.mq
 hub clone obsidiancss/obsidian.reset
+hub clone obsidiancss/obsidian.spacing
+hub clone obsidiancss/obsidian.typography
+hub clone obsidiancss/obsidian.align
+hub clone obsidiancss/obsidian.corners
+hub clone obsidiancss/obsidian.position
+hub clone obsidiancss/obsidian.zindex
+hub clone obsidiancss/obsidian.display
+hub clone obsidiancss/obsidian.overflow
+hub clone obsidiancss/obsidian.forms
+hub clone obsidiancss/obsidian.tables
 hub clone obsidiancss/obsidian
 hub clone obsidiancss/testing
 
