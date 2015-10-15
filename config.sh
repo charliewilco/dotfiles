@@ -16,9 +16,6 @@ git config --global core.excludesfile ~/.gitignore_global
 # Hammerspoon
 mv ./hammerspoon ~/.hammerspoon/init.lua
 
-# Sails.js
-mv ./sailsrc ~/.sailsrc
-
 # iTerm Color Palettes & Fonts
 cd ~/Downloads
 wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement.zip
@@ -28,7 +25,7 @@ mv ~/Downloads/InputSystemFontReplacement_1.11/InputSystem_Fonts/*.ttf /Library/
 
 echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
 
-svn export https://github.com/altercation/solarized/trunk/iterm2-colors-solarized
+svn export https://github.com/whatyouhide/gotham-contrib/trunk/iterm2
 
 # Setup NPM
 npm adduser
