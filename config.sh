@@ -25,7 +25,7 @@ mv ~/Downloads/InputSystemFontReplacement_1.11/InputSystem_Fonts/*.ttf /Library/
 
 echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
 
-svn export https://github.com/altercation/solarized/trunk/iterm2-colors-solarized
+svn export https://github.com/whatyouhide/gotham-contrib/trunk/iterm2
 
 # Setup NPM
 npm adduser

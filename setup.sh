@@ -15,8 +15,9 @@ brew install git svn wget hub watchman
 # Update brew
 brew update
 
-# Install Node & MongoDB
-brew install node
+# Install Node 0.12.7 & MongoDB
+## Don't install Node 4.4.1
+brew install homebrew/versions/node012
 brew install mongodb
 
 # Update NPM
