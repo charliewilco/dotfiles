@@ -16,9 +16,6 @@ git config --global core.excludesfile ~/.gitignore_global
 # Hammerspoon
 mv ./hammerspoon ~/.hammerspoon/init.lua
 
-# Sails.js
-mv ./sailsrc ~/.sailsrc
-
 # iTerm Color Palettes & Fonts
 cd ~/Downloads
 wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement.zip
