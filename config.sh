@@ -7,6 +7,7 @@ vim +PlugInstall +qall
 
 # ZSH
 mv ./zshrc ~/.zshrc
+mv ./aliases ~/.aliases
 
 # Git Config
 mv ./gitconfig ~/.gitconfig
