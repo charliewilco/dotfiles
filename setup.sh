@@ -39,54 +39,7 @@ brew install macvim --override-system-vim
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Install Common Node Globals
-## Breaking up the Install List Yields Less Errors
-npm install -g babel
-npm install -g babel-eslint
-npm install -g bower
-npm install -g browser-sync
-npm install -g browserify
-npm install -g caniuse-cmd
-npm install -g cssstats
-npm install -g dark-mode
-npm install -g electron-prebuilt
-npm install -g ember-cli
-npm install -g eslint
-npm install -g eslint-plugin-react
-npm install -g express-generator
-npm install -g forever
-npm install -g gulp
-npm install -g gulp-devtools
-npm install -g huxley-cli
-npm install -g imageoptim-cli
-npm install -g karma-cli
-npm install -g node-inspector
-npm install -g node-libs-browser
-npm install -g node-slack-cli
-npm install -g nodemon
-npm install -g nodo
-npm install -g npm-name
-npm install -g pageres-cli
-npm install -g parker
-npm install -g phantomjs
-npm install -g psi
-npm install -g rimraf
-npm install -g sails
-npm install -g sails-generate-backend-gulp
-npm install -g sails-generate-frontend-gulp
-npm install -g sails-generate-gulpfile
-npm install -g sails-generate-new-gulp
-npm install -g sane-cli
-npm install -g supervisor
-npm install -g surge
-npm install -g svgo
-npm install -g tmi
-npm install -g trash
-npm install -g vulcanize
-npm install -g webpack
-npm install -g watchify
-npm install -g wifi-password
-npm install -g yo
-npm install -g gulp-cli@0.2.0
+npm install -g
 
 # Brew Casks
 brew install caskroom/cask/brew-cask
