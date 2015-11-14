@@ -35,7 +35,6 @@ hub clone obsidiancss/obsidian.overflow
 hub clone obsidiancss/obsidian.forms
 hub clone obsidiancss/obsidian.tables
 hub clone obsidiancss/obsidian
-hub clone obsidiancss/testing
 
 
 # Arsenal UI
