@@ -11,6 +11,10 @@ alias ....='cd ../../../../'
 alias .....='cd ../../../../../'
 alias npmr='trash node_modules; npm cache clean; npm install; npm start'
 
+# Vim
+alias vim='nvim'
+alias home='cd ~'
+
 # Project Directories
 alias cdg='cd ~/Projects/'
 alias cda='cd ~/Projects/apps/'
@@ -29,6 +33,5 @@ alias typo='cd ~/Projects/typothetical/'
 alias icons='cd ~/Projects/oss/justafewicons/'
 alias arsenal='cd ~/Projects/oss/arsenal/'
 alias twelve='cd ~/Projects/oss/arsenal/twelve/'
-
 
 

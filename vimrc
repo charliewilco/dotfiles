@@ -5,17 +5,16 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
 " Colors
+Plugin 'trusktr/seti.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'chriskempson/base16-vim'
-Plugin 'whatyouhide/vim-gotham'
-Plugin 'yosiat/oceanic-next-vim'
+Plugin 'mhartington/oceanic-next'
 
 " Syntax Checkers
 Plugin 'scrooloose/syntastic'
@@ -38,6 +37,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'airblade/vim-gitgutter'
 
 Plugin 'walm/jshint.vim'
 
@@ -46,36 +46,28 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+
+call gitgutter#highlight#define_highlights()
 
 set number
+set relativenumber
 set smartindent
+set cursorline
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 syntax enable
 set background=dark
-let g:hybrid_use_Xresources = 1
-" colorscheme hybrid_material
-" colorscheme hybrid_reverse
-" colorscheme base16-eighties
+
+
+" let g:hybrid_use_Xresources = 1
+colorscheme OceanicNext 
 set t_Co=256
-if has('gui_running')
-  colorscheme gotham
-  let g:airline_theme='gotham'
-else
-  colorscheme gotham256
-  let g:airline_theme='gotham256'
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:airline_theme='oceanicnext'
+hi CursorLineNr term=bold ctermfg=White guifg=White
+
 
 so ~/.vim/bundle/vim-colors-solarized/autoload/togglebg.vim
 set laststatus=2
@@ -83,10 +75,14 @@ set laststatus=2
 call togglebg#map("<F5>")
 
 if has('gui_running')
-  set guifont=Input\ Mono:h13
-  set transparency=5
+  set guifont=Input\ Mono:h12
+  " set transparency=5
 endif
 
+" Save Command
+nnoremap <c-s> :w<CR> 
+inoremap <c-s> <Esc>:w<CR>l 
+vnoremap <c-s> <Esc>:w<CR>
 
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
@@ -95,4 +91,3 @@ let g:enable_bold_font = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-" let g:airline_theme='hybrid'

@@ -1,7 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 
-ZSH_THEME="Agnoster"
+ZSH_THEME="schminitz"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -34,16 +35,14 @@ ZSH_THEME="Agnoster"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm bower colorize common-aliases)
+plugins=(git npm bower colorize common-aliases compleat github)
 
 # User configuration
+
 
 export PATH="/Users/charlespeters/.rbenv/shims:/Users/charlespeters/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/charlespeters/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -69,8 +68,14 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-EDITOR='mvim'
+stty start undef
+stty stop undef
+setopt noflowcontrol
 
+
+EDITOR='vim'
+
+# Aliases
 source ~/.aliases
 
 # New Jekyll Post
@@ -110,4 +115,3 @@ alias newpost=newJekyllPost
 
 DEFAULT_USER=`whoami`
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# source /Users/charles/.gulp-autocompletion-zsh/gulp-autocompletion.zsh
