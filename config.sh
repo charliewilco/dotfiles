@@ -15,7 +15,7 @@ mv ./gitignore ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 
 # Hammerspoon
-mv ./hammerspoon ~/.hammerspoon/init.lua
+mv ./hammerspoon.lua ~/.hammerspoon/init.lua
 
 # iTerm Color Palettes & Fonts
 cd ~/Downloads
