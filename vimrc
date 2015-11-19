@@ -27,6 +27,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'JulesWang/css.vim'
+Plugin 'stephenway/postcss.vim'
 
 " Utilities
 Plugin 'kien/ctrlp.vim'
