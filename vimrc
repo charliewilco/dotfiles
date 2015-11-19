@@ -87,6 +87,10 @@ vnoremap <c-s> <Esc>:w<CR>
 
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
+" Ctrl-P Ignore
+set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
+
+
 let g:jsx_ext_required = 0
 let g:enable_bold_font = 1
 let g:airline#extensions#tabline#enabled = 1
