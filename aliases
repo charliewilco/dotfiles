@@ -1,10 +1,12 @@
 # Common
+alias tower='gittower'
 alias cat='ccat'
 alias please='sudo'
 alias g='git'
 alias ls='ls -a'
 alias gp='git push -u origin master'
 alias h='cd ~/'
+alias home='cd ~'
 alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
@@ -13,7 +15,7 @@ alias npmr='trash node_modules; npm cache clean; npm install; npm start'
 
 # Vim
 alias vim='nvim'
-alias home='cd ~'
+alias vimplug='vim +PluginInstall +qall'
 
 # Project Directories
 alias cdg='cd ~/Projects/'
@@ -34,4 +36,5 @@ alias icons='cd ~/Projects/oss/justafewicons/'
 alias arsenal='cd ~/Projects/oss/arsenal/'
 alias twelve='cd ~/Projects/oss/arsenal/twelve/'
 
-
+# Project Aliases
+alias provider-ssh='ssh -i ./bp-id-key.pem -L 27017:10.0.2.244:27017 bp@52.89.181.21'
