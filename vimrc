@@ -39,7 +39,6 @@ Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
-
 Plugin 'walm/jshint.vim'
 
 " All of your Plugins must be added before the following line
@@ -50,6 +49,10 @@ filetype plugin indent on    " required
 
 call gitgutter#highlight#define_highlights()
 
+" Default Settings
+
+syntax enable
+
 set number
 set relativenumber
 set smartindent
@@ -58,7 +61,6 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
-syntax enable
 set background=dark
 
 
@@ -90,9 +92,21 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " Ctrl-P Ignore
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 
+" Syntax Checkers
+let g:syntastic_html_checkers = ['handlebars']
+let g:syntastic_css_checkers = ['csslint', 'stylelint']
+let g:syntastic_js_checkers = ['jscs', 'eslint', 'jshint']
 
 let g:jsx_ext_required = 0
 let g:enable_bold_font = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+" No Remap for Arrow Keys
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+
