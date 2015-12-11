@@ -1,0 +1,4 @@
+# Found http://una.im/embrace-the-terminal/#💁
+function mkd() {
+  mkdir "$@" && cd "$@"
+}
