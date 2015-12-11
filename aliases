@@ -26,7 +26,7 @@ alias cdo='cd ~/Projects/oss/'
 
 # Individual Project Directories
 alias arwhd='cd ~/Projects/personal/arwhd/'
-alias charles='cd ~/Projects/personal/charlespeters-jekyll/'
+alias charles='cd ~/Projects/personal/charlespeters/'
 alias vws='cd ~/Projects/personal/viewsourc_es/'
 
 alias cherry-squishee='cd ~/Projects/cherry-squishee/'
