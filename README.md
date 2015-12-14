@@ -30,12 +30,28 @@ sh repo.sh
 
 This uses the great [`hub`](https://hub.github.com/) command line utility to install all my current public projects on Github.
 
+## Cheatsheet
+
+There's a [cheatsheet](https://github.com/charlespeters/dotfiles/blob/develop/cheatsheet.md) for very common things I do with Vim and command line utilities (ie `ag`, `hub`, and more to come).
+
+## Other Dotfiles
+
+This is the list of dotfiles I've looked through and learned something cool from:
+
+- [Zach Holman](https://github.com/holman/dotfiles)
+- [Thoughtbot](https://github.com/thoughtbot/dotfiles)
+- [Mike Hartington](https://github.com/mhartington/dotfiles)
+- [Colby Williams](https://github.com/colbycheeze/dotfiles)
+- [Dan Eden](https://github.com/daneden/dotfiles)
+- [Cole Peters](https://github.com/colepeters/dotfiles)
+- [Helen Holmes](https://github.com/helenvholmes/dotfiles)
+
 ## Contributing
 
 First off, you're awesome for wanting to contribute. Second, please take a second to go over a few things to make this process simpler for everyone. Third, you're awesome.
 
 ### Pull Requests
-- [Fork](https://github.com/charlespeters/thunder#fork-destination-box) this repo.
+- [Fork](https://github.com/charlespeters/dotfiles#fork-destination-box) this repo.
 - Push to your fork and submit a pull request.
 - Please provide a short explanation of why you made the changes you made.
 
