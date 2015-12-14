@@ -31,6 +31,7 @@ Plugin 'stephenway/postcss.vim'
 
 " Utilities
 Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rking/ag.vim'
 Plugin 'mattn/emmet-vim'
