@@ -63,6 +63,7 @@ Maintains file names while changing their extension
 
 
 ### Hub
+CLI Wrapper for working with Git on Github.com
 
 - `hub browse` -- opens repo & branch on Github.com
 - `hub clone repo` -- clone your own repo of that name
