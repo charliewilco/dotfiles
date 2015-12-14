@@ -8,7 +8,7 @@
   - `l` = Move cursor right
 
 
-|Command             | What is happened                      |
+|Command             | Description                           |
 |--------------------| --------------------------------------|
 |`dt=`               | Delete on the line up to the`=`       |
 |`df=`               | Delete on the line right after the `=`|
@@ -17,9 +17,11 @@
 |`:%s/find/replace/g`| Global find and replace               |
 |`c`                 | Change                                |
 |`cat`               | Change around tag                     |
-|`vs`                |                                       |
+|`Vs<span>`          | Surrond line with `<span>` tag        |
+|`VS<div>`           | Indent line inside `<div>` tag        |
 |`gg=G`              | Reindent the file                     |
-|`Ctrl + P`          |                                       |
+|`Ctrl + P`          | Open file finder                      |
+|`yy`                | Yank current line                     |
 
 Commands are composeable 
 
