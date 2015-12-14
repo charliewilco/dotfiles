@@ -51,6 +51,7 @@ Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tomtom/tcomment_vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -128,6 +129,11 @@ let g:enable_bold_font = 1
 "==============================
 " Mappings
 "==============================
+
+" Leader
+
+" tComment
+map <leader>c <c-_><c-_>
 
 " Emmet
 
