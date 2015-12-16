@@ -7,8 +7,8 @@
 "==============================
 
 " The following settings are for Vim not Neovim
-" set nocompatible              " be iMproved, required
-" filetype off                  " required
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 "==============================
 " Plugins
@@ -22,6 +22,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Colors
 Plugin 'mhartington/oceanic-next'
+Plugin 'kristijanhusak/vim-hybrid-material'
 
 " Syntax Checkers
 Plugin 'scrooloose/syntastic'
@@ -84,16 +85,17 @@ set laststatus=2
 colorscheme OceanicNext 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
+"" For MacVim
+
+if has('gui_running')
+  set guifont=Input\ Mono:h14
+endif
+
+
 " Cursor
 
 hi CursorLineNR cterm=bold
 " hi CursorLineNr term=bold ctermfg=White guifg=White
-
-" For MacVim
-
-if has('gui_running')
-  set guifont=Input\ Mono:h13
-endif
 
 "==============================
 " Plugin Settings
