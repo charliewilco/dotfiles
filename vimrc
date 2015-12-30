@@ -1,6 +1,6 @@
 "==============================
 "
-" 
+"
 " Vim & NeoVim Runtime Configuration
 "
 "
@@ -27,7 +27,7 @@ Plugin 'kristijanhusak/vim-hybrid-material'
 " Syntax Checkers
 Plugin 'scrooloose/syntastic'
 
-"" HTML 
+"" HTML
 Plugin 'othree/html5.vim'
 
 "" CSS
@@ -53,6 +53,8 @@ Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ternjs/tern_for_vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -82,8 +84,11 @@ set laststatus=2
 
 " Colors Themes & Font Settings
 
-colorscheme OceanicNext 
+colorscheme OceanicNext
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+:let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 "" For MacVim
 
@@ -112,6 +117,9 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 " Gitgutter
 
 call gitgutter#highlight#define_highlights()
+
+" YouCompleteMe
+let g:python_host_prog = '/usr/local/bin/python'
 
 " Ctrl-P Ignore
 
