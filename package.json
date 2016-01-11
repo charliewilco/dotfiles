@@ -9,7 +9,6 @@
   "dependencies": {
     "babel": "*",
     "browser-sync": "*",
-    "csslint": "*",
     "ember-cli": "*",
     "express-generator": "*",
     "forever": "*",
@@ -20,6 +19,7 @@
     "postcss-cli": "*",
     "rimraf": "*",
     "surge": "*",
+    "tldr": "*",
     "trash-cli": "*",
     "vtop": "*",
     "watchify": "*"
