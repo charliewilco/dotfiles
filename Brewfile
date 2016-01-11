@@ -24,6 +24,8 @@ brew 'watchman'
 brew 'ccat'
 brew 'cloc'
 brew 'ren'
+brew 'spaceman-diff'
+brew 'terminal-notifier'
 
 # Vim
 brew 'macvim', args: ['with-override-system-vim']
@@ -40,28 +42,12 @@ brew 'n',
 brew 'postgresql'
 brew 'mongodb'
 
+# Images & Quick Look
 brew 'jpeg'
 brew 'libpng'
 brew 'libtiff'
-
-
 brew 'imagemagick'
 brew 'jp2a'
-brew 'libevent'
-brew 'libssh2'
-
-brew 'scons'
-
-brew 'msgpack'
-brew 'node'
-brew 'pcre'
-
-
-
-brew 'spaceman-diff'
-brew 'terminal-notifier'
-
-# Images & Quick Look
 cask 'qlcolorcode'
 cask 'qlmarkdown'
 cask 'quicklook-json'
