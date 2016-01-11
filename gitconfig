@@ -1,21 +1,33 @@
 [user]
-	name = charles peters
-	email = charlespeters42@gmail.com
+  name = charles peters
+  email = charlespeters42@gmail.com
+[color]
+  ui = auto
+[alias]
+  aa = add --all
+	st = status
 [filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
 [filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
 [core]
-	editor = /usr/bin/vim
+  editor = /usr/bin/vim
+	excludesfile = /Users/charles/.gitignore_global
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
 [web]
-    browser = chrome
+  browser = chrome
 [browser "chrome"]
-    path = ""
+  path = "/Applications/Google Chrome.app"
+[diff "spaceman-diff"]
+  command = /path/to/spaceman-diff
+[mergetool]
+  keepBackup = false
+[github]
+  user = charlespeters
