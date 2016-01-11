@@ -64,3 +64,20 @@ hub clone salesforce-ux/theo
 hub clone Crossbow-js/crossbow
 
 # Private repositories need to be done manually?
+# Personal Projects
+cd ~/Projects/
+mkdir personal
+cd personal
+
+hub clone arwhd
+hub clone charlespeters.github.io charlespeters
+hub clone viewsources/viewsources.github.io viewsources
+hub clone sabrinapeters/sabrinapeters.github.io sabrina
+hub clone dotfiles
+
+# Apps
+cd ~/Projects/
+mkdir apps
+cd apps
+hub clone withdraws
+hub clone downwrite
