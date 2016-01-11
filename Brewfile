@@ -38,7 +38,7 @@ brew 'python3'
 brew 'elixir'
 brew 'rust'
 brew 'lua'
-brew 'n',
+brew 'n'
 brew 'postgresql'
 brew 'mongodb'
 
