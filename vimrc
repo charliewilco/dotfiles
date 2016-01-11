@@ -29,6 +29,7 @@ Plugin 'scrooloose/syntastic'
 
 "" HTML
 Plugin 'othree/html5.vim'
+Plugin 'johnoshea/vim-twig'
 
 "" CSS
 Plugin 'cakebaker/scss-syntax.vim'
@@ -85,6 +86,7 @@ set laststatus=2
 " Colors Themes & Font Settings
 
 colorscheme OceanicNext
+set t_Co=256
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 :let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -127,6 +129,9 @@ set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 
 " Syntax Checkers
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_html_checkers = ['handlebars']
 let g:syntastic_css_checkers = ['csslint', 'stylelint']
 let g:syntastic_js_checkers = ['jscs', 'eslint', 'jshint']
