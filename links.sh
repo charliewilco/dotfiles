@@ -3,6 +3,15 @@
 rm -rf ~/.aliases
 ln -s ~/Projects/personal/dotfiles/aliases ~/.aliases
 
+rm -rf ~/.agignore
+ln -s ~/Projects/personal/dotfiles/agrc ~/.agignore
+
+rm -rf ~/.gitconfig
+ln -s ~/Projects/personal/dotfiles/gitconfig ~/.gitconfig
+
+rm -rf ~/.gitignore
+ln -s ~/Projects/personal/dotfiles/gitignore ~/.gitignore_global
+
 rm -rf ~/.vimrc
 ln -s ~/Projects/personal/dotfiles/vimrc ~/.vimrc
 
