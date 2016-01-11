@@ -17,16 +17,15 @@ git config --global core.excludesfile ~/.gitignore_global
 # Hammerspoon
 mv ./hammerspoon.lua ~/.hammerspoon/init.lua
 
-# iTerm Color Palettes & Fonts
+# iTerm2 Color Palettes & Fonts
 cd ~/Downloads
-wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement.zip
-unzip InputSystemFontReplacement.zip
-
-mv ~/Downloads/InputSystemFontReplacement_1.11/InputSystem_Fonts/*.ttf /Library/Fonts/
-
+wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement_ElCapitan.zip
+unzip InputSystemFontReplacement_ElCapitan.zip
+mv ~/Downloads/InputSystem_Fonts_ElCapitan/SystemFont_TTF/*.ttf /Library/Fonts/
 echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
 
-svn export https://github.com/whatyouhide/gotham-contrib/trunk/iterm2
+svn export https://github.com/mhartington/oceanic-next-iterm/trunk/
+echo "Import Oceanic Next in to Preferences > Profiles > Colors and then Load Presets > Import"
 
 # Setup NPM
 npm adduser
