@@ -16,7 +16,13 @@ rm -rf ~/.vimrc
 ln -s ~/Projects/personal/dotfiles/vimrc ~/.vimrc
 
 rm -rf ~/.hammerspoon/init.lua
-ln -s ~/Projects/personal/hammerspoon.lua ~/.hammerspoon/init.lua
+ln -s ~/Projects/personal/dotfiles/hammerspoon.lua ~/.hammerspoon/init.lua
+
+rm -rf ~/.tmux.conf
+ln -s ~/Projects/personal/dotfiles/tmuxrc ~/.tmux.conf
 
 rm -rf ~/.zshrc
 ln -s ~/Projects/personal/dotfiles/zshrc ~/.zshrc
+
+rm -rf ~/.jscsrc
+ln -s ~/Projects/personal/dotfiles/jscsrc ~/.jscsrc
