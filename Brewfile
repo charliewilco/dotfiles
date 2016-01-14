@@ -68,7 +68,6 @@ cask 'google-chrome', args: { appdir: '/Applications' }
 cask 'hammerspoon', args: { appdir: '/Applications' }
 cask 'imageoptim', args: { appdir: '/Applications' }
 cask 'keepingyouawake', args: { appdir: '/Applications' }
-cask 'rdio', args: { appdir: '/Applications' }
 cask 'slack', args: { appdir: '/Applications' }
 cask 'sketch', args: { appdir: '/Applications' }
 cask 'screenhero', args: { appdir: '/Applications' }
