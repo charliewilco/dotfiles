@@ -17,6 +17,7 @@ brew 'cmake'
 brew 'wget'
 brew 'make'
 brew 'git'
+brew 'z'
 brew 'svn'
 brew 'the_silver_searcher'
 brew 'hub', args: ['HEAD']
@@ -60,6 +61,7 @@ cask '1password', args: { appdir: '/Applications' }
 cask 'alfred', args: { appdir: '/Applications' }
 cask 'cloud', args: { appdir: '/Applications' }
 cask 'dropbox', args: { appdir: '/Applications' }
+cask 'fantastical', args: { appdir: '/Applications' }
 cask 'firefox', args: { appdir: '/Applications' }
 cask 'github', args: { appdir: '/Applications' }
 cask 'google-chrome', args: { appdir: '/Applications' }
@@ -71,3 +73,4 @@ cask 'slack', args: { appdir: '/Applications' }
 cask 'sketch', args: { appdir: '/Applications' }
 cask 'screenhero', args: { appdir: '/Applications' }
 cask 'sketch-toolbox', args: { appdir: '/Applications' }
+cask 'tower', args: { appdir: '/Applications' }

@@ -43,6 +43,7 @@ plugins=(git npm bower colorize common-aliases compleat github)
 
 # User configuration
 
+. `brew --prefix`/etc/profile.d/z.sh
 
 export PATH="/Users/charlespeters/.rbenv/shims:/Users/charlespeters/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/charlespeters/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
