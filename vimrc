@@ -70,9 +70,11 @@ filetype plugin indent on    " required
 syntax enable
 
 set number
+set numberwidth=5
 set relativenumber
 set smartindent
 set cursorline
+set showcmd
 
 " Tabs & Spaces
 
@@ -89,20 +91,26 @@ colorscheme OceanicNext
 set t_Co=256
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-:let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-"" For MacVim
+" Highlights
+
+highlight SignColumn ctermfg=DarkBlue ctermbg=black
+highlight SignColumnNR ctermbg=black
+highlight LineNr ctermfg=DarkBlue ctermbg=black
+highlight CursorLineNR ctermbg=black ctermfg=red cterm=bold
+highlight CursorLine ctermbg=NONE cterm=NONE
+
+
+" Clipboard
+
+set clipboard=unnamed
+set clipboard+=unnamedplus
+
+" For MacVim
 
 if has('gui_running')
   set guifont=Input\ Mono:h14
 endif
-
-
-" Cursor
-
-hi CursorLineNR cterm=bold
-" hi CursorLineNr term=bold ctermfg=White guifg=White
 
 "==============================
 " Plugin Settings
@@ -119,8 +127,13 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 " Gitgutter
 
 call gitgutter#highlight#define_highlights()
+highlight GitGutterAdd ctermbg=black ctermfg=green
+highlight GitGutterChange ctermbg=black ctermfg=yellow
+highlight GitGutterDelete ctermbg=black ctermfg=red
+highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
 " YouCompleteMe
+let g:ycm_show_diagnostics_ui = 0
 let g:python_host_prog = '/usr/local/bin/python'
 
 " Ctrl-P Ignore
@@ -129,12 +142,15 @@ set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 
 " Syntax Checkers
 
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_html_checkers = ['handlebars']
 let g:syntastic_css_checkers = ['csslint', 'stylelint']
-let g:syntastic_js_checkers = ['jscs', 'eslint', 'jshint']
+let g:syntastic_js_checkers = ['jscs', 'eslint']
 
 " Not Sure
 
@@ -146,7 +162,9 @@ let g:enable_bold_font = 1
 " File Types
 "==============================
 
-autocmd BufNewFile,BufRead *.css set syntax=postcss
+autocmd BufNewFile,BufRead *.css set filetype=postcss
+autocmd BufNewFile,BufRead *.hbs set filetype=handlebars
+autocmd BufNewFile,BufRead *.md  set filetype=markdown``
 
 "==============================
 " Mappings
