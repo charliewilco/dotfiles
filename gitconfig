@@ -6,6 +6,8 @@
 [alias]
   aa = add --all
 	st = status
+  log-nice = log --graph --oneline --all --decorate
+  push-this = push -u origin HEAD
 [filter "media"]
   required = true
   clean = git media clean %f

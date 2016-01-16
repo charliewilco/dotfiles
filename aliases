@@ -16,8 +16,6 @@ eval $(thefuck --alias)
 # Git
 
 alias g='git'
-alias log-nice='log --graph --oneline --all --decorate'
-alias push-this='push -u origin HEAD'
 alias tower='gittower .'
 
 # Vim
