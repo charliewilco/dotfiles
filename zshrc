@@ -2,7 +2,9 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 
-ZSH_THEME="schminitz"
+# ZSH_THEME="schminitz"
+
+ZSH_THEME="Agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -39,6 +41,7 @@ ZSH_THEME="schminitz"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# Plugins
 plugins=(git npm bower colorize common-aliases compleat github)
 
 # User configuration
