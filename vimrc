@@ -141,6 +141,13 @@ let g:syntastic_js_checkers = ['jscs', 'eslint', 'jshint']
 let g:jsx_ext_required = 0
 let g:enable_bold_font = 1
 
+
+"==============================
+" File Types
+"==============================
+
+autocmd BufNewFile,BufRead *.css set syntax=postcss
+
 "==============================
 " Mappings
 "==============================
