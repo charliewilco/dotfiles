@@ -22,7 +22,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Colors
 Plugin 'mhartington/oceanic-next'
-Plugin 'kristijanhusak/vim-hybrid-material'
 
 " Syntax Checkers
 Plugin 'scrooloose/syntastic'
@@ -30,7 +29,6 @@ Plugin 'scrooloose/syntastic'
 "" HTML
 Plugin 'othree/html5.vim'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'johnoshea/vim-twig'
 
 "" CSS
 Plugin 'cakebaker/scss-syntax.vim'
@@ -40,7 +38,7 @@ Plugin 'stephenway/postcss.vim'
 "" Javascript
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
-Plugin 'pangloss/vim-javascript'
+" Plugin 'pangloss/vim-javascript'
 
 " Utilities
 Plugin 'kien/ctrlp.vim'
@@ -48,7 +46,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rking/ag.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'junegunn/vim-easy-align'
 Plugin 'spf13/vim-autoclose'
 Plugin 'bling/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
@@ -142,6 +139,15 @@ let g:python_host_prog = '/usr/local/bin/python'
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 
 " Syntastic Checkers
+
+function! JavascriptCheckers()
+  if filereadable(getcwd() . '/.jscsrc')
+    return ['jscs']
+  else
+    return ['eslint']
+  endif
+endfunction
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -149,16 +155,12 @@ set statusline+=%*
 let g:syntastic_jscs_exec='/usr/local/bin/jscs'
 let g:syntastic_eslint_exec='/usr/local/bin/eslint'
 
-let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
 let g:syntastic_html_checkers = ['handlebars']
 let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_javascript_checkers = ['jscs', 'eslint']
+let g:syntastic_javascript_checkers =JavascriptCheckers() 
 
 let g:syntastic_enable_js_checkers = 1
 
