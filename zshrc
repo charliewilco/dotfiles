@@ -6,7 +6,7 @@ export ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 # Theme
 # Preferred themes: "schminitz", "Agnoster", "blinks", "Honukai" 
 
-ZSH_THEME="Agnoster"
+ZSH_THEME="geoffgarside"
 
 # Settings
 
