@@ -29,6 +29,7 @@ Plugin 'scrooloose/syntastic'
 
 "" HTML
 Plugin 'othree/html5.vim'
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'johnoshea/vim-twig'
 
 "" CSS
@@ -40,7 +41,6 @@ Plugin 'stephenway/postcss.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mustache/vim-mustache-handlebars'
 
 " Utilities
 Plugin 'kien/ctrlp.vim'
@@ -69,6 +69,7 @@ filetype plugin indent on    " required
 
 syntax enable
 
+set shell=$SHELL
 set number
 set numberwidth=5
 set relativenumber
@@ -140,8 +141,15 @@ let g:python_host_prog = '/usr/local/bin/python'
 
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 
-" Syntax Checkers
+" Syntastic Checkers
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_jscs_exec='/usr/local/bin/jscs'
+let g:syntastic_eslint_exec='/usr/local/bin/eslint'
+
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
@@ -149,8 +157,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_html_checkers = ['handlebars']
-let g:syntastic_css_checkers = ['csslint', 'stylelint']
-let g:syntastic_js_checkers = ['jscs', 'eslint']
+let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_javascript_checkers = ['jscs', 'eslint']
+
+let g:syntastic_enable_js_checkers = 1
+
 
 " Not Sure
 
@@ -163,8 +174,10 @@ let g:enable_bold_font = 1
 "==============================
 
 autocmd BufNewFile,BufRead *.css set filetype=postcss
-autocmd BufNewFile,BufRead *.hbs set filetype=handlebars
-autocmd BufNewFile,BufRead *.md  set filetype=markdown``
+autocmd BufNewFile,BufRead *.hbs set filetype=mustache
+autocmd BufNewFile,BufRead *.md  set filetype=markdown
+autocmd BufNewFile,BufRead *.jsx set filetype=jsx
+autocmd BufNewFile,BufRead *.js  set filetype=javascript
 
 "==============================
 " Mappings
