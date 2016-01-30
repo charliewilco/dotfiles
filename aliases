@@ -9,6 +9,7 @@ alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
 alias .....='cd ../../../../../'
+alias tweetbot='open /Applications/Tweetbot.app'
 alias npmr='trash node_modules; npm cache clean; npm install; npm start'
 alias ag='ag --path-to-agignore=~/.agignore'
 eval $(thefuck --alias)
