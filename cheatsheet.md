@@ -28,7 +28,7 @@ Currently this `.vimrc` has no remap for arrow keys in normal mode.
 |`5yy`               | Yank 5 lines                          |
 |`=`                 | Formatter in visual mode              |
 |`V%`                | Select whole class                    |
-
+|`:%s/\s\+$//e`      | Removes trailing whitespace.          |
 
 Commands are composeable 
 
