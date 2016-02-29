@@ -3,8 +3,6 @@
 alias cat='ccat'
 alias please='sudo'
 alias ls='ls -a'
-alias h='cd ~/'
-alias home='cd ~'
 alias ..='cd ..'
 alias ...='cd ../../../'
 alias ....='cd ../../../../'
@@ -28,8 +26,8 @@ alias vimplug='vim +PluginInstall +qall'
 
 alias cdg='cd ~/Projects/'
 alias cda='cd ~/Projects/apps/'
-alias cdb='cd ~/Projects/bpxl/'
 alias cdp='cd ~/Projects/personal/'
+alias cds='cd ~/Projects/sandbox/'
 alias cdo='cd ~/Projects/oss/'
 
 # Individual Project Directories
@@ -39,7 +37,6 @@ alias charles='cd ~/Projects/personal/charlespeters/'
 alias vws='cd ~/Projects/personal/viewsourc_es/'
 alias withdraws='cd ~/Projects/apps/withdraws/'
 alias dotfiles='cd ~/Projects/personal/dotfiles/'
-alias nexus='~/Projects/bpxl/nexus'
 alias obsidian='~/Projects/personal/obsidian/'
 
 # Deprecated Project Directories
