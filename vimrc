@@ -66,13 +66,25 @@ filetype plugin indent on    " required
 
 syntax enable
 
-set shell=$SHELL
+" set shell=$SHELL
 set number
 set numberwidth=5
 set relativenumber
 set smartindent
 set cursorline
 set showcmd
+
+" Search Settings
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Window Splits
+set splitright
+set splitbelow
+
 
 " Tabs & Spaces
 
@@ -141,10 +153,10 @@ set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 " Syntastic Checkers
 
 function! JavascriptCheckers()
-  if filereadable(getcwd() . '/.jscsrc')
-    return ['jscs']
-  else
+  if filereadable(getcwd() . '/.eslintrc')
     return ['eslint']
+  else
+    return ['jscs']
   endif
 endfunction
 
@@ -155,20 +167,16 @@ set statusline+=%*
 let g:syntastic_jscs_exec='/usr/local/bin/jscs'
 let g:syntastic_eslint_exec='/usr/local/bin/eslint'
 
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
 let g:syntastic_enable_signs=1
-let g:syntastic_html_checkers = ['handlebars']
-let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_javascript_checkers =JavascriptCheckers() 
-
-let g:syntastic_enable_js_checkers = 1
-
+let g:syntastic_html_checkers=['handlebars']
+let g:syntastic_css_checkers=['stylelint']
+let g:syntastic_javascript_checkers=JavascriptCheckers() 
 
 " Not Sure
 
-let g:jsx_ext_required = 0
-let g:enable_bold_font = 1
+let g:jsx_ext_required=0
+let g:enable_bold_font=1 
 
 
 "==============================
