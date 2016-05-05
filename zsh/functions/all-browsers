@@ -1,7 +1,0 @@
-# Open all browsers at once
-
-function allBrowsers() {
-  open chrome app="$@" --kiosk
-  open firefox app="$@" --kiosk
-  open opera app="$@" --kiosk
-}
