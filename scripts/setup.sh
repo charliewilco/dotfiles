@@ -1,7 +1,7 @@
 # Try and Install Command Line Tools without Xcode
 xcode-select --install
 
-setup-brew () {
+setup_brew () {
   # Clean Up Homebrew
   rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
 
@@ -15,11 +15,11 @@ setup-brew () {
   brew update
 }
 
-setup-zsh () {
+setup_zsh () {
   curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 }
 
-setup-vim_tmux () {
+setup_vim_tmux () {
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   ln -s ~/.vim ~/.config/nvim
   ln -s ~/.vimrc ~/.config/nvim/init.vim
@@ -30,7 +30,7 @@ setup-vim_tmux () {
 
 
 # Install iTerm2 because I prefer it
-get-iterm () {
+get_iterm () {
   cd ~/Downloads
   wget https://iterm2.com/downloads/beta/iTerm2-2_9_20160426.zip
   unzip iTerm2-2_9_20160426.zip
@@ -38,8 +38,19 @@ get-iterm () {
   cd ~/
 }
 
+fix_iterm () {
+  # iTerm2 Color Palettes & Fonts
+  cd ~/Downloads
+  wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement_ElCapitan.zip
+  unzip InputSystemFontReplacement_ElCapitan.zip
+  mv ~/Downloads/InputSystem_Fonts_ElCapitan/SystemFont_TTF/*.ttf /Library/Fonts/
+  echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
 
-setup-npm () {
+  svn export https://github.com/mhartington/oceanic-next-iterm/trunk/
+  echo "Import Oceanic Next in to Preferences > Profiles > Colors and then Load Presets > Import"
+}
+
+setup_npm () {
   npm install -g \
     babel-cli \
     browser-sync \
@@ -63,28 +74,16 @@ setup-npm () {
   npm update -g
 }
 
-setup-py () {
+setup_py () {
   sudo easy_install pip
   pip install \
     thefuck \
     codemod \
 }
 
-fix-iterm () {
-  # iTerm2 Color Palettes & Fonts
-  cd ~/Downloads
-  wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement_ElCapitan.zip
-  unzip InputSystemFontReplacement_ElCapitan.zip
-  mv ~/Downloads/InputSystem_Fonts_ElCapitan/SystemFont_TTF/*.ttf /Library/Fonts/
-  echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
-
-  svn export https://github.com/mhartington/oceanic-next-iterm/trunk/
-  echo "Import Oceanic Next in to Preferences > Profiles > Colors and then Load Presets > Import"
-}
-
-setup-iterm () {
+setup_iterm () {
   get-iterm
   fix-iterm
 }
 
-setup-{brew,zsh,vim_tmux,npm,iterm}
+setup_{brew,zsh,vim_tmux,npm,py,iterm}
