@@ -43,7 +43,7 @@ fail () {
 }
 
 setup_gitconfig () {
-  if ! [ -f "$DOTFILES_ROOT/git/gitconfig.symlink" ]
+  if ! [ -f "$DOTFILES_ROOT/gitconfig.symlink" ]
   then
     info 'setup gitconfig'
 
@@ -62,6 +62,8 @@ setup_gitconfig () {
 
     success 'gitconfig'
   fi
+
+  git config --global core.excludesfile ~/.gitignore_global
 }
 
 
