@@ -18,9 +18,7 @@ alias g='git'
 alias tower='gittower .'
 
 # Vim
-
 alias vim='vim'
-alias vimplug='vim +PluginInstall +qall'
 
 # Project Directories
 
@@ -38,10 +36,6 @@ alias vws='cd ~/Projects/personal/viewsourc_es/'
 alias withdraws='cd ~/Projects/apps/withdraws/'
 alias dotfiles='cd ~/.dotfiles/'
 alias obsidian='~/Projects/personal/obsidian/'
-
-# Deprecated Project Directories
-
-alias typo='cd ~/Projects/typothetical/'
+alias typo='cd ~/Projects/oss/typothetical/'
 alias icons='cd ~/Projects/oss/justafewicons/'
 alias arsenal='cd ~/Projects/oss/arsenal/'
-alias twelve='cd ~/Projects/oss/arsenal/twelve/'

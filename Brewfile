@@ -31,7 +31,7 @@ brew 'dark-mode'
 
 # Vim
 brew 'macvim', args: ['with-override-system-vim']
-brew 'vim', args: ['with-lua']
+brew 'vim', args: ['with-lua', 'with-python3']
 brew 'tmux'
 
 # Languages & DBs
