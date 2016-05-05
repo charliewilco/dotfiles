@@ -1,10 +1,9 @@
-# Tabs
+# Taps
 tap 'caskroom/cask'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
-tap 'homebrew/versions'
+tap 'homebrew/core'
 tap 'neovim/neovim'
-tap 'thoughtbot/formulae'
 
 # Setups
 brew 'caskroom/cask/brew-cask'
@@ -25,7 +24,8 @@ brew 'watchman'
 brew 'ccat'
 brew 'cloc'
 brew 'ren'
-brew 'spaceman-diff'
+brew 'ranger'
+brew 'lynx'
 brew 'terminal-notifier'
 
 # Vim
@@ -36,10 +36,6 @@ brew 'tmux'
 # Languages & DBs
 brew 'go'
 brew 'python3'
-brew 'elixir'
-brew 'rust'
-brew 'lua'
-brew 'n'
 brew 'postgresql'
 brew 'mongodb'
 
@@ -57,18 +53,16 @@ cask 'webpquicklook'
 
 # Casks
 # Cask Install a Ton of Things
+cask 'keycastr', args: { appdir: '/Applications' }
+cask 'torbrowser', args: { appdir: '/Applications' }
 cask '1password', args: { appdir: '/Applications' }
 cask 'alfred', args: { appdir: '/Applications' }
-cask 'cloud', args: { appdir: '/Applications' }
 cask 'dropbox', args: { appdir: '/Applications' }
 cask 'fantastical', args: { appdir: '/Applications' }
-cask 'firefox', args: { appdir: '/Applications' }
-cask 'github', args: { appdir: '/Applications' }
 cask 'google-chrome', args: { appdir: '/Applications' }
 cask 'hammerspoon', args: { appdir: '/Applications' }
 cask 'imageoptim', args: { appdir: '/Applications' }
 cask 'keepingyouawake', args: { appdir: '/Applications' }
-cask 'slack', args: { appdir: '/Applications' }
 cask 'sketch', args: { appdir: '/Applications' }
 cask 'screenhero', args: { appdir: '/Applications' }
 cask 'sketch-toolbox', args: { appdir: '/Applications' }
