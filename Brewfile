@@ -27,6 +27,7 @@ brew 'ren'
 brew 'ranger'
 brew 'lynx'
 brew 'terminal-notifier'
+brew 'dark-mode'
 
 # Vim
 brew 'macvim', args: ['with-override-system-vim']
