@@ -11,7 +11,7 @@ plugins=(git npm bower colorize common-aliases compleat github)
 
 # User Configuration
 . `brew --prefix`/etc/profile.d/z.sh
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
