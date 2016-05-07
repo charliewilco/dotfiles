@@ -8,13 +8,11 @@ tap 'neovim/neovim'
 # Setups
 brew 'caskroom/cask/brew-cask'
 brew 'neovim/neovim/neovim', args: ['HEAD']
-brew 'thoughtbot/formulae/rcm'
 brew 'cask'
 
 # Utilities
 brew 'cmake'
 brew 'wget'
-brew 'make'
 brew 'git'
 brew 'z'
 brew 'svn'
@@ -30,13 +28,14 @@ brew 'terminal-notifier'
 brew 'dark-mode'
 
 # Vim
-brew 'macvim', args: ['with-override-system-vim']
 brew 'vim', args: ['with-lua', 'with-python3']
+brew 'macvim', args: ['with-override-system-vim']
 brew 'tmux'
 
 # Languages & DBs
 brew 'go'
 brew 'python3'
+brew 'node'
 brew 'postgresql'
 brew 'mongodb'
 
