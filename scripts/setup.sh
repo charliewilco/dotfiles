@@ -1,6 +1,3 @@
-# Try and Install Command Line Tools without Xcode
-xcode-select --install
-
 setup_brew () {
   # Clean Up Homebrew
   rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
@@ -86,4 +83,9 @@ setup_iterm () {
   fix-iterm
 }
 
-setup_{brew,zsh,vim_tmux,npm,py,iterm}
+setup_brew
+setup_zsh
+setup_vim_tmux
+setup_npm
+setup_py
+setup_iterm
