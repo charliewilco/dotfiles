@@ -1,3 +1,4 @@
+*.swp
 config.symlink/
 !config.symlink/hammerspoon/init.lua
 !config.symlink/ranger/rc.conf
