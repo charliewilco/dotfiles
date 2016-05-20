@@ -23,13 +23,7 @@ setw -g window-status-current-fg white
 setw -g window-status-current-attr bright
 
 # Status Bar
-set -g status-utf8 on
-set -g status-left "[#h]:#S"
-set -g status-left-length 45
-set -g status-right "%Y-%m-%d #[fg=white]%R #{battery_icon}"
-set -g status-justify centre
-setw -g monitor-activity on
-set -g visual-activity on
+# using tmuxline
 
 # Termset
 set -g default-terminal "screen-256color"
@@ -37,6 +31,7 @@ setw -g utf8 on
 
 # Tmuxline
 source ~/.vim/bundle/tmuxline.vim
+source ~/.tmuxline
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
@@ -58,5 +53,10 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
+
+set -g @resurrect-processes 'node gulp zsh'
+set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
+set -g @continuum-restore 'on'
 
 run '~/.tmux/plugins/tpm/tpm'
