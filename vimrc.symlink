@@ -43,6 +43,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
@@ -111,6 +112,7 @@ highlight SignColumnNR ctermbg=black
 highlight LineNr ctermfg=DarkBlue ctermbg=NONE
 highlight CursorLineNR ctermbg=NONE ctermfg=red cterm=bold
 highlight CursorLine ctermbg=NONE cterm=NONE
+highlight Comment cterm=italic cterm=NONE
 
 " Clipboard
 
@@ -120,12 +122,11 @@ set clipboard+=unnamedplus
 " For MacVim
 
 if has('gui_running')
-  set guifont=Input\ Mono:h13
+  set guifont=Input\ Mono\ Condensed:h13
 endif
 
 " For NeoVim
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "==============================
 " Plugin Settings
