@@ -7,11 +7,12 @@ ZSH_THEME="ys"
 ENABLE_CORRECTION="true"
 
 # Plugins
-plugins=(git npm bower colorize common-aliases compleat github)
+plugins=(git npm colorize common-aliases compleat github)
 
 # User Configuration
 . `brew --prefix`/etc/profile.d/z.sh
 # eval $(thefuck --alias)
+# eval "$(gulp --completion=zsh)"
 
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
