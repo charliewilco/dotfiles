@@ -54,16 +54,14 @@ cask 'webpquicklook'
 # Casks
 # Cask Install a Ton of Things
 cask 'keycastr', args: { appdir: '/Applications' }
-cask 'torbrowser', args: { appdir: '/Applications' }
 cask '1password', args: { appdir: '/Applications' }
 cask 'alfred', args: { appdir: '/Applications' }
 cask 'dropbox', args: { appdir: '/Applications' }
 cask 'fantastical', args: { appdir: '/Applications' }
 cask 'google-chrome', args: { appdir: '/Applications' }
 cask 'hammerspoon', args: { appdir: '/Applications' }
-cask 'imageoptim', args: { appdir: '/Applications' }
 cask 'keepingyouawake', args: { appdir: '/Applications' }
+cask 'licecap', args: { appdir: '/Applications' }
 cask 'sketch', args: { appdir: '/Applications' }
-cask 'screenhero', args: { appdir: '/Applications' }
 cask 'sketch-toolbox', args: { appdir: '/Applications' }
 cask 'tower', args: { appdir: '/Applications' }
