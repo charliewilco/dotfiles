@@ -17,8 +17,8 @@
   smudge = git hawser smudge %f
   required = true
 [core]
-  editor = /usr/local/bin/vim
-	excludesfile = /Users/charles/.gitignore_global
+  editor = /usr/local/bin/nvim
+	excludesfile = ~/.gitignore_global
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
