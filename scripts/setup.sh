@@ -1,3 +1,5 @@
+DOTFILES_ROOT=$(pwd -P)
+
 setup_brew () {
   # Clean Up Homebrew
   rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
@@ -23,69 +25,48 @@ setup_vim_tmux () {
   yes | vim +PluginClean! +PluginInstall! +qall
 
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+  echo "Don't forget to install tmux plugins prefix + I"
 }
 
 
 # Install iTerm2 because I prefer it
 get_iterm () {
-  cd ~/Downloads
-  wget https://iterm2.com/downloads/beta/iTerm2-2_9_20160426.zip
-  unzip iTerm2-2_9_20160426.zip
-  cp -r iTerm.app ~/Applications/ && echo "iTerm2 installed"
-  cd ~/
+  echo "go find the latest and best iTerm2 and install it"
 }
 
 fix_iterm () {
   # iTerm2 Color Palettes & Fonts
-  cd ~/Downloads
-  wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement_ElCapitan.zip
-  unzip InputSystemFontReplacement_ElCapitan.zip
-  mv ~/Downloads/InputSystem_Fonts_ElCapitan/SystemFont_TTF/*.ttf /Library/Fonts/
+  wget http://input.fontbureau.com/systemfont/InputSystemFontReplacement_ElCapitan.zip -P ~/Downloads/
+  # unzip ~/Downloads/InputSystemFontReplacement_ElCapitan.zip
+  # mv ~/Downloads/InputSystem_Fonts_ElCapitan/SystemFont_TTF/*.ttf /Library/Fonts/
   echo "Go to http://input.fontbureau.com/download/ to get the Input Mono for the Terminal"
 
-  svn export https://github.com/mhartington/oceanic-next-iterm/trunk/
+  svn export https://github.com/mhartington/oceanic-next-iterm/trunk/ ~/Downloads/oceanic/
   echo "Import Oceanic Next in to Preferences > Profiles > Colors and then Load Presets > Import"
 }
 
 setup_npm () {
-  npm install -g \
-    babel-cli \
-    browser-sync \
-    ember-cli \
-    empty-trash-cli \
-    eslint \
-    express-generator \
-    firebase-tools \
-    forever \
-    gulp-cli \
-    karma-cli \
-    nodemon \
-    postcss-cli \
-    stylelint \
-    surge \
-    trash-cli \
-    tldr \
-    vtop \
-    wifi-password
-
+  cat "$DOTFILES_ROOT/scripts/npm-deps" | xargs -n1 npm install -g
   npm update -g
+  # Setup NPM
+  npm adduser
 }
 
-setup_py () {
-  sudo easy_install pip
-  pip install \
-    thefuck \
-    codemod \
+setup_osx () {
+  sh "$DOTFILES_ROOT/scripts/osx.sh"
 }
 
 setup_iterm () {
-  get-iterm
-  fix-iterm
+  get_iterm
+  fix_iterm
 }
 
-setup_brew
-setup_zsh
-setup_vim_tmux
-setup_npm
-setup_py
-setup_iterm
+setup_all () {
+  setup_brew
+  setup_zsh
+  setup_vim_tmux
+  setup_npm
+  setup_iterm
+  setup_osx
+}

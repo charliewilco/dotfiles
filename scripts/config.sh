@@ -1,2 +1,0 @@
-# Setup NPM
-npm adduser

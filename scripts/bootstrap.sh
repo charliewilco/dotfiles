@@ -64,6 +64,7 @@ setup_gitconfig () {
   fi
 
   git config --global core.excludesfile ~/.gitignore_global
+  echo "Hey don't forget to make an SSH key"
 }
 
 
