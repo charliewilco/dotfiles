@@ -1,6 +1,10 @@
 ember-cli
 empty-trash-cli
 eslint
+eslint-config-airbnb
+eslint-plugin-import
+eslint-plugin-jsx-a11y
+eslint-plugin-react
 express-generator
 fast-cli
 firebase-tools
