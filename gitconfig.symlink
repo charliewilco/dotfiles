@@ -4,6 +4,7 @@
 [color]
   ui = auto
 [alias]
+  dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
   aa = add --all
 	st = status
   log-nice = log --graph --oneline --all --decorate
