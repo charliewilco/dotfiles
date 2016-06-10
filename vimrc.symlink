@@ -54,6 +54,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-scripts/TaskList.vim' " EXPERIMENTAL
 
 call vundle#end()            " required
 filetype plugin indent on    " required
