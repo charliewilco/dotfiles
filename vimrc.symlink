@@ -100,7 +100,7 @@ set laststatus=2
 
 " Colors Themes & Font Settings
 
-colorscheme OceanicNext
+colorscheme OceanicNext 
 set t_Co=256
 hi NonText ctermbg=none
 hi Normal ctermbg=none
