@@ -11,6 +11,7 @@ express-generator
 fast-cli
 firebase-tools
 forever
+greenkeeper
 gulp-cli
 huxley
 imageoptim-cli
