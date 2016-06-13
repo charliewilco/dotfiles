@@ -1,6 +1,7 @@
 [user]
   name = charles peters
   email = charlespeters42@gmail.com
+  signingkey = E2D47CCC
 [color]
   ui = auto
 [alias]
