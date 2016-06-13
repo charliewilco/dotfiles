@@ -1,3 +1,5 @@
-node_modules/
-tmp/
-bower_components/
+.DS_Store
+bower_components
+cache
+node_modules
+tmp
