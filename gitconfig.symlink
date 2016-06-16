@@ -5,9 +5,10 @@
 [color]
   ui = auto
 [alias]
+  commit = commit -S
   dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
   aa = add --all
-	st = status
+  st = status
   log-nice = log --graph --oneline --all --decorate
   push-this = push -u origin HEAD
 [filter "media"]
@@ -20,7 +21,7 @@
   required = true
 [core]
   editor = /usr/local/bin/nvim
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
@@ -29,8 +30,6 @@
   browser = chrome
 [browser "chrome"]
   path = "/Applications/Google Chrome.app"
-[diff "spaceman-diff"]
-  command = /path/to/spaceman-diff
 [mergetool]
   keepBackup = false
 [github]
