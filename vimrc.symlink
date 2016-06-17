@@ -101,6 +101,7 @@ set laststatus=2
 " Colors Themes & Font Settings
 
 colorscheme OceanicNext 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set t_Co=256
 hi NonText ctermbg=none
 hi Normal ctermbg=none
@@ -109,8 +110,8 @@ hi Normal ctermbg=none
 
 highlight SignColumn ctermfg=DarkBlue ctermbg=black
 highlight SignColumnNR ctermbg=black
-highlight LineNr ctermfg=DarkBlue ctermbg=NONE
-highlight CursorLineNR ctermbg=NONE ctermfg=red cterm=bold
+highlight LineNr ctermfg=DarkGrey ctermbg=NONE
+highlight CursorLineNR ctermbg=NONE ctermfg=Grey cterm=bold
 highlight CursorLine ctermbg=NONE cterm=NONE
 highlight Comment cterm=italic cterm=NONE
 
