@@ -23,12 +23,10 @@ Plugin 'gmarik/Vundle.vim'
 " Colors
 Plugin 'mhartington/oceanic-next'
 
-" Syntax Checkers
-Plugin 'scrooloose/syntastic'
-
 "" HTML
 Plugin 'othree/html5.vim'
 Plugin 'juvenn/mustache.vim'
+Plugin 'tpope/vim-liquid'
 
 "" CSS
 Plugin 'cakebaker/scss-syntax.vim'
@@ -40,6 +38,8 @@ Plugin 'stephenway/postcss.vim'
 Plugin 'mxw/vim-jsx'
 
 " Utilities
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'edkolev/tmuxline.vim'
@@ -51,12 +51,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
 Plugin 'rking/ag.vim'
 Plugin 'spf13/vim-autoclose'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'vim-scripts/TaskList.vim' " EXPERIMENTAL
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -67,7 +66,6 @@ filetype plugin indent on    " required
 "==============================
 
 " Default Settings
-
 syntax enable
 
 set shell=$SHELL
@@ -78,22 +76,21 @@ set relativenumber
 set smartindent
 set cursorline
 set showcmd
+set showmatch
+set ruler
 set mouse=a
 
 " Search Settings
-
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
 " Window Splits
-
 set splitright
 set splitbelow
 
 " Tabs & Spaces
-
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -102,15 +99,12 @@ set background=dark
 set laststatus=2
 
 " Colors Themes & Font Settings
-
 colorscheme OceanicNext 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set t_Co=256
 hi NonText ctermbg=none
 hi Normal ctermbg=none
 
 " Highlights
-
 highlight SignColumn ctermfg=DarkBlue ctermbg=black
 highlight SignColumnNR ctermbg=black
 highlight LineNr ctermfg=DarkGrey ctermbg=NONE
@@ -119,18 +113,16 @@ highlight CursorLine ctermbg=NONE cterm=NONE
 highlight Comment cterm=italic cterm=NONE
 
 " Clipboard
-
 set clipboard=unnamed
 set clipboard+=unnamedplus
 
 " For MacVim
-
 if has('gui_running')
   set guifont=Input\ Mono\ Condensed:h13
 endif
 
 " For NeoVim
-
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Resources/Python.app/Contents/MacOS/Python'
 
 "==============================
@@ -138,7 +130,6 @@ let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.1/Frameworks/Python.fra
 "==============================
 
 " Airline
-
 let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -146,10 +137,9 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
-
+let g:airline_section_z = airline#section#create(['%{ObsessionStatus(''$'', '''')}', 'windowswap', '%3p%% ', 'linenr', ':%3v '])
 
 " Gitgutter
-
 call gitgutter#highlight#define_highlights()
 highlight GitGutterAdd ctermbg=black ctermfg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow
@@ -157,44 +147,34 @@ highlight GitGutterDelete ctermbg=black ctermfg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
 " Ctrl-P Ignore
-
 set wildignore+=*/bower_components/*,*/dist/*,*/build/*,*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Emmet
-
 let g:user_emmet_install_global = 0
 autocmd FileType html,mustache,css EmmetInstall
 
 " Syntastic Checkers
 
-function! JavascriptCheckers()
-  if filereadable(getcwd() . '/.eslintrc')
-    return ['eslint']
-  else
-    return ['jscs']
-  endif
-endfunction
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_jscs_exec='/usr/local/bin/jscs'
 let g:syntastic_eslint_exec='/usr/local/bin/eslint'
 
 let g:syntastic_check_on_wq=1
 let g:syntastic_enable_signs=1
 let g:syntastic_html_checkers=['handlebars']
 let g:syntastic_css_checkers=['stylelint']
-let g:syntastic_javascript_checkers=JavascriptCheckers()
+let g:syntastic_javascript_checkers=['eslint']
 
 " Deoplete
-
 let g:deoplete#enable_at_startup = 1
 
-" Not Sure
+" Nerdtree
+map <C-n> :NERDTreeToggle<CR>
 
+" Not Sure
 let g:jsx_ext_required=0
 let g:enable_bold_font=1
 
@@ -203,8 +183,8 @@ let g:enable_bold_font=1
 " File Types
 "==============================
 
-autocmd BufNewFile,BufRead *.css set filetype=postcss
-autocmd BufNewFile,BufRead *.hbs set filetype=mustache
+autocmd BufNewFile,BufRead *.css set filetype=postcss.css
+autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
 " autocmd BufNewFile,BufRead *.jsx set filetype=jsx
 " autocmd BufNewFile,BufRead *.js  set filetype=javascript
@@ -214,14 +194,12 @@ autocmd BufNewFile,BufRead *.md  set filetype=markdown
 "==============================
 
 " Leader
-
 let mapleader = ","
 
 " tComment
 map <leader>c <c-_><c-_>
 
 " No Remap for Arrow Keys
-
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
