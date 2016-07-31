@@ -24,10 +24,12 @@ Thumbs.db
 ######################
 *.swp
 *.log
-
+Session.vim
 
 # Front-End and Node #
+######################
 .sass-cache/
+bower_components
 *.css.map
 node_modules
 .grunt
