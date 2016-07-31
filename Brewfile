@@ -28,6 +28,7 @@ brew 'gnupg'
 brew 'tig'
 brew 'terminal-notifier'
 brew 'dark-mode'
+brew 'reattach-to-user-namespace'
 
 # Vim
 brew 'vim', args: ['with-lua', 'with-python3']

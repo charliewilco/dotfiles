@@ -27,6 +27,7 @@ setw -g window-status-current-attr bright
 
 # Termset
 set -g default-terminal "screen-256color"
+set-option -g default-shell /bin/zsh
 setw -g utf8 on
 
 # Tmuxline
@@ -47,6 +48,8 @@ bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
 # Fix delay when sending escape key
 set -sg escape-time 0
 
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
+
 # Plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -54,7 +57,7 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 
-set -g @resurrect-processes 'node gulp zsh'
+set -g @resurrect-processes 'ruby jekyll npm node gulp zsh ember'
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 set -g @continuum-restore 'on'
