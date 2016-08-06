@@ -99,7 +99,7 @@ set background=dark
 set laststatus=2
 
 " Colors Themes & Font Settings
-colorscheme OceanicNext 
+colorscheme OceanicNext
 set t_Co=256
 hi NonText ctermbg=none
 hi Normal ctermbg=none
@@ -131,12 +131,15 @@ let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.1/Frameworks/Python.fra
 
 " Airline
 let g:airline_theme='oceanicnext'
+let g:airline_left_sep=' '
+let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 0
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline_section_y = 0
 let g:airline_section_z = airline#section#create(['%{ObsessionStatus(''$'', '''')}', 'windowswap', '%3p%% ', 'linenr', ':%3v '])
 
 " Gitgutter
