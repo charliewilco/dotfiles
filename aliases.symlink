@@ -11,7 +11,7 @@ alias tweetbot='open /Applications/Tweetbot.app'
 alias npmr='trash node_modules; npm cache clean; npm install; npm start'
 alias ag='ag --path-to-agignore=~/.agignore'
 
-# Git
+# Git & Apps
 
 alias g='git'
 alias tower='gittower'
@@ -33,6 +33,7 @@ alias arwhd='cd ~/Code/prsn/arwhd/'
 alias charles='cd ~/Code/prsn/charlespeters/'
 alias vws='cd ~/Code/prsn/viewsourc_es/'
 alias withdraws='cd ~/Code/apps/withdraws/'
+alias downwrite='cd ~/Code/apps/downwrite/'
 alias dotfiles='cd ~/.dotfiles/'
 alias xndr='cd ~/Code/apps/xndr/'
 alias mercury='cd ~/Code/apps/mercury-prototype/'
