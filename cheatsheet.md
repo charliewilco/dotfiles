@@ -2,10 +2,10 @@
 
 ## Vim
 
-  - `h` = Move cursor left
-  - `j` = Move cursor down
-  - `k` = Move cursor up
-  - `l` = Move cursor right
+- `h` = Move cursor left
+- `j` = Move cursor down
+- `k` = Move cursor up
+- `l` = Move cursor right
 
 Currently this `.vimrc` has no remap for arrow keys in normal mode.
 
@@ -30,39 +30,52 @@ Currently this `.vimrc` has no remap for arrow keys in normal mode.
 |`V%`                | Select whole class                    |
 |`:%s/\s\+$//e`      | Removes trailing whitespace.          |
 
-Commands are composeable 
+Commands are composeable
 
-  - `dw` Delete word
-  - `d2w` Delete 2 words
-  - `d4j` Delete 4 lines down
+- `dw` Delete word
+- `d2w` Delete 2 words
+- `d4j` Delete 4 lines down
 
+### NERDTree
+
+To create a new file with NERDTree open, hit `m` then `a` and a buffer will appear where you can add a new file by specifying it's path.
 
 ## Command Line Utilities
 
 ### Ag
+
 The Silver Searcher
 
-```:Ag [options] [pattern] [path/to/dir]```
+```shell
+:Ag [options] [pattern] [path/to/dir]
+```
 
-- [Vim :Ag search and replace, globally and within a directory | Stack Overflow](http://stackoverflow.com/questions/22206332/vim-ag-search-and-replace-globally-and-within-a-directory)
+- [Vim `:Ag` search and replace, globally and within a directory | Stack Overflow](http://stackoverflow.com/questions/22206332/vim-ag-search-and-replace-globally-and-within-a-directory)
 - [Project-wide find and replace | Vimcasts](http://vimcasts.org/episodes/project-wide-find-and-replace/)
 
 ### Cloc
+
 Count Lines of Code
 
 `cloc` just needs one file name argument but a comparison:
 
-```cloc --diff file1.txt file2.txt```
+```shell
+cloc --diff file1.txt file2.txt
+```
 
 ### Ren
+
 Rename Files
 
 Maintains file names while changing their extension
 
-```ren '*.md' '#1.markdown'```
+```shell
+ren '*.md' '#1.markdown'
+```
 
 
 ### Hub
+
 CLI Wrapper for working with Git on Github.com
 
 - `hub browse` -- opens repo & branch on Github.com
