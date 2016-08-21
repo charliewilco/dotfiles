@@ -35,9 +35,11 @@ Plugin 'JulesWang/css.vim'
 Plugin 'stephenway/postcss.vim'
 
 "" Javascript
+Plugin 'othree/yajs.vim'
 Plugin 'mxw/vim-jsx'
 
 " Utilities
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/deoplete.nvim'
@@ -187,8 +189,6 @@ let g:enable_bold_font=1
 autocmd BufNewFile,BufRead *.css set filetype=postcss.css
 autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
-" autocmd BufNewFile,BufRead *.jsx set filetype=jsx
-" autocmd BufNewFile,BufRead *.js  set filetype=javascript
 
 "==============================
 " Mappings

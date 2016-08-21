@@ -15,6 +15,7 @@ brew 'cmake'
 brew 'wget'
 brew 'git'
 brew 'z'
+brew 'fzf'
 brew 'svn'
 brew 'the_silver_searcher'
 brew 'hub', args: ['HEAD']

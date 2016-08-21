@@ -16,7 +16,7 @@ plugins=(git npm colorize common-aliases compleat github)
 
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
-export PATH="/Users/charlespeters/.rbenv/shims:/Users/charlespeters/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/charlespeters/.rvm/bin"
+export PATH="/Users/charlespeters/.rbenv/shims:/Users/charlespeters/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/charlespeters/.rvm/bin:/usr/local/m-cli"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -24,3 +24,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.aliases
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
