@@ -1,14 +1,15 @@
 # Common
 
-alias cat='ccat'
 alias please='sudo'
 alias ls='ls -a'
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../../'
-alias npmr='trash node_modules; npm cache clean; npm install; npm start'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+
+alias npmr='trash node_modules; npm cache clean; npm install'
 alias ag='ag --path-to-agignore=~/.agignore'
+alias tree='tree -h -I "node_modules*|bower_components*"'
+alias cat='ccat'
 
 # Git & Apps
 
@@ -32,6 +33,7 @@ alias cdo='cd ~/Code/oss/'
 
 alias arwhd='cd ~/Code/prsn/arwhd/'
 alias charles='cd ~/Code/prsn/charlespeters/'
+alias sabrina='cd ~/Code/prsn/sabrina/'
 alias vws='cd ~/Code/prsn/viewsourc_es/'
 alias withdraws='cd ~/Code/apps/withdraws/'
 alias downwrite='cd ~/Code/apps/downwrite/'
@@ -41,4 +43,3 @@ alias mercury='cd ~/Code/apps/mercury-prototype/'
 alias obsidian='~/Code/oss/obsidian/'
 alias typo='cd ~/Code/apps/typothetical/'
 alias icons='cd ~/Code/oss/justafewicons/'
-alias arsenal='cd ~/Code/oss/arsenal/'
