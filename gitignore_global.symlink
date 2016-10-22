@@ -25,6 +25,7 @@ Thumbs.db
 *.swp
 *.log
 Session.vim
+.tern-port
 
 # Front-End and Node #
 ######################
@@ -32,4 +33,6 @@ Session.vim
 bower_components
 *.css.map
 node_modules
+_site/
+.publish/
 .grunt
