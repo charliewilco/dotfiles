@@ -1,0 +1,35 @@
+module.exports = {
+  config: {
+    fontSize: 14,
+    fontFamily: 'Input Mono',
+    cursorColor: 'rgba(255, 255, 255, .25)',
+    foregroundColor: '#fff',
+    backgroundColor: 'rgba(27,43,52,.5)',
+    borderColor: '#333',
+    css: '',
+    termCSS: '',
+    padding: '12px 14px',
+    colors: [
+      '#1B2B34',
+      '#EB606B',
+      '#A8FF60',
+      '#E9C062',
+      '#96CBFE',
+      '#BB80B3',
+      '#5FB3B3',
+      '#D0D0D0',
+      '#808080',
+      '#FF0000',
+      '#33FF00',
+      '#FAC863',
+      '#0066FF',
+      '#CC00FF',
+      '#6699CC',
+      '#FFFFFF'
+    ]
+  },
+  sound: '',
+  bell: '',
+  plugins: ['hyperterm-blink', 'hyperterm-title', 'oceanic-next-hyperterm'],
+  localPlugins: []
+}
