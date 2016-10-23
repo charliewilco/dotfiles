@@ -7,7 +7,7 @@ ZSH_THEME="ys"
 ENABLE_CORRECTION="true"
 
 # Plugins
-plugins=(git npm colorize common-aliases compleat github)
+plugins=(git npm colorize common-aliases compleat github zsh-better-npm-completion)
 
 # User Configuration
 . `brew --prefix`/etc/profile.d/z.sh
@@ -26,5 +26,6 @@ source ~/.aliases
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
