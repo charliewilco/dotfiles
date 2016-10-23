@@ -27,24 +27,24 @@ Plugin 'mhartington/oceanic-next'
 Plugin 'othree/html5.vim'
 Plugin 'juvenn/mustache.vim'
 Plugin 'tpope/vim-liquid'
+Plugin 'tpope/vim-markdown'
 
 "" CSS
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'ap/vim-css-color'
+Plugin 'lilydjwg/colorizer', { 'for': ['css', 'scss', 'postcss.css', 'html', 'javascript', 'javascript.jsx'] }
 Plugin 'JulesWang/css.vim'
 Plugin 'stephenway/postcss.vim'
 
 "" Javascript
 Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
 Plugin 'mxw/vim-jsx'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'sheerun/vim-json'
 
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'francoiscabrol/ranger.vim'
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-obsession'
@@ -58,6 +58,17 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'ervandew/supertab'
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+  Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plugin 'neomake/neomake'
+else
+  Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  Plugin 'scrooloose/syntastic'
+endif
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -120,7 +131,7 @@ set clipboard+=unnamedplus
 
 " For MacVim
 if has('gui_running')
-  set guifont=Input\ Mono\ Condensed:h13
+  set guifont=Input\ Mono:h13
 endif
 
 " For NeoVim
@@ -136,7 +147,7 @@ let g:airline_theme='oceanicnext'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 0
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -161,26 +172,55 @@ autocmd FileType html,mustache,css EmmetInstall
 
 " Syntastic Checkers
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+if has('nvim')
+  " Deoplete.nvim
+  " Deoplete-ternjs
+  let g:deoplete#enable_at_startup = 1
+  let g:SuperTabDefaultCompletionType = "<C-n>"
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = 0
+  set completeopt-=preview
 
-let g:syntastic_check_on_wq=1
-let g:syntastic_enable_signs=1
-let g:syntastic_html_checkers=['handlebars']
-let g:syntastic_css_checkers=['stylelint']
-let g:syntastic_javascript_checkers=['standard']
+  " Neomake
+  let g:neomake_warning_sign = {
+  \ 'text': 'W',
+  \ 'texthl': 'WarningMsg',
+  \ }
+  let g:neomake_error_sign = {
+  \ 'text': 'E',
+  \ 'texthl': 'ErrorMsg',
+  \ }
+  let g:neomake_javascript_enabled_makers = ['standard']
+  let g:neomake_jsx_enabled_makers = ['standard']
+  let g:neomake_css_enabled_makers = ['stylelint']
+  let g:neomake_json_enabled_makers = ['jsonlint']
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
+  autocmd! BufWritePost * Neomake
+else
+  " Syntastic
 
-" Nerdtree
-map <C-n> :NERDTreeToggle<CR>
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
+  let g:syntastic_check_on_wq=1
+  let g:syntastic_enable_signs=1
+  let g:syntastic_css_checkers=['stylelint']
+  let g:syntastic_javascript_checkers=['standard']
+endif
+
+" Indent Guides
+
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
 
 " Not Sure
-let g:jsx_ext_required=0
 let g:enable_bold_font=1
+let g:xml_syntax_folding = 1
 
+" Markdown
+
+let g:markdown_fenced_languages = ['html', 'css', 'js']
 
 "==============================
 " File Types
@@ -190,12 +230,25 @@ autocmd BufNewFile,BufRead *.css set filetype=postcss.css
 autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
 
+let g:jsx_ext_required = 0
+
 "==============================
 " Mappings
 "==============================
 
 " Leader
 let mapleader = ","
+
+" Save
+
+map <leader>S :w<CR>
+
+" Nerdtree
+map <C-\> :NERDTreeToggle<CR>
+
+" FZF
+nnoremap <C-t> :FZF<CR>
+inoremap <C-t> <ESC>:FZF<CR>
 
 " tComment
 map <leader>c <c-_><c-_>
