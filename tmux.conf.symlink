@@ -22,17 +22,14 @@ bind n resize-pane -D 10
 setw -g window-status-current-fg white
 setw -g window-status-current-attr bright
 
-# Status Bar
-# using tmuxline
+# Status Bar / Tmuxline
 
 # Termset
 set -g default-terminal "screen-256color"
 set-option -g default-shell /bin/zsh
 setw -g utf8 on
 
-# Tmuxline
-source ~/.vim/bundle/tmuxline.vim
-source ~/.tmuxline
+
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
@@ -57,7 +54,7 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 
-set -g @resurrect-processes 'ruby jekyll npm node gulp zsh ember'
+set -g @resurrect-processes 'ruby jekyll npm node gulp zsh ember webpack'
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 set -g @continuum-restore 'on'
