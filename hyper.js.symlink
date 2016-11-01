@@ -1,35 +1,55 @@
-module.exports = {
+const TermUI = `
+  html { -webkit-font-smoothing: antialiased; }
+
+  .tabs_nav,
+  .tab_textInner {
+    font-family: 'SFMono-Medium', BlinkMacSystemFont, sans-serif;
+  }
+`
+
+const Config = {
   config: {
     fontSize: 14,
-    fontFamily: 'Input Mono',
+    fontFamily: 'SFMono-Medium',
+    cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#fff',
-    backgroundColor: 'rgba(27,43,52,.5)',
+    backgroundColor: 'rgba(9, 55, 80, 0.88)',
     borderColor: '#333',
-    css: '',
-    termCSS: '',
+    css: TermUI,
+    bell: false,
+    termCSS: ``,
     padding: '12px 14px',
     colors: [
       '#1B2B34',
       '#EB606B',
-      '#A8FF60',
+      '#7ED4F8',
       '#E9C062',
       '#96CBFE',
       '#BB80B3',
       '#5FB3B3',
       '#D0D0D0',
       '#808080',
-      '#FF0000',
-      '#33FF00',
-      '#FAC863',
-      '#0066FF',
-      '#CC00FF',
+      '#F25A55',
+      '#7ED4F8',
+      '#FFBA00',
+      '#3c71bf',
+      '#be67e7',
       '#6699CC',
       '#FFFFFF'
     ]
   },
-  sound: '',
-  bell: '',
-  plugins: ['hyperterm-blink', 'hyperterm-title', 'oceanic-next-hyperterm'],
+  plugins: [
+    'hypercwd',
+    'hyperlinks',
+    'hyperterm-tabs',
+    'hyperterm-blink',
+    'hyperterm-tab-icons',
+    'hyperterm-title',
+    'hyperterm-paste',
+    'hyperganymede'
+  ],
   localPlugins: []
 }
+
+module.exports = Config
