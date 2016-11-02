@@ -22,14 +22,15 @@ bind n resize-pane -D 10
 setw -g window-status-current-fg white
 setw -g window-status-current-attr bright
 
-# Status Bar / Tmuxline
-
 # Termset
-set -g default-terminal "screen-256color"
 set-option -g default-shell /bin/zsh
-setw -g utf8 on
 
-
+set -g default-terminal "screen-256color"
+set -g pane-border-style 'fg=black'
+set -g pane-active-border-style 'fg=cyan'
+set -g status-style 'fg=brightblack,bg=black'
+set -g message-style 'fg=green,bg=black'
+set -g clock-mode-colour cyan
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
