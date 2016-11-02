@@ -3,14 +3,14 @@ const TermUI = `
 
   .tabs_nav,
   .tab_textInner {
-    font-family: 'SFMono-Medium', BlinkMacSystemFont, sans-serif;
+    font-family: 'SF Mono', BlinkMacSystemFont, sans-serif;
   }
 `
 
 const Config = {
   config: {
-    fontSize: 14,
-    fontFamily: 'SFMono-Medium',
+    fontSize: 13,
+    fontFamily: 'SF Mono',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#fff',

@@ -21,7 +21,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Colors
-Plugin 'mhartington/oceanic-next'
+Plugin 'charlespeters/ganymede.vim'
 
 "" HTML
 Plugin 'othree/html5.vim'
@@ -54,7 +54,6 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'rking/ag.vim'
 Plugin 'spf13/vim-autoclose'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
@@ -108,11 +107,10 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
-set background=dark
 set laststatus=2
 
 " Colors Themes & Font Settings
-colorscheme OceanicNext
+colorscheme ganymede
 set t_Co=256
 hi NonText ctermbg=none
 hi Normal ctermbg=none
@@ -136,14 +134,14 @@ endif
 
 " For NeoVim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/Resources/Python.app/Contents/MacOS/Python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 "==============================
 " Plugin Settings
 "==============================
 
 " Airline
-let g:airline_theme='oceanicnext'
+let g:airline_theme='ganymede'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1

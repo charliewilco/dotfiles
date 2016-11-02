@@ -18,9 +18,6 @@ alias itunes='itunes-remote'
 alias g='git'
 alias tower='gittower'
 
-# Vim
-alias vim='nvim'
-
 # Project Directories
 
 alias cdg='cd ~/Code/'

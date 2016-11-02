@@ -38,7 +38,7 @@ Commands are composeable
 
 ### NERDTree
 
-To create a new file with NERDTree open, hit `m` then `a` and a buffer will appear where you can add a new file by specifying it's path.
+To create a new file with NERDTree open, hit `m` then `a` and a buffer will appear where you can add a new file by specifying its path.
 
 ## Command Line Utilities
 
