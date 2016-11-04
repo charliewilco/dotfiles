@@ -7,6 +7,8 @@ const TermUI = `
   }
 `
 
+const TermCSS = ``
+
 const Config = {
   config: {
     fontSize: 13,
@@ -18,7 +20,7 @@ const Config = {
     borderColor: '#333',
     css: TermUI,
     bell: false,
-    termCSS: ``,
+    termCSS: TermCSS,
     padding: '12px 14px',
     colors: [
       '#1B2B34',
