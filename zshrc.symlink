@@ -10,13 +10,14 @@ ENABLE_CORRECTION="true"
 plugins=(git npm colorize common-aliases compleat github zsh-better-npm-completion)
 
 # User Configuration
-. `brew --prefix`/etc/profile.d/z.sh
+# . `brew --prefix`/etc/profile.d/z.sh
 # eval $(thefuck --alias)
 # eval "$(gulp --completion=zsh)"
 
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${HOME}/.rvm/bin:/usr/local/m-cli"
+export TERM=screen-256color
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,3 +30,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
