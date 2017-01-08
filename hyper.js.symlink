@@ -1,18 +1,10 @@
-const TermUI = `
-  html { -webkit-font-smoothing: antialiased; }
+const TermUI = `html { -webkit-font-smoothing: antialiased; }`
 
-  .tabs_nav,
-  .tab_textInner {
-    font-family: 'SF Mono', BlinkMacSystemFont, sans-serif;
-  }
-`
 
-const TermCSS = ``
-
-const Config = {
+module.exports = {
   config: {
-    fontSize: 13,
-    fontFamily: 'SF Mono',
+    fontSize: 14,
+    fontFamily: 'Input Mono Narrow',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#fff',
@@ -20,8 +12,8 @@ const Config = {
     borderColor: '#333',
     css: TermUI,
     bell: false,
-    termCSS: TermCSS,
-    padding: '12px 14px',
+    termCSS: ``,
+    padding: '4px 8px',
     colors: [
       '#1B2B34',
       '#EB606B',
@@ -46,12 +38,9 @@ const Config = {
     'hyperlinks',
     'hyperterm-tabs',
     'hyperterm-blink',
-    'hyperterm-tab-icons',
-    'hyperterm-title',
     'hyperterm-paste',
+    'hyper-statusline',
     'hyperganymede'
   ],
   localPlugins: []
 }
-
-module.exports = Config
