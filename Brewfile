@@ -18,7 +18,6 @@ brew 'mas'
 brew 'ccat'
 brew 'ren'
 brew 'ranger'
-brew 'keybase'
 brew 'lynx'
 brew 'gnupg'
 brew 'tig'
@@ -32,7 +31,6 @@ brew 'zsh'
 # Vim
 brew 'neovim/neovim/neovim', args: ['HEAD']
 brew 'vim', args: ['with-lua', 'with-python3']
-brew 'macvim', args: ['with-override-system-vim']
 brew 'tmux'
 
 # Languages & DBs
@@ -66,6 +64,7 @@ cask 'kap'
 cask 'atom'
 cask 'hyper'
 cask 'spotify'
+cask 'vimr'
 cask 'phoenix'
 
 # Mac App Store
