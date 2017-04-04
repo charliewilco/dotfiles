@@ -1,8 +1,0 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,Arial,sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-.TweetTextSize.TweetTextSize--26px { font-family: Avenir; }
-
-.has-scroll-bump .ScrollBump-content > li { width: 287px; }
