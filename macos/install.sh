@@ -16,6 +16,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 killall Finder
 
+# Set a really fast key repeat.
+defaults write NSGlobalDomain KeyRepeat -int 1
+
 
 ##############################
 # Other Applications         #
