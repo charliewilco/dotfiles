@@ -1,18 +1,14 @@
-const TermUI = `html { -webkit-font-smoothing: antialiased; }`
-
-
 module.exports = {
   config: {
-    fontSize: 14,
-    fontFamily: 'Input Mono Narrow',
+    fontSize: 16,
+    fontFamily: 'Input Mono Condensed',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
-    foregroundColor: '#fff',
-    backgroundColor: 'rgba(9, 55, 80, 0.88)',
-    borderColor: '#333',
-    css: TermUI,
+    foregroundColor: '#FFF',
+    borderColor: 'transparent',
+    css: '',
     bell: false,
-    termCSS: ``,
+    termCSS: '',
     padding: '4px 8px',
     colors: [
       '#1B2B34',

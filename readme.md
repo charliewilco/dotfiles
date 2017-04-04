@@ -20,6 +20,17 @@ The config script sets up Vim and copies all my preferences for Vim / NeoVim, tm
 
 There's a [cheatsheet](https://github.com/charlespeters/dotfiles/blob/master/cheatsheet.md) for very common things I do with Vim and command line utilities (ie `ag`, `hub`, and more to come).
 
+## SSH
+
+You need to create a file for SSH `~/.ssh/config` with the following contents:
+
+```sh
+Host *
+    UseKeychain yes
+```
+
+It solves a lot of isses with macOS Sierra and SSH that didn't exist in previous versions.
+
 ## Other Dotfiles
 
 This is the list of dotfiles I've looked through and learned something cool from:
