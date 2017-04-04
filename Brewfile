@@ -1,47 +1,44 @@
+cask_args appdir: '/Applications'
+
 # Taps
-tap 'caskroom/cask'
-tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'neovim/neovim'
-
-# Setups
-brew 'caskroom/cask/brew-cask'
-brew 'neovim/neovim/neovim', args: ['HEAD']
-brew 'cask'
 
 # Utilities
 brew 'cmake'
 brew 'wget'
 brew 'git'
-brew 'z'
 brew 'fzf'
 brew 'svn'
 brew 'the_silver_searcher'
 brew 'hub', args: ['HEAD']
 brew 'watchman'
+brew 'mas'
 brew 'ccat'
-brew 'cloc'
 brew 'ren'
 brew 'ranger'
+brew 'keybase'
 brew 'lynx'
 brew 'gnupg'
 brew 'tig'
 brew 'terminal-notifier'
+brew 'tree'
 brew 'dark-mode'
 brew 'reattach-to-user-namespace'
+brew 'yarn'
+brew 'zsh'
 
 # Vim
+brew 'neovim/neovim/neovim', args: ['HEAD']
 brew 'vim', args: ['with-lua', 'with-python3']
 brew 'macvim', args: ['with-override-system-vim']
 brew 'tmux'
 
 # Languages & DBs
-brew 'go'
+brew 'elixir'
 brew 'python3'
 brew 'node'
-brew 'postgresql'
-brew 'mongodb'
 
 # Images & Quick Look
 brew 'jpeg'
@@ -56,16 +53,21 @@ cask 'qlimagesize'
 cask 'webpquicklook'
 
 # Casks
-# Cask Install a Ton of Things
-cask 'keycastr', args: { appdir: '/Applications' }
-cask '1password', args: { appdir: '/Applications' }
-cask 'alfred', args: { appdir: '/Applications' }
-cask 'dropbox', args: { appdir: '/Applications' }
-cask 'fantastical', args: { appdir: '/Applications' }
-cask 'google-chrome', args: { appdir: '/Applications' }
-cask 'hammerspoon', args: { appdir: '/Applications' }
-cask 'keepingyouawake', args: { appdir: '/Applications' }
-cask 'licecap', args: { appdir: '/Applications' }
-cask 'sketch', args: { appdir: '/Applications' }
-cask 'sketch-toolbox', args: { appdir: '/Applications' }
-cask 'tower', args: { appdir: '/Applications' }
+cask 'sip'
+cask '1password'
+cask 'alfred'
+cask 'dropbox'
+cask 'screenhero'
+cask 'figma'
+cask 'google-chrome'
+cask 'karabiner-elements'
+cask 'webtorrent'
+cask 'kap'
+cask 'atom'
+cask 'hyper'
+cask 'spotify'
+cask 'phoenix'
+
+# Mac App Store
+mas 'Battery Indicator', id: 1206020918
+mas 'Tweetbot', id: 557168941
