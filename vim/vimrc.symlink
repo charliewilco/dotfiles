@@ -22,6 +22,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Colors
 Plugin 'charlespeters/ganymede.vim'
+Plugin 'whatyouhide/vim-gotham'
 
 "" HTML
 Plugin 'othree/html5.vim'
@@ -44,30 +45,25 @@ Plugin 'sheerun/vim-json'
 
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'scrooloose/nerdtree'
-Plugin 'mattn/emmet-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf.vim'
+
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
-Plugin 'rking/ag.vim'
 Plugin 'spf13/vim-autoclose'
 Plugin 'vim-airline/vim-airline'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'ervandew/supertab'
-
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-  Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  Plugin 'neomake/neomake'
-else
-  Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-  Plugin 'scrooloose/syntastic'
-endif
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plugin 'neomake/neomake'
+Plugin 'sbdchd/neoformat'
+Plugin 'mattn/emmet-vim' " TODO: Consider removing
+Plugin 'nathanaelkane/vim-indent-guides' " TODO: Consider removing
+Plugin 'ctrlpvim/ctrlp.vim' " TODO: Consider removing
+Plugin 'scrooloose/nerdtree' " TODO: Consider removing
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -83,6 +79,7 @@ syntax enable
 set shell=$SHELL
 
 set number
+set background=dark
 set numberwidth=5
 set relativenumber
 set smartindent
@@ -108,15 +105,17 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set laststatus=2
+set cc=80
 
 " Colors Themes & Font Settings
 colorscheme ganymede
+set termguicolors
 set t_Co=256
-hi NonText ctermbg=none
-hi Normal ctermbg=none
+hi NonText ctermbg=NONE guibg=NONE
+hi Normal ctermbg=NONE guibg=NONE
 
 " Highlights
-highlight SignColumn ctermfg=DarkBlue ctermbg=black
+highlight SignColumn ctermfg=DarkBlue ctermbg=NONE
 highlight SignColumnNR ctermbg=black
 highlight LineNr ctermfg=DarkGrey ctermbg=NONE
 highlight CursorLineNR ctermbg=NONE ctermfg=Grey cterm=bold
@@ -126,11 +125,6 @@ highlight Comment cterm=italic cterm=NONE
 " Clipboard
 set clipboard=unnamed
 set clipboard+=unnamedplus
-
-" For MacVim
-if has('gui_running')
-  set guifont=Input\ Mono:h13
-endif
 
 " For NeoVim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -170,42 +164,29 @@ autocmd FileType html,mustache,css EmmetInstall
 
 " Syntastic Checkers
 
-if has('nvim')
-  " Deoplete.nvim
-  " Deoplete-ternjs
-  let g:deoplete#enable_at_startup = 1
-  let g:SuperTabDefaultCompletionType = "<C-n>"
-  let g:tern_request_timeout = 1
-  let g:tern_show_signature_in_pum = 0
-  set completeopt-=preview
+" Deoplete.nvim
+" Deoplete-ternjs
+let g:deoplete#enable_at_startup = 1
+let g:SuperTabDefaultCompletionType = "<C-n>"
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = 0
+set completeopt-=preview
 
-  " Neomake
-  let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-  let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
-  let g:neomake_javascript_enabled_makers = ['standard']
-  let g:neomake_jsx_enabled_makers = ['standard']
-  let g:neomake_css_enabled_makers = ['stylelint']
-  let g:neomake_json_enabled_makers = ['jsonlint']
+" Neomake
+let g:neomake_warning_sign = {
+      \ 'text': 'W',
+      \ 'texthl': 'WarningMsg',
+      \ }
+let g:neomake_error_sign = {
+      \ 'text': 'E',
+      \ 'texthl': 'ErrorMsg',
+      \ }
+let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_jsx_enabled_makers = ['standard']
+let g:neomake_css_enabled_makers = ['stylelint']
+let g:neomake_json_enabled_makers = ['jsonlint']
 
-  autocmd! BufWritePost * Neomake
-else
-  " Syntastic
-
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-
-  let g:syntastic_check_on_wq=1
-  let g:syntastic_enable_signs=1
-  let g:syntastic_css_checkers=['stylelint']
-  let g:syntastic_javascript_checkers=['standard']
-endif
+autocmd! BufWritePost * Neomake
 
 " Indent Guides
 
@@ -218,7 +199,7 @@ let g:xml_syntax_folding = 1
 
 " Markdown
 
-let g:markdown_fenced_languages = ['html', 'css', 'js']
+let g:markdown_fenced_languages = ['html', 'css=postcss.css', 'js=javascript.jsx']
 
 "==============================
 " File Types
@@ -252,6 +233,8 @@ inoremap <C-t> <ESC>:FZF<CR>
 map <leader>c <c-_><c-_>
 
 " No Remap for Arrow Keys
+inoremap <ScrollWheelUp> <Nop>
+inoremap <ScrollWheelDown> <Nop>
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
