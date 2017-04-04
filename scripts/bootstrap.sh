@@ -2,25 +2,10 @@
 #
 # bootstrap installs things.
 
-
-while [[ $# > 1 ]]
-do
-key="$1"
-
-case $key in
-    -u|--user)
-    USER="$2"
-    shift # past argument
-    ;;
-    *)
-            # unknown option
-    ;;
-esac
-shift # past argument or value
-done
-
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
+
+set -e
 
 echo ''
 
@@ -43,7 +28,7 @@ fail () {
 }
 
 setup_gitconfig () {
-  if ! [ -f "$DOTFILES_ROOT/gitconfig.symlink" ]
+  if ! [ -f git/gitconfig.local.symlink ]
   then
     info 'setup gitconfig'
 
@@ -58,13 +43,10 @@ setup_gitconfig () {
     user ' - What is your github author email?'
     read -e git_authoremail
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.local.symlink.example > git/gitconfig.local.symlink
 
     success 'gitconfig'
   fi
-
-  git config --global core.excludesfile ~/.gitignore_global
-  echo "Hey don't forget to make an SSH key"
 }
 
 
@@ -158,18 +140,17 @@ install_dotfiles () {
 setup_gitconfig
 install_dotfiles
 
-info "installing dependencies (this will take a while)"
-if ./scripts/setup.sh > /tmp/dotfiles-dot 2>&1
+# If we're on a Mac, let's install and setup homebrew.
+if [ "$(uname -s)" == "Darwin" ]
 then
-  success "dependencies installed"
-else
-  ret_code=$?
-  fail $ret_code
-  fail "error installing dependencies"
+  info "installing dependencies"
+  if source bin/dot > /tmp/dotfiles-dot 2>&1
+  then
+    success "dependencies installed"
+  else
+    fail "error installing dependencies"
+  fi
 fi
 
 echo ''
 echo '  All installed!'
-echo '  Switching to zsh...'
-
-chsh -s $(which zsh) $USER
