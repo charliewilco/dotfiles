@@ -4,4 +4,4 @@ git clone https://github.com/charlespeters/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 echo "› Getting started with your .dotfiles"
-sh ~/.dotfiles/script/bootstrap
+sh ~/.dotfiles/scripts/bootstrap

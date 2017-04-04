@@ -1,12 +1,13 @@
-
 # Plugins
 plugins+=(zsh-completions)
 
 # User Configuration
 export ZSH=$HOME/.dotfiles
+
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${HOME}/.rvm/bin"
+
+export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:$PATH"
 export TERM=screen-256color
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
