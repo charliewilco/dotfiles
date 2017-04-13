@@ -103,7 +103,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set laststatus=2
-set cc=80
+" set cc=80
 
 " Colors Themes & Font Settings
 colorscheme ganymede
@@ -180,12 +180,22 @@ let g:neomake_error_sign = {
       \ 'text': 'E',
       \ 'texthl': 'ErrorMsg',
       \ }
-let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_jsx_enabled_makers = ['standard']
+
+if findfile('.eslintrc', '.;') ==# '' || findfile('.eslintrc.js') ==# ''
+  let g:neomake_javascript_jsx_enabled_makers = ['standard']
+else
+  let g:neomake_javascript_jsx_enabled_makers = ['eslint']
+endif
+
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_json_enabled_makers = ['jsonlint']
 
 autocmd! BufWritePost * Neomake
+
+" Neoformat
+
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_jsx = ['prettier']
 
 " Indent Guides
 
@@ -238,5 +248,4 @@ nnoremap <Down> :echoe "Use j"<CR>
 
 if has("gui_vimr")
   colorscheme gotham
-  set guifont=Input\ Mono:h14
 endif
