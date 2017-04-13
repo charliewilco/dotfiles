@@ -46,7 +46,7 @@ Plugin 'sheerun/vim-json'
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
-
+Plugin 'junegunn/limelight.vim' 
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
@@ -62,8 +62,6 @@ Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
 Plugin 'mattn/emmet-vim' " TODO: Consider removing
 Plugin 'nathanaelkane/vim-indent-guides' " TODO: Consider removing
-Plugin 'ctrlpvim/ctrlp.vim' " TODO: Consider removing
-Plugin 'scrooloose/nerdtree' " TODO: Consider removing
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -127,12 +125,17 @@ set clipboard=unnamed
 set clipboard+=unnamedplus
 
 " For NeoVim
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:python3_host_prog = '/usr/local/bin/python3'
+
+let g:loaded_python_provider = 1
 
 "==============================
 " Plugin Settings
 "==============================
+
+" Limelight
+let g:limelight_conceal_ctermfg = 'black'
+let g:limelight_conceal_guifg = 'black'
 
 " Airline
 let g:airline_theme='ganymede'
@@ -153,10 +156,6 @@ highlight GitGutterAdd ctermbg=black ctermfg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
-
-" Ctrl-P Ignore
-set wildignore+=*/bower_components/*,*/dist/*,*/build/*,*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Emmet
 let g:user_emmet_install_global = 0
@@ -222,12 +221,9 @@ let mapleader = ","
 
 map <leader>S :w<CR>
 
-" Nerdtree
-map <C-\> :NERDTreeToggle<CR>
-
 " FZF
-nnoremap <C-t> :FZF<CR>
-inoremap <C-t> <ESC>:FZF<CR>
+nnoremap <C-t> :GFiles<CR>
+inoremap <C-t> <ESC>:GFiles<CR>
 
 " tComment
 map <leader>c <c-_><c-_>
