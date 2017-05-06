@@ -46,7 +46,7 @@ Plugin 'sheerun/vim-json'
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/limelight.vim' 
+Plugin 'junegunn/limelight.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
@@ -236,7 +236,8 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-if has("gui_vimr")
+if has('gui_vimr')
+  set background=dark
   colorscheme gotham
-  set guifont=Input\ Mono:h14
+  let g:airline_theme='gotham'
 endif
