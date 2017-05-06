@@ -1,14 +1,22 @@
 module.exports = {
   config: {
-    fontSize: 16,
-    fontFamily: 'Input Mono Condensed',
+    fontSize: 15,
+    fontFamily: 'Input Mono Compressed',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#FFF',
     borderColor: 'transparent',
     css: '',
     bell: false,
-    termCSS: '',
+    termCSS: `
+  x-screen a {
+    color: #1FB8EB;
+  }
+
+  x-screen a.hover {
+    text-decoration: none;
+  }
+`,
     padding: '4px 8px',
     colors: [
       '#1B2B34',
