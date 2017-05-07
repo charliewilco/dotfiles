@@ -9,14 +9,9 @@ module.exports = {
     css: '',
     bell: false,
     termCSS: `
-  x-screen a {
-    color: #1FB8EB;
-  }
-
-  x-screen a.hover {
-    text-decoration: none;
-  }
-`,
+      x-screen a { color: #1FB8EB; }
+      x-screen a.hover { text-decoration: none; }
+    `,
     padding: '4px 8px',
     colors: [
       '#1B2B34',

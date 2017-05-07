@@ -171,7 +171,13 @@ let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = 0
 set completeopt-=preview
 
+" Neoformat
+
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_jsx = ['prettier']
+
 " Neomake
+
 let g:neomake_warning_sign = {
       \ 'text': 'W',
       \ 'texthl': 'WarningMsg',
