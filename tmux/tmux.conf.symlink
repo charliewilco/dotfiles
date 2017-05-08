@@ -1,4 +1,7 @@
+
 set -g default-terminal 'xterm-256color'
+set -ga terminal-overrides ',xterm-256color:Tc'
+set -g clock-mode-colour cyan
 
 # Enable mouse selections
 set -g mouse on

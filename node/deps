@@ -23,6 +23,8 @@ now
 np
 ntl
 parker
+prettier
+prettier-eslint
 prettyjson
 psy
 remark-cli

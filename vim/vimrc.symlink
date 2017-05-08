@@ -46,7 +46,7 @@ Plugin 'sheerun/vim-json'
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/limelight.vim' 
+Plugin 'junegunn/limelight.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
@@ -171,7 +171,13 @@ let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = 0
 set completeopt-=preview
 
+" Neoformat
+
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_jsx = ['prettier']
+
 " Neomake
+
 let g:neomake_warning_sign = {
       \ 'text': 'W',
       \ 'texthl': 'WarningMsg',
@@ -246,6 +252,8 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-if has("gui_vimr")
+if has('gui_vimr')
+  set background=dark
   colorscheme gotham
+  let g:airline_theme='gotham'
 endif

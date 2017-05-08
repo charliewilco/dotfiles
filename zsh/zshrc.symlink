@@ -6,11 +6,9 @@ export ZSH=$HOME/.dotfiles
 
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
+export LC_CTYPE=en_US.UTF-8
 
 export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:$PATH"
-export TERM=screen-256color
-
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -21,6 +19,8 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+setopt no_verbose
 
 # all of our zsh files
 typeset -U config_files
