@@ -5,7 +5,6 @@
 Phoenix.notify('Config is loading')
 Phoenix.set({ daemon: true, openAtLogin: true })
 
-
 const HOTKEY = ['ctrl', 'alt', 'cmd']
 
 const Handler = new Key('q', HOTKEY, function () {
@@ -20,6 +19,7 @@ const HalfSizeLeft = new Key('left', HOTKEY, () => {
 
   w.setSize({ width: (screen.width / 2), height: screen.height })
   w.setTopLeft({ x: 0, y: 0 })
+  Phoenix.notify(JSON.stringify(w.screen()))
 })
 
 const HalfSizeRight = new Key('right', HOTKEY, () => {
