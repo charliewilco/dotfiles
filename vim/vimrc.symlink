@@ -43,9 +43,14 @@ Plugin 'mxw/vim-jsx'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'sheerun/vim-json'
 
+"" Elixir
+Plugin 'slashmili/alchemist.vim'
+Plugin 'elixir-lang/vim-elixir'
+
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/vim-emoji'
 Plugin 'junegunn/limelight.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
@@ -72,10 +77,10 @@ filetype plugin indent on    " required
 "==============================
 
 " Default Settings
+
 syntax enable
 
 set shell=$SHELL
-
 set number
 set background=dark
 set numberwidth=5
@@ -88,16 +93,19 @@ set ruler
 set mouse=a
 
 " Search Settings
+
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
 " Window Splits
+
 set splitright
 set splitbelow
 
 " Tabs & Spaces
+
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -106,6 +114,7 @@ set laststatus=2
 set cc=80
 
 " Colors Themes & Font Settings
+
 colorscheme ganymede
 set termguicolors
 set t_Co=256
@@ -113,6 +122,7 @@ hi NonText ctermbg=NONE guibg=NONE
 hi Normal ctermbg=NONE guibg=NONE
 
 " Highlights
+
 highlight SignColumn ctermfg=DarkBlue ctermbg=NONE
 highlight SignColumnNR ctermbg=black
 highlight LineNr ctermfg=DarkGrey ctermbg=NONE
@@ -121,23 +131,34 @@ highlight CursorLine ctermbg=NONE cterm=NONE
 highlight Comment cterm=italic cterm=NONE
 
 " Clipboard
+
 set clipboard=unnamed
 set clipboard+=unnamedplus
 
 " For NeoVim
-let g:python3_host_prog = '/usr/local/bin/python3'
 
+let g:python3_host_prog = '/usr/local/bin/python3'
 let g:loaded_python_provider = 1
+
+" VimR Settings
+
+if has('gui_vimr')
+  set background=dark
+  colorscheme gotham
+  let g:airline_theme='gotham'
+endif
 
 "==============================
 " Plugin Settings
 "==============================
 
 " Limelight
+
 let g:limelight_conceal_ctermfg = 'black'
 let g:limelight_conceal_guifg = 'black'
 
 " Airline
+
 let g:airline_theme='ganymede'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
@@ -151,13 +172,22 @@ let g:airline_section_y = 0
 let g:airline_section_z = airline#section#create(['%{ObsessionStatus(''$'', '''')}', 'windowswap', '%3p%% ', 'linenr', ':%3v '])
 
 " Gitgutter
+
 call gitgutter#highlight#define_highlights()
 highlight GitGutterAdd ctermbg=black ctermfg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
+if emoji#available()
+  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+endif
+
 " Emmet
+
 let g:user_emmet_install_global = 0
 autocmd FileType html,mustache,css EmmetInstall
 
@@ -165,6 +195,7 @@ autocmd FileType html,mustache,css EmmetInstall
 
 " Deoplete.nvim
 " Deoplete-ternjs
+
 let g:deoplete#enable_at_startup = 1
 let g:SuperTabDefaultCompletionType = "<C-n>"
 let g:tern_request_timeout = 1
@@ -199,6 +230,7 @@ hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
 " Not Sure
+
 let g:enable_bold_font=1
 let g:xml_syntax_folding = 1
 
@@ -221,6 +253,7 @@ let g:jsx_ext_required = 0
 "==============================
 
 " Leader
+
 let mapleader = ","
 
 " Save
@@ -228,22 +261,19 @@ let mapleader = ","
 map <leader>S :w<CR>
 
 " FZF
+
 nnoremap <C-t> :GFiles<CR>
 inoremap <C-t> <ESC>:GFiles<CR>
 
 " tComment
+
 map <leader>c <c-_><c-_>
 
 " No Remap for Arrow Keys
+
 inoremap <ScrollWheelUp> <Nop>
 inoremap <ScrollWheelDown> <Nop>
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-if has('gui_vimr')
-  set background=dark
-  colorscheme gotham
-  let g:airline_theme='gotham'
-endif
