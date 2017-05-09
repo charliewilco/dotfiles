@@ -135,18 +135,6 @@ highlight Comment cterm=italic cterm=NONE
 set clipboard=unnamed
 set clipboard+=unnamedplus
 
-" For NeoVim
-
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:loaded_python_provider = 1
-
-" VimR Settings
-
-if has('gui_vimr')
-  set background=dark
-  colorscheme gotham
-  let g:airline_theme='gotham'
-endif
 
 "==============================
 " Plugin Settings
@@ -237,6 +225,23 @@ let g:xml_syntax_folding = 1
 " Markdown
 
 let g:markdown_fenced_languages = ['html', 'css=postcss.css', 'js=javascript.jsx']
+
+"==============================
+" GUI Vim Settings
+"==============================
+
+" For NeoVim
+
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:loaded_python_provider = 1
+
+" VimR Settings
+
+if has('gui_vimr')
+  set background=dark
+  colorscheme gotham
+  let g:airline_theme='gotham'
+endif
 
 "==============================
 " File Types
