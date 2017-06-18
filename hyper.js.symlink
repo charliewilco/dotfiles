@@ -1,7 +1,7 @@
 module.exports = {
   config: {
     fontSize: 15,
-    fontFamily: 'Input Mono Compressed',
+    fontFamily: 'Operator Mono',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#FFF',
@@ -38,7 +38,7 @@ module.exports = {
     'hyperterm-tabs',
     'hyperterm-blink',
     'hyperterm-paste',
-    'hyper-statusline',
+    'hyperline',
     'hyperganymede'
   ],
   localPlugins: []
