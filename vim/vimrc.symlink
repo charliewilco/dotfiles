@@ -255,6 +255,7 @@ if has('gui_vimr')
   colorscheme OceanicNext
   let g:airline_theme='oceanicnext'
   highlight Comment cterm=italic
+  highlight Comment gui=italic
 endif
 
 "==============================
