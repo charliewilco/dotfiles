@@ -6,8 +6,10 @@
 [alias]
   dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
   open = "!f() { REPO_URL=$(git config remote.origin.url); open x-github-client://openRepo/${REPO_URL%%.git}; }; f"
+  bb = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
   aa = add --all
   st = status
+  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
   log-nice = log --graph --oneline --all --decorate
   push-this = push -u origin HEAD
 [filter "media"]
@@ -22,9 +24,10 @@
   editor = /usr/local/bin/nvim
   excludesfile = ~/.gitignore_global
 [filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
-  required = true
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [web]
   browser = chrome
 [browser "chrome"]
