@@ -12,6 +12,8 @@ alias ag='ag --path-to-agignore=~/.agignore'
 alias r='yarn run'
 alias tree='tree -h -I "node_modules*|bower_components*"'
 alias cat='ccat'
+alias empty='empty-trash'
+alias flx='hidden-files'
 
 # Git & Apps
 

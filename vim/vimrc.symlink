@@ -1,6 +1,7 @@
 "==============================
 "
 "
+"
 " Vim & NeoVim Runtime Configuration
 "
 "
@@ -22,6 +23,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Colors
 Plugin 'charlespeters/ganymede.vim'
+Plugin 'mhartington/oceanic-next'
 Plugin 'whatyouhide/vim-gotham'
 
 "" HTML
@@ -65,6 +67,7 @@ Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
 Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
+Plugin 'reedes/vim-pencil'
 Plugin 'mattn/emmet-vim' " TODO: Consider removing
 Plugin 'nathanaelkane/vim-indent-guides' " TODO: Consider removing
 
@@ -111,7 +114,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set laststatus=2
-set cc=80
+set cc=95
 
 " Colors Themes & Font Settings
 
@@ -167,17 +170,20 @@ highlight GitGutterChange ctermbg=black ctermfg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
-if emoji#available()
-  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-  let g:gitgutter_sign_modified_removed = emoji#for('collision')
-endif
+let g:gitgutter_max_signs = 500
+
+" if emoji#available()
+"   let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+"   let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+"   let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+"   let g:gitgutter_sign_modified_removed = emoji#for('collision')
+" endif
 
 " Emmet
 
+" let g:user_emmet_leader_key='<C-Z>'
 let g:user_emmet_install_global = 0
-autocmd FileType html,mustache,css EmmetInstall
+autocmd FileType html,mustache,jsx,css EmmetInstall
 
 " Syntastic Checkers
 
@@ -205,8 +211,8 @@ let g:neomake_error_sign = {
       \ 'text': 'E',
       \ 'texthl': 'ErrorMsg',
       \ }
-let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_jsx_enabled_makers = ['standard']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_json_enabled_makers = ['jsonlint']
 
@@ -235,12 +241,20 @@ let g:markdown_fenced_languages = ['html', 'css=postcss.css', 'js=javascript.jsx
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:loaded_python_provider = 1
 
+" Remaps Esc to leave Terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 " VimR Settings
 
 if has('gui_vimr')
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   set background=dark
-  colorscheme gotham
-  let g:airline_theme='gotham'
+  colorscheme OceanicNext
+  let g:airline_theme='oceanicnext'
+  highlight Comment cterm=italic
 endif
 
 "==============================
@@ -267,8 +281,8 @@ map <leader>S :w<CR>
 
 " FZF
 
-nnoremap <C-t> :GFiles<CR>
-inoremap <C-t> <ESC>:GFiles<CR>
+nnoremap <C-t> :Files<CR>
+inoremap <C-t> <ESC>:Files<CR>
 
 " tComment
 

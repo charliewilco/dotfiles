@@ -11,7 +11,7 @@ export LC_CTYPE=en_US.UTF-8
 export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:$PATH"
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
