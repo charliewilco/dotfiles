@@ -2,11 +2,17 @@ module.exports = {
   config: {
     fontSize: 15,
     fontFamily: 'Operator Mono',
+    uiFontFamily: 'Operator Mono',
+    showHamburgerMenu: true,
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#FFF',
     borderColor: 'transparent',
-    css: '',
+    css: `
+      .hyper_main {
+        padding-bottom: 1.2rem;
+      }
+    `,
     bell: false,
     termCSS: `
       x-screen a { color: #1FB8EB; }
@@ -30,7 +36,14 @@ module.exports = {
       '#be67e7',
       '#6699CC',
       '#FFFFFF'
-    ]
+    ],
+    hypercwd: {
+      initialWorkingDirectory: '~/Code'
+    },
+    hyperlinks: {
+      clickAction: 'copy',
+      defaultBrowser: true
+    }
   },
   plugins: [
     'hypercwd',

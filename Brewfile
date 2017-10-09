@@ -53,20 +53,17 @@ cask 'webpquicklook'
 # Casks
 cask 'sip'
 cask '1password'
-cask 'alfred'
-cask 'dropbox'
-cask 'screenhero'
-cask 'figma'
+cask 'caprine'
+cask 'spectacle'
 cask 'google-chrome'
-cask 'karabiner-elements'
-cask 'webtorrent'
 cask 'kap'
+cask 'sketch'
 cask 'atom'
 cask 'hyper'
 cask 'spotify'
 cask 'vimr'
-cask 'phoenix'
 
 # Mac App Store
 mas 'Battery Indicator', id: 1206020918
 mas 'Tweetbot', id: 557168941
+mas 'Lungo', id: 1263070803
