@@ -51,7 +51,7 @@ module.exports = {
     'hyperterm-tabs',
     'hyperterm-blink',
     'hyperterm-paste',
-    'hyperline',
+//    'hyperline',
     'hyperganymede'
   ],
   localPlugins: []
