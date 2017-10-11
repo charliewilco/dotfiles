@@ -200,6 +200,11 @@ set completeopt-=preview
 
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_jsx = ['prettier']
+autocmd FileType javascript.jsx setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --no-semi\ --use-tabs\ --jsx-bracket-same-line
+
+let g:neoformat_try_formatprg = 1
+
+autocmd BufWritePre *.js Neoformat
 
 " Neomake
 
