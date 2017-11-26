@@ -1,41 +1,42 @@
 # Local/private config goes in the include
 [include]
-  path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 [color]
-  ui = auto
+	ui = auto
 [alias]
-  dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
-  open = "!f() { REPO_URL=$(git config remote.origin.url); open x-github-client://openRepo/${REPO_URL%%.git}; }; f"
-  bb = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
-  aa = add --all
-  st = status
-  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
-  log-nice = log --graph --oneline --all --decorate
-  push-this = push -u origin HEAD
+	dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+	open = "!f() { REPO_URL=$(git config remote.origin.url); open x-github-client://openRepo/${REPO_URL%%.git}; }; f"
+	bb = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
+	aa = add --all
+	st = status
+	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
+	log-nice = log --graph --oneline --all --decorate
+	log-simple = log --all --oneline --no-merges
+	push-this = push -u origin HEAD
 [filter "media"]
   required = true
   clean = git media clean %f
   smudge = git media smudge %f
 [filter "hawser"]
-  clean = git hawser clean %f
-  smudge = git hawser smudge %f
-  required = true
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
 [core]
-  editor = /usr/local/bin/nvim
-  excludesfile = ~/.gitignore_global
+	editor = /usr/local/bin/nvim
+	excludesfile = ~/.gitignore_global
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [web]
-  browser = chrome
+	browser = chrome
 [browser "chrome"]
-  path = "/Applications/Google Chrome.app"
+	path = "/Applications/Google Chrome.app"
 [mergetool]
-  keepBackup = false
+	keepBackup = false
 [github]
-  user = charlespeters
+	user = charlespeters
 [credential]
 	helper = osxkeychain
 

@@ -19,7 +19,6 @@ Thumbs.db
 *.tar
 *.zip
 
-
 # Logs and Temp Vim Files #
 ######################
 *.swp
@@ -36,3 +35,4 @@ node_modules
 _site/
 .publish/
 .grunt
+package-lock.json
