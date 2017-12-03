@@ -1,9 +1,11 @@
 module.exports = {
   config: {
+    updateChannel: 'canary',
     fontSize: 15,
     fontFamily: 'Operator Mono',
     uiFontFamily: 'Operator Mono',
     showHamburgerMenu: true,
+    shell: 'zsh',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
     foregroundColor: '#FFF',

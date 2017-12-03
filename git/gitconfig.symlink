@@ -43,3 +43,5 @@
 [user]
 	name = Charles ⚡
 	email = charlespeters42@gmail.com
+[merge]
+	tool = vimdiff
