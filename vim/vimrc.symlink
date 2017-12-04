@@ -202,8 +202,7 @@ inoremap <Leader>ff :Neoformat
 
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_jsx = ['prettier']
-" Maybe this could just use the project settings...
-autocmd FileType javascript.jsx setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote\ --no-semi\ --use-tabs\ --jsx-bracket-same-line
+let g:neoformat_enabled_css = ['prettier']
 
 let g:neoformat_try_formatprg = 1
 
