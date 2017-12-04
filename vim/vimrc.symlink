@@ -23,7 +23,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Colors
 Plugin 'charlespeters/ganymede.vim'
-Plugin 'mhartington/oceanic-next'
 Plugin 'chriskempson/base16-vim'
 Plugin 'vim-airline/vim-airline-themes'
 
@@ -43,7 +42,7 @@ Plugin 'stephenway/postcss.vim'
 " Plugin 'othree/yajs.vim'
 " Plugin 'othree/es.next.syntax.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'maxmellon/vim-jsx-pretty'
 " Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'sheerun/vim-json'
 
@@ -72,6 +71,11 @@ Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
 Plugin 'reedes/vim-pencil' " Consider Removing
+
+" Snippets
+Plugin 'epilande/vim-es2015-snippets'
+Plugin 'epilande/vim-react-snippets'
+Plugin 'SirVer/ultisnips'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -222,7 +226,9 @@ let g:neomake_json_enabled_makers = ['jsonlint']
 
 autocmd! BufWritePost * Neomake
 
-" Indent Guides
+" Snippets
+
+let g:UltiSnipsExpandTrigger="<C-l>"
 
 " Not Sure
 
@@ -275,8 +281,7 @@ endif
 autocmd BufNewFile,BufRead *.css set filetype=postcss.css
 autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
-
-let g:jsx_ext_required = 0
+autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx 
 
 "==============================
 " Mappings
@@ -287,6 +292,7 @@ let g:jsx_ext_required = 0
 let mapleader = ","
 
 " Save
+" TODO: this doesn't work
 
 map <leader>S :w<CR>
 
