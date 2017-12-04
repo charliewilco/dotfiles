@@ -30,11 +30,16 @@ Currently this `.vimrc` has no remap for arrow keys in normal mode.
 |`V%`                | Select whole class                    |
 |`:%s/\s\+$//e`      | Removes trailing whitespace.          |
 
+
 Commands are composeable
 
 - `dw` Delete word
 - `d2w` Delete 2 words
 - `d4j` Delete 4 lines down
+
+
+- `gf` Open file underneath cursor in new window
+- `gx` Open URL underneath cursor in browser
 
 ### NERDTree
 
