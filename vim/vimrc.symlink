@@ -64,13 +64,19 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'editorconfig/editorconfig-vim' " Consider Removing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+
 Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
-Plugin 'reedes/vim-pencil' " Consider Removing
+Plugin 'reedes/vim-pencil', { 'for': 'markdown' }
 
 " Snippets
 Plugin 'epilande/vim-es2015-snippets'
@@ -203,9 +209,11 @@ inoremap <Leader>ff :Neoformat
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_jsx = ['prettier']
 let g:neoformat_enabled_css = ['prettier']
+let g:neoformat_enabled_postcss = ['prettier']
 
 let g:neoformat_try_formatprg = 1
 
+autocmd FileType javascript setlocal formatprg=prettier\ --stdin\
 autocmd BufWritePre *.js Neoformat
 
 " Neomake
