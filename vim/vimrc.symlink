@@ -64,18 +64,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'editorconfig/editorconfig-vim' " Consider Removing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
-
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
-endif
-
-Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plugin 'neomake/neomake'
-Plugin 'sbdchd/neoformat'
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' } 
+Plugin 'w0rp/ale'
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plugin 'reedes/vim-pencil', { 'for': 'markdown' }
 
 " Snippets
@@ -118,6 +109,11 @@ set smartcase
 set splitright
 set splitbelow
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Tabs & Spaces
 
 set tabstop=4
@@ -132,8 +128,17 @@ set smartindent
 " Colors Themes & Font Settings
 let base16colorspace=256
 colorscheme base16-ocean
-set termguicolors
 set t_Co=256
+if has('termguicolors')
+	set termguicolors
+  " Don't need this in xterm-256color, but do need it inside tmux.
+  " (See `:h xterm-true-color`.)
+  if &term =~# 'tmux-256color'
+    let &t_8f="\e[38;2;%ld;%ld;%ldm"
+    let &t_8b="\e[48;2;%ld;%ld;%ldm"
+  endif
+endif
+
 hi NonText ctermbg=NONE guibg=NONE
 hi Normal ctermbg=NONE guibg=NONE
 
@@ -194,48 +199,24 @@ endif
 
 " Syntastic Checkers
 
-" Deoplete.nvim
-" Deoplete-ternjs
+" ALE Asynchronous Lint Engine
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '🚨'
+let g:ale_sign_warning = '👉'
+let g:ale_linters = {
+      \'javascript': ['flow']
+      \}
 
-let g:deoplete#enable_at_startup = 1
-let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = 0
+" YouCompleteMe
+
+set completeopt+=noinsert,noselect
 set completeopt-=preview
-
-" Neoformat
-
-inoremap <Leader>ff :Neoformat
-
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_jsx = ['prettier']
-let g:neoformat_enabled_css = ['prettier']
-let g:neoformat_enabled_postcss = ['prettier']
-
-let g:neoformat_try_formatprg = 1
-
-autocmd FileType javascript setlocal formatprg=prettier\ --stdin\
-autocmd BufWritePre *.js Neoformat
-
-" Neomake
-
-let g:neomake_warning_sign = {
-      \ 'text': 'W',
-      \ 'texthl': 'WarningMsg',
-      \ }
-let g:neomake_error_sign = {
-      \ 'text': 'E',
-      \ 'texthl': 'ErrorMsg',
-      \ }
-let g:neomake_javascript_enabled_makers = ['eslint'] " Maybe use flow
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_css_enabled_makers = ['stylelint']
-let g:neomake_json_enabled_makers = ['jsonlint']
-
-autocmd! BufWritePost * Neomake
 
 " Snippets
 
 let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Not Sure
 
