@@ -8,7 +8,7 @@ alias ....='cd ../../../'
 alias dstry='find . -name ".DS_Store" -type f -delete'
 
 alias npmr='trash node_modules; npm cache clean; npm install'
-alias ag='ag --path-to-agignore=~/.agignore'
+alias ag='ag --path-to-ignore=~/.ignore'
 alias r='yarn run'
 alias tree='tree -h -I "node_modules*|bower_components*"'
 alias cat='ccat'
