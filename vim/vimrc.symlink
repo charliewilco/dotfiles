@@ -64,7 +64,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'editorconfig/editorconfig-vim' " Consider Removing
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' } 
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plugin 'w0rp/ale'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plugin 'reedes/vim-pencil', { 'for': 'markdown' }
@@ -252,6 +252,7 @@ endif
 
 " MacVim
 if has('gui_running')
+  set transparency=5
   set guifont=Operator\ Mono:h13
   set background=dark
 endif
@@ -263,7 +264,7 @@ endif
 autocmd BufNewFile,BufRead *.css set filetype=postcss.css
 autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
-autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx 
+autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 
 "==============================
 " Mappings
