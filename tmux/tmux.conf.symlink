@@ -1,5 +1,3 @@
-
-
 set -g clock-mode-colour cyan
 
 # Enable mouse selections
@@ -51,6 +49,11 @@ setw -g mode-keys vi
 # unbind -Tcopy-mode-vi Enter
 # bind-key -Tcopy-mode-vi Enter 'copy-pipe'
 
+# changing the numbering of things in tmux
+set -g base-index 1
+set -g pane-base-index 1
+
+
 # Fix delay when sending escape key
 set -sg escape-time 0
 
@@ -68,7 +71,8 @@ set -g @continuum-restore 'on'
 
 run '~/.tmux/plugins/tpm/tpm'
 
+set-option -g xterm-keys on
+set-window-option -g xterm-keys on
 set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ',xterm-256color:Tc'
 
-# set-option -ga terminal-overrides",xterm-256color-italic:Tc"
