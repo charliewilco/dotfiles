@@ -59,7 +59,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
-Plugin 'spf13/vim-autoclose' " Consider Removing
+" Plugin 'spf13/vim-autoclose' " Consider Removing
 Plugin 'vim-airline/vim-airline'
 Plugin 'editorconfig/editorconfig-vim' " Consider Removing
 Plugin 'airblade/vim-gitgutter'
@@ -127,7 +127,7 @@ set smartindent
 
 " Colors Themes & Font Settings
 let base16colorspace=256
-colorscheme base16-ocean
+colorscheme base16-eighties
 set t_Co=256
 if has('termguicolors')
 	set termguicolors
@@ -168,7 +168,7 @@ let g:limelight_conceal_guifg = 'black'
 
 " Airline
 
-let g:airline_theme='base16_ocean'
+let g:airline_theme='base16_eighties'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1

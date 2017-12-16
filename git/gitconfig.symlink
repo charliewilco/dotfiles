@@ -22,7 +22,7 @@
 	smudge = git hawser smudge %f
 	required = true
 [core]
-	editor = /usr/local/bin/nvim
+	editor = /usr/local/bin/vim
 	excludesfile = ~/.gitignore_global
 [filter "lfs"]
 	process = git-lfs filter-process
