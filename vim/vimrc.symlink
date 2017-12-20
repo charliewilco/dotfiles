@@ -127,7 +127,7 @@ set smartindent
 
 " Colors Themes & Font Settings
 let base16colorspace=256
-colorscheme base16-eighties
+colorscheme base16-ocean
 set t_Co=256
 if has('termguicolors')
 	set termguicolors
@@ -168,7 +168,7 @@ let g:limelight_conceal_guifg = 'black'
 
 " Airline
 
-let g:airline_theme='base16_eighties'
+let g:airline_theme='base16_ocean'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1
@@ -279,6 +279,12 @@ let mapleader = ","
 
 map <leader>S :w<CR>
 
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+inoremap <leader>j <Esc>:m .+1<CR>==gi
+inoremap <leader>k <Esc>:m .-2<CR>==gi
+vnoremap <leader>j :m '>+1<CR>gv=gv
+vnoremap <leader>k :m '<-2<CR>gv=gv
 " FZF
 
 nnoremap <C-t> :Files<CR>
