@@ -24,6 +24,7 @@ Plugin 'gmarik/Vundle.vim'
 " Colors
 Plugin 'charlespeters/ganymede.vim'
 Plugin 'chriskempson/base16-vim'
+Plugin 'rakr/vim-two-firewatch'
 Plugin 'vim-airline/vim-airline-themes'
 
 "" HTML
@@ -41,10 +42,13 @@ Plugin 'stephenway/postcss.vim'
 "" Javascript
 " Plugin 'othree/yajs.vim'
 " Plugin 'othree/es.next.syntax.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
 " Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'sheerun/vim-json'
+
+"" Reason
+Plugin 'reasonml-editor/vim-reason-plus'
 
 "" Elixir
 Plugin 'slashmili/alchemist.vim'
@@ -127,8 +131,10 @@ set smartindent
 
 " Colors Themes & Font Settings
 let base16colorspace=256
-colorscheme base16-ocean
 set t_Co=256
+
+colorscheme base16-onedark
+
 if has('termguicolors')
 	set termguicolors
   " Don't need this in xterm-256color, but do need it inside tmux.
@@ -151,11 +157,19 @@ highlight CursorLineNR ctermbg=NONE ctermfg=Grey cterm=bold
 highlight CursorLine ctermbg=NONE cterm=NONE
 highlight Comment cterm=italic
 
+" Show syntax highlighting groups for word under cursor
+nmap <F2> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " Clipboard
 
 set clipboard=unnamed
 set clipboard+=unnamedplus
-
 
 "==============================
 " Plugin Settings
@@ -168,7 +182,7 @@ let g:limelight_conceal_guifg = 'black'
 
 " Airline
 
-let g:airline_theme='base16_ocean'
+let g:airline_theme='onedark'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1
