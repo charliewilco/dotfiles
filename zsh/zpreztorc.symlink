@@ -24,12 +24,12 @@ zstyle ':prezto:*:*' color 'yes'
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
-  'node' \
   'environment' \
   'history-substring-search' \
   'git' \
   'terminal' \
   'editor' \
+  'node' \
   'history' \
   'directory' \
   'spectrum' \
@@ -102,7 +102,6 @@ zstyle ':prezto:module:history-substring-search' color 'yes'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 zstyle ':prezto:module:prompt' theme 'sorin'
-
 
 #
 # Screen

@@ -92,7 +92,7 @@ syntax enable
 
 set shell=$SHELL
 set number
-set background=dark
+set background=light
 set numberwidth=5
 set relativenumber
 set cursorline
@@ -133,7 +133,7 @@ set smartindent
 let base16colorspace=256
 set t_Co=256
 
-colorscheme base16-onedark
+colorscheme base16-ocean
 
 if has('termguicolors')
 	set termguicolors
@@ -182,7 +182,7 @@ let g:limelight_conceal_guifg = 'black'
 
 " Airline
 
-let g:airline_theme='onedark'
+let g:airline_theme='base16_ocean'
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline#extensions#tabline#enabled = 1
@@ -268,7 +268,6 @@ endif
 if has('gui_running')
   set transparency=5
   set guifont=Operator\ Mono:h13
-  set background=dark
 endif
 
 "==============================
