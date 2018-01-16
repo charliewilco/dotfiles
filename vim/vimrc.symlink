@@ -62,6 +62,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'felixjung/vim-base16-lightline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plugin 'w0rp/ale'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -168,6 +169,11 @@ set clipboard+=unnamedplus
 "==============================
 " Plugin Settings
 "==============================
+
+" JSX
+
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 1
 
 " Limelight
 
