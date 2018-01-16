@@ -119,13 +119,12 @@ nnoremap <C-H> <C-W><C-H>
 
 " Tabs & Spaces
 
-set tabstop=4
-set softtabstop=1
-set shiftwidth=4
-set noexpandtab
-set laststatus=4
-set cc=95
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 set laststatus=2
+set cc=95
 set smartindent
 
 " Colors Themes & Font Settings
