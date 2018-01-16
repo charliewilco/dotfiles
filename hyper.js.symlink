@@ -47,6 +47,9 @@ module.exports = {
       defaultBrowser: true
     }
   },
+  base16: {
+    scheme: 'eighties'
+  },
   plugins: [
     'hypercwd',
     'hyperlinks',
@@ -55,7 +58,7 @@ module.exports = {
     'hyperterm-paste',
 //    'hyperline',
 //    'hyperganymede',
-    'hyperterm-base-16-ocean'
+    'hypersixteen'
   ],
   localPlugins: []
 }
