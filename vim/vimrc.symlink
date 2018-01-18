@@ -49,6 +49,12 @@ Plugin 'reasonml-editor/vim-reason-plus'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-lang/vim-elixir'
 
+" Interface
+Plugin 'itchyny/lightline.vim'
+Plugin 'felixjung/vim-base16-lightline'
+Plugin 'taohex/lightline-buffer'
+Plugin 'airblade/vim-gitgutter'
+
 " Utilities
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
@@ -58,9 +64,6 @@ Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
-Plugin 'itchyny/lightline.vim'
-Plugin 'felixjung/vim-base16-lightline'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -183,13 +186,30 @@ let g:limelight_conceal_guifg = 'black'
 " Lightline
 
 let g:lightline = {
-      \ 'colorscheme': 'base16_ocean',
-      \ }
-
-let g:lightline.tabline = {
-  \   'left': [ ['tabs'] ],
-  \   'right': [ ['close'] ]
-  \ }
+    \ 'colorscheme': 'base16_ocean',
+    \ 'tabline': {
+    \   'left': [ [ 'bufferinfo' ],
+    \             [ 'separator' ],
+    \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+    \   'right': [ [ 'close' ], ],
+    \ },
+    \ 'component_expand': {
+    \   'buffercurrent': 'lightline#buffer#buffercurrent',
+    \   'bufferbefore': 'lightline#buffer#bufferbefore',
+    \   'bufferafter': 'lightline#buffer#bufferafter',
+    \ },
+    \ 'component_type': {
+    \   'buffercurrent': 'tabsel',
+    \   'bufferbefore': 'raw',
+    \   'bufferafter': 'raw',
+    \ },
+    \ 'component_function': {
+    \   'bufferinfo': 'lightline#buffer#bufferinfo',
+    \ },
+    \ 'component': {
+    \   'separator': '',
+    \ },
+    \ }
 
 " Gitgutter
 
