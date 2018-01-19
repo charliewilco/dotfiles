@@ -23,7 +23,7 @@ bind n resize-pane -D 10
 
 # Status Line
 
-set -g status-right '#{battery_icon} #{battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
+set -g status-right 'Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
 
 setw -g window-status-current-fg white
 setw -g window-status-current-attr bright
