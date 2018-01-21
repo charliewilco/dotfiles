@@ -64,7 +64,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
-Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-commentary'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plugin 'w0rp/ale'
@@ -89,10 +89,11 @@ filetype plugin indent on    " required
 syntax enable
 
 set shell=$SHELL
+set encoding=utf-8
 set number
-set background=light
-set numberwidth=5
-set relativenumber
+set lazyredraw
+set background=dark
+set norelativenumber
 set cursorline
 set showcmd
 set showmatch
@@ -221,12 +222,6 @@ highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
 let g:gitgutter_max_signs = 500
 
-if emoji#available()
-  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-  let g:gitgutter_sign_modified_removed = emoji#for('collision')
-endif
 
 " Syntastic Checkers
 
@@ -252,7 +247,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Not Sure
 
 let g:enable_bold_font = 1
-let g:xml_syntax_folding = 1
+" let g:xml_syntax_folding = 1
 
 " Markdown
 
@@ -319,14 +314,11 @@ inoremap <leader>j <Esc>:m .+1<CR>==gi
 inoremap <leader>k <Esc>:m .-2<CR>==gi
 vnoremap <leader>j :m '>+1<CR>gv=gv
 vnoremap <leader>k :m '<-2<CR>gv=gv
+
 " FZF
 
 nnoremap <C-t> :Files<CR>
 inoremap <C-t> <ESC>:Files<CR>
-
-" tComment
-
-map <leader>c <c-_><c-_>
 
 " No Remap for Arrow Keys
 
