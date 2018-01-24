@@ -3,7 +3,6 @@ cask_args appdir: '/Applications'
 # Taps
 tap 'homebrew/bundle'
 tap 'homebrew/core'
-tap 'neovim/neovim'
 
 # Utilities
 brew 'cmake'
@@ -29,12 +28,12 @@ brew 'yarn'
 brew 'zsh'
 
 # Vim
-brew 'neovim/neovim/neovim', args: ['HEAD']
 brew 'vim', args: ['with-lua', 'with-python3']
 brew 'tmux'
 
 # Languages & DBs
 brew 'elixir'
+brew 'ocaml'
 brew 'python3'
 brew 'node'
 
@@ -61,7 +60,6 @@ cask 'sketch'
 cask 'atom'
 cask 'hyper'
 cask 'spotify'
-cask 'vimr'
 
 # Mac App Store
 mas 'Battery Indicator', id: 1206020918

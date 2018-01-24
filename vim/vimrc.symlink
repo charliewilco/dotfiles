@@ -35,9 +35,6 @@ Plugin 'JulesWang/css.vim'
 Plugin 'stephenway/postcss.vim'
 
 "" Javascript
-" Plugin 'othree/yajs.vim'
-" Plugin 'othree/es.next.syntax.vim'
-" Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'sheerun/vim-json'
@@ -93,7 +90,7 @@ set encoding=utf-8
 set number
 set lazyredraw
 set background=dark
-set norelativenumber
+set relativenumber
 set cursorline
 set showcmd
 set showmatch
@@ -176,7 +173,7 @@ set clipboard+=unnamedplus
 
 " JSX
 
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1  
 let g:jsx_pragma_required = 1
 
 " Limelight
@@ -227,8 +224,8 @@ let g:gitgutter_max_signs = 500
 
 " ALE Asynchronous Lint Engine
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '🚨'
-let g:ale_sign_warning = '👉'
+let g:ale_sign_error = '⚠'
+let g:ale_sign_warning = '∅'
 let g:ale_linters = {
       \'javascript': ['flow']
       \}
@@ -247,7 +244,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Not Sure
 
 let g:enable_bold_font = 1
-" let g:xml_syntax_folding = 1
 
 " Markdown
 
@@ -295,6 +291,23 @@ autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
 autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 
+
+" JSX Fixes
+
+function! s:base16_customize() abort
+  call Base16hi("Tag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+  call Base16hi("xmlTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+  call Base16hi("jsxRegion", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+  call Base16hi("xmlTagName", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+  call Base16hi("xmlEndTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+endfunction
+
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
+
 "==============================
 " Mappings
 "==============================
@@ -302,11 +315,6 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 " Leader
 
 let mapleader = ","
-
-" Save
-" TODO: this doesn't work
-
-map <leader>S :w<CR>
 
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
