@@ -294,6 +294,8 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 
 " JSX Fixes
 
+" from https://github.com/mxw/vim-jsx/issues/124
+
 function! s:base16_customize() abort
   call Base16hi("Tag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
   call Base16hi("xmlTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")

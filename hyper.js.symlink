@@ -1,6 +1,5 @@
 module.exports = {
   config: {
-    updateChannel: 'canary',
     fontSize: 15,
     fontFamily: 'Operator Mono',
     uiFontFamily: 'Operator Mono',
