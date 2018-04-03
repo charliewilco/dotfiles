@@ -1,9 +1,8 @@
 module.exports = {
   config: {
     fontSize: 15,
+    updateChannel: 'canary',
     fontFamily: 'Operator Mono',
-    uiFontFamily: 'Operator Mono',
-    showHamburgerMenu: true,
     shell: 'zsh',
     cursorShape: 'BEAM',
     cursorColor: 'rgba(255, 255, 255, .25)',
@@ -15,10 +14,6 @@ module.exports = {
       }
     `,
     bell: false,
-    termCSS: `
-      x-screen a { color: #1FB8EB; }
-      x-screen a.hover { text-decoration: none; }
-    `,
     padding: '4px 8px',
     colors: [
       '#1B2B34',
@@ -46,18 +41,13 @@ module.exports = {
       defaultBrowser: true
     }
   },
-  base16: {
-    scheme: 'eighties'
-  },
   plugins: [
     'hypercwd',
     'hyperlinks',
     'hyperterm-tabs',
     'hyperterm-blink',
     'hyperterm-paste',
-//    'hyperline',
-//    'hyperganymede',
-    'hypersixteen'
+    'hyperterm-base-16-ocean'
   ],
   localPlugins: []
 }

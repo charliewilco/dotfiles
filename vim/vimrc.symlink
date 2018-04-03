@@ -38,6 +38,8 @@ Plugin 'stephenway/postcss.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'sheerun/vim-json'
+Plugin 'jparise/vim-graphql'
+Plugin 'styled-components/vim-styled-components'
 
 "" Reason
 Plugin 'reasonml-editor/vim-reason-plus'
