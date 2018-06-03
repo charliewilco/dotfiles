@@ -7,7 +7,7 @@ export ZSH=$HOME/.dotfiles
 export EDITOR='vim'
 export DEFAULT_USER=`whoami`
 export LC_CTYPE=en_US.UTF-8
-
+export TERM=xterm-256color
 export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:$PATH"
 
 . /usr/local/etc/profile.d/z.sh
@@ -52,3 +52,4 @@ unset config_files
 
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.fzf.colors ] && source ~/.fzf.colors
