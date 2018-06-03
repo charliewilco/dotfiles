@@ -39,6 +39,9 @@ module.exports = {
     hyperlinks: {
       clickAction: 'copy',
       defaultBrowser: true
+    },
+    base16: {
+      scheme: 'ocean'
     }
   },
   plugins: [
@@ -47,7 +50,7 @@ module.exports = {
     'hyperterm-tabs',
     'hyperterm-blink',
     'hyperterm-paste',
-    'hyperterm-base-16-ocean'
+    'hypersixteen'
   ],
   localPlugins: []
 }
