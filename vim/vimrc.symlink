@@ -25,7 +25,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'charlespeters/ganymede.vim'
 Plugin 'chriskempson/base16-vim'
 
-"" HTML
+" HTML
 Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-markdown'
 
@@ -42,6 +42,7 @@ Plugin 'jparise/vim-graphql'
 Plugin 'styled-components/vim-styled-components'
 
 "" Typescript
+Plugin 'runoshun/tscompletejob'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'ianks/vim-tsx'
 
@@ -55,7 +56,7 @@ Plugin 'elixir-lang/vim-elixir'
 " Interface
 Plugin 'itchyny/lightline.vim'
 Plugin 'felixjung/vim-base16-lightline'
-Plugin 'taohex/lightline-buffer'
+Plugin 'taohexxx/lightline-buffer'
 Plugin 'airblade/vim-gitgutter'
 
 " Utilities
@@ -70,13 +71,14 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-commentary'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'w0rp/ale'
+Plugin 'trkw/yarn.vim'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plugin 'reedes/vim-pencil', { 'for': 'markdown' }
 
 " Snippets
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-ultisnips.vim'
-Plugin 'prabirshrestha/asyncomplete-flow.vim'
+Plugin 'prabirshrestha/asyncomplete-tscompletejob.vim'
 Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'
 Plugin 'epilande/vim-react-snippets'
@@ -141,6 +143,7 @@ colorscheme base16-ocean
 
 if has('termguicolors')
 	set termguicolors
+  highlight Comment cterm=italic
   " Don't need this in xterm-256color, but do need it inside tmux.
   " (See `:h xterm-true-color`.)
   if &term =~# 'tmux-256color'
@@ -154,12 +157,12 @@ hi Normal ctermbg=NONE guibg=NONE
 
 " Highlights
 
+highlight Comment cterm=italic
 highlight SignColumn ctermfg=DarkBlue ctermbg=NONE
 highlight SignColumnNR ctermbg=black
 highlight LineNr ctermfg=DarkGrey ctermbg=NONE
 highlight CursorLineNR ctermbg=NONE ctermfg=Grey cterm=bold
 highlight CursorLine ctermbg=NONE cterm=NONE
-highlight Comment cterm=italic
 
 " Show syntax highlighting groups for word under cursor
 nmap <F2> :call <SID>SynStack()<CR>
@@ -252,8 +255,13 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '⚠'
 let g:ale_sign_warning = '∅'
 let g:ale_linters = {
-      \'javascript': ['flow']
+      \'typescript': ['tsserver']
       \}
+
+
+" Prettier
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " Asyncomplete
 
@@ -263,28 +271,23 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 set completeopt+=preview
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-"" Flow
-
 if has('python3')
-  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-      \ 'name': 'flow',
-      \ 'whitelist': ['javascript'],
-      \ 'completor': function('asyncomplete#sources#flow#completor'),
-      \ 'config': {
-      \    'prefer_local': 1,
-      \    'flowbin_path': expand('/usr/local/bin/flow'),
-      \    'show_typeinfo': 1
-      \  },
-      \ }))
+  "" TypeScript
+  call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
+        \ 'name': 'tscompletejob',
+        \ 'whitelist': ['typescript'],
+        \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+        \ }))
 
   "" UtiliSnips
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
 
-  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-          \ 'name': 'ultisnips',
-          \ 'whitelist': ['*'],
-          \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-          \ }))
 endif
+
 " Snippets
 
 let g:UltiSnipsExpandTrigger="<C-l>"
@@ -317,6 +320,7 @@ endif
 
 if has('gui_vimr')
   if (has("termguicolors"))
+    highlight Comment cterm=italic
     set termguicolors
   endif
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -326,7 +330,7 @@ endif
 if has('gui_running')
   set background=dark
   set transparency=5
-  set guifont=Operator\ Mono:h13
+  set guifont=SF\ Mono:h13
   if (has("termguicolors"))
     set termguicolors
   endif
