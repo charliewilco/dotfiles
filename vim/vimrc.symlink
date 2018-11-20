@@ -28,11 +28,11 @@ Plugin 'chriskempson/base16-vim'
 " HTML
 Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-markdown'
+Plugin 'nelstrom/vim-markdown-folding'
 
 "" CSS
 Plugin 'lilydjwg/colorizer', { 'for': ['css', 'scss', 'postcss.css', 'html', 'javascript', 'javascript.jsx'] }
 Plugin 'JulesWang/css.vim'
-Plugin 'stephenway/postcss.vim'
 
 "" Javascript
 Plugin 'pangloss/vim-javascript'
@@ -42,7 +42,7 @@ Plugin 'jparise/vim-graphql'
 Plugin 'styled-components/vim-styled-components'
 
 "" Typescript
-Plugin 'runoshun/tscompletejob'
+" Plugin 'runoshun/tscompletejob'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'ianks/vim-tsx'
 
@@ -52,6 +52,9 @@ Plugin 'reasonml-editor/vim-reason-plus'
 "" Elixir
 Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-lang/vim-elixir'
+
+"" Docker
+Plugin 'ekalinin/Dockerfile.vim'
 
 " Interface
 Plugin 'itchyny/lightline.vim'
@@ -63,25 +66,23 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/vim-emoji'
-Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'tpope/vim-vinegar'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'w0rp/ale'
-Plugin 'trkw/yarn.vim'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plugin 'reedes/vim-pencil', { 'for': 'markdown' }
 
 " Snippets
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-ultisnips.vim'
-Plugin 'prabirshrestha/asyncomplete-tscompletejob.vim'
-Plugin 'epilande/vim-es2015-snippets'
 Plugin 'SirVer/ultisnips'
-Plugin 'epilande/vim-react-snippets'
+" Plugin 'prabirshrestha/asyncomplete.vim'
+" Plugin 'prabirshrestha/asyncomplete-ultisnips.vim'
+" Plugin 'prabirshrestha/asyncomplete-tscompletejob.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -110,9 +111,9 @@ set mouse=a
 " Search Settings
 
 set incsearch
-set hlsearch
 set ignorecase
 set smartcase
+set nohlsearch
 
 " Window Splits
 
@@ -164,15 +165,6 @@ highlight LineNr ctermfg=DarkGrey ctermbg=NONE
 highlight CursorLineNR ctermbg=NONE ctermfg=Grey cterm=bold
 highlight CursorLine ctermbg=NONE cterm=NONE
 
-" Show syntax highlighting groups for word under cursor
-nmap <F2> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
 " Clipboard
 
 set clipboard=unnamed
@@ -186,11 +178,6 @@ set clipboard+=unnamedplus
 
 let g:jsx_ext_required = 1  
 let g:jsx_pragma_required = 1
-
-" Limelight
-
-let g:limelight_conceal_ctermfg = 'black'
-let g:limelight_conceal_guifg = 'black'
 
 " Lightline
 
@@ -230,6 +217,10 @@ highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
 let g:gitgutter_max_signs = 500
 
+" Goyo
+
+let g:goyo_width = 95
+
 " SearchTasks
 
 let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
@@ -237,16 +228,7 @@ let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
 
 " Netrw
 
-let g:netrw_banner = 0
-" let g:netrw_browse_split = 4
-" let g:netrw_altv = 1
-" let g:netrw_winsize = 25
-" let g:netrw_liststyle = 3
-
-" augroup ProjectDrawer
-"   autocmd!
-"   autocmd VimEnter * :Vexplore
-" augroup END
+let g:netrw_liststyle = 3
 
 " Syntastic Checkers
 
@@ -261,15 +243,21 @@ let g:ale_linters = {
 
 " Prettier
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.vue PrettierAsync
+
+
+" TypeScript
+
+autocmd FileType typescript setlocal completeopt-=menu
+autocmd FileType typescript.tsx setlocal completeopt-=menu
 
 " Asyncomplete
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-set completeopt+=preview
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+" set completeopt+=preview
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 if has('python3')
   "" TypeScript
@@ -300,7 +288,7 @@ let g:enable_bold_font = 1
 
 " Markdown
 
-let g:markdown_fenced_languages = ['html', 'css=postcss.css', 'js=javascript.jsx']
+let g:markdown_fenced_languages = ['html', 'css', 'js=javascript.jsx']
 
 "==============================
 " GUI Vim Settings
@@ -316,21 +304,11 @@ if has('nvim')
   tnoremap <Esc> <C-\><C-n>
 endif
 
-" VimR Settings
-
-if has('gui_vimr')
-  if (has("termguicolors"))
-    highlight Comment cterm=italic
-    set termguicolors
-  endif
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
 
 " MacVim
 if has('gui_running')
   set background=dark
-  set transparency=5
-  set guifont=SF\ Mono:h13
+  set guifont=SF\ Mono:h15
   if (has("termguicolors"))
     set termguicolors
   endif
@@ -339,14 +317,13 @@ if has('gui_running')
 endif
 
 if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc.local
+  source ~/.vimrc.local
 endif
 
 "==============================
 " File Types
 "==============================
 
-autocmd BufNewFile,BufRead *.css set filetype=postcss.css
 autocmd BufNewFile,BufRead *.hbs set filetype=mustache.html
 autocmd BufNewFile,BufRead *.md  set filetype=markdown
 autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
@@ -385,6 +362,9 @@ vnoremap <leader>k :m '<-2<CR>gv=gv
 
 nnoremap <C-t> :Files<CR>
 inoremap <C-t> <ESC>:Files<CR>
+
+nnoremap <C-b> :Buffers<CR>
+inoremap <C-b> <ESC>:Buffers<CR>
 
 " No Remap for Arrow Keys
 

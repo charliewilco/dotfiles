@@ -22,7 +22,8 @@ bind - split-window -v
 bind n resize-pane -D 10
 
 # Status Line
-
+set -g status-left-length 32
+set -g status-right-length 192
 set -g status-right 'Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
 
 setw -g window-status-current-fg white
@@ -63,6 +64,7 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'tmux-plugins/tmux-sidebar'
 
 set -g @resurrect-processes 'zsh yarn node z vim'
 set -g @resurrect-strategy-vim 'session'
