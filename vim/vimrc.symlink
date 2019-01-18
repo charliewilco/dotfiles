@@ -1,7 +1,6 @@
 "==============================
 "
 "
-"
 " Vim & NeoVim Runtime Configuration
 "
 "
@@ -225,7 +224,6 @@ let g:goyo_width = 95
 
 let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
 
-
 " Netrw
 
 let g:netrw_liststyle = 3
@@ -244,7 +242,6 @@ let g:ale_linters = {
 " Prettier
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.vue PrettierAsync
-
 
 " TypeScript
 let g:tscompletejob_node_cmd = "/usr/local/bin/node"
