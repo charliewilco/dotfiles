@@ -42,9 +42,9 @@ Plugin 'jparise/vim-graphql'
 Plugin 'styled-components/vim-styled-components'
 
 "" Typescript
-" Plugin 'runoshun/tscompletejob'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'ianks/vim-tsx'
+Plugin 'quramy/tsuquyomi'
 
 "" Reason
 Plugin 'reasonml-editor/vim-reason-plus'
@@ -153,8 +153,8 @@ if has('termguicolors')
   endif
 endif
 
-hi NonText ctermbg=NONE guibg=NONE
-hi Normal ctermbg=NONE guibg=NONE
+" hi NonText ctermbg=NONE guibg=NONE
+" hi Normal ctermbg=NONE guibg=NONE
 
 " Highlights
 
@@ -247,34 +247,13 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.vue Pre
 
 
 " TypeScript
+let g:tscompletejob_node_cmd = "/usr/local/bin/node"
 
-autocmd FileType typescript setlocal completeopt-=menu
-autocmd FileType typescript.tsx setlocal completeopt-=menu
-
-" Asyncomplete
-
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-" set completeopt+=preview
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-if has('python3')
-  "" TypeScript
-  call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
-        \ 'name': 'tscompletejob',
-        \ 'whitelist': ['typescript'],
-        \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
-        \ }))
-
-  "" UtiliSnips
-    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-        \ 'name': 'ultisnips',
-        \ 'whitelist': ['*'],
-        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-        \ }))
-
-endif
+autocmd FileType typescript setlocal completeopt+=menu
+autocmd FileType typescript.tsx setlocal completeopt+=menu
+set ballooneval
+autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+autocmd FileType typescript.tsx setlocal balloonexpr=tsuquyomi#balloonexpr()
 
 " Snippets
 
@@ -284,6 +263,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Not Sure
 
+let g:enable_italic_font = 1
 let g:enable_bold_font = 1
 
 " Markdown
@@ -308,7 +288,7 @@ endif
 " MacVim
 if has('gui_running')
   set background=dark
-  set guifont=SF\ Mono:h15
+  set guifont=Input\ Mono\ Condensed:h13
   if (has("termguicolors"))
     set termguicolors
   endif
@@ -360,8 +340,8 @@ vnoremap <leader>k :m '<-2<CR>gv=gv
 
 " FZF
 
-nnoremap <C-t> :Files<CR>
-inoremap <C-t> <ESC>:Files<CR>
+nnoremap <C-p> :Files<CR>
+inoremap <C-p> <ESC>:Files<CR>
 
 nnoremap <C-b> :Buffers<CR>
 inoremap <C-b> <ESC>:Buffers<CR>
