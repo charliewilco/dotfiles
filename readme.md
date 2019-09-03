@@ -33,9 +33,13 @@ It solves a lot of isses with macOS Sierra and SSH that didn't exist in previous
 
 ## tmux colors + _Italics_
 
-1. Go grab the terminfo files from [wincent](https://github.com/wincent/wincent/tree/master/roles/terminfo)
-2. run tic on all of them, in and out of tmux
-3. things work
+There are two files here with the `.terminfo` extension, do the following with them:
+
+
+```shell
+tic -x xterm-256color-italic.terminfo
+tic -x tmux-256color.terminfo
+```
 
 ```vim
 if has('termguicolors')
@@ -49,8 +53,8 @@ endif
 ```
 
 ```tmux
-set -g default-terminal "tmux-256color"
-set -ga terminal-overrides ',xterm-256color:Tc'
+set -g default-terminal 'tmux-256color'
+set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 ```
 
 ## Other Dotfiles

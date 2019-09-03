@@ -1,11 +1,11 @@
 module.exports = {
   config: {
-    fontSize: 15,
-    updateChannel: 'canary',
+    fontSize: 14,
     fontFamily: 'Operator Mono',
     shell: 'zsh',
-    cursorShape: 'BEAM',
+    cursorShape: 'BLOCK',
     cursorColor: 'rgba(255, 255, 255, .25)',
+    cursorBlink: true,
     foregroundColor: '#FFF',
     borderColor: 'transparent',
     css: `
@@ -31,26 +31,16 @@ module.exports = {
       '#3c71bf',
       '#be67e7',
       '#6699CC',
-      '#FFFFFF'
+      '#FFFFFF',
     ],
     hypercwd: {
-      initialWorkingDirectory: '~/Code'
+      initialWorkingDirectory: '~/Code',
     },
     hyperlinks: {
       clickAction: 'copy',
-      defaultBrowser: true
+      defaultBrowser: true,
     },
-    base16: {
-      scheme: 'ocean'
-    }
   },
-  plugins: [
-    'hypercwd',
-    'hyperlinks',
-    'hyperterm-tabs',
-    'hyperterm-blink',
-    'hyperterm-paste',
-    'hypersixteen'
-  ],
-  localPlugins: []
-}
+  plugins: ['hypercwd', 'hyper-active-tab', 'hyper-oceanic-next', "hyper-ayu-mirage"],
+  localPlugins: [],
+};
