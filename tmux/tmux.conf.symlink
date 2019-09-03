@@ -30,7 +30,7 @@ setw -g window-status-current-fg white
 setw -g window-status-current-attr bright
 
 # Termset
-set-option -g default-shell /bin/zsh
+set-option -g default-shell /usr/local/bin/zsh
 
 set -g pane-border-style 'fg=black'
 set -g pane-active-border-style 'fg=cyan'
@@ -75,6 +75,5 @@ run '~/.tmux/plugins/tpm/tpm'
 
 set-option -g xterm-keys on
 set-window-option -g xterm-keys on
-set -g default-terminal "tmux-256color"
-set -ga terminal-overrides ',xterm-256color:Tc'
-
+set -g default-terminal 'tmux-256color'
+set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
