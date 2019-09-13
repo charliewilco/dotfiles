@@ -20,7 +20,6 @@ call plug#begin('~/.vim/plugged')
 " Colors
 Plug 'chriskempson/base16-vim'
 Plug 'ayu-theme/ayu-vim'
-Plug 'lifepillar/vim-solarized8'
 Plug 'rhysd/vim-color-spring-night'
 
 " HTML
@@ -40,9 +39,10 @@ Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 "" Typescript
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-Plug 'quramy/tsuquyomi'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'quramy/tsuquyomi'
 
 "" Reason
 Plug 'reasonml-editor/vim-reason-plus'
@@ -133,12 +133,7 @@ set smartindent
 set showtabline=2
 
 " Colors Themes & Font Settings
-let base16colorspace=256
-let ayucolor="dark"
 set t_Co=256
-
-" colorscheme base16-ocean
-colorscheme ayu
 
 if has('termguicolors')
 	set termguicolors
@@ -181,7 +176,7 @@ let g:jsx_pragma_required = 1
 " Lightline
 
 let g:lightline = {
-    \ 'colorscheme': 'ayu',
+    \ 'colorscheme': 'base16_ocean',
     \ 'tabline': {
     \   'left': [ [ 'bufferinfo' ],
     \             [ 'separator' ],
@@ -245,9 +240,6 @@ let g:tscompletejob_node_cmd = "/usr/local/bin/node"
 
 autocmd FileType typescript setlocal completeopt+=menu
 autocmd FileType typescript.tsx setlocal completeopt+=menu
-" set ballooneval
-" autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
-" autocmd FileType typescript.tsx setlocal balloonexpr=tsuquyomi#balloonexpr()
 
 " Snippets
 
@@ -292,6 +284,10 @@ endif
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
+endif
+
+if filereadable(glob("~/.vim/coc-settings.vim"))
+  source ~/.vim/coc.settings.vim
 endif
 
 "==============================
