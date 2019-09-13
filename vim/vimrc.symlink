@@ -79,9 +79,6 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Snippets
 Plug 'SirVer/ultisnips'
-" Plugin 'prabirshrestha/asyncomplete.vim'
-" Plugin 'prabirshrestha/asyncomplete-ultisnips.vim'
-" Plugin 'prabirshrestha/asyncomplete-tscompletejob.vim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -137,7 +134,7 @@ set showtabline=2
 
 " Colors Themes & Font Settings
 let base16colorspace=256
-let ayucolor="mirage"
+let ayucolor="dark"
 set t_Co=256
 
 " colorscheme base16-ocean
@@ -184,7 +181,7 @@ let g:jsx_pragma_required = 1
 " Lightline
 
 let g:lightline = {
-    \ 'colorscheme': 'base16_ocean',
+    \ 'colorscheme': 'ayu',
     \ 'tabline': {
     \   'left': [ [ 'bufferinfo' ],
     \             [ 'separator' ],
@@ -203,9 +200,6 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \   'bufferinfo': 'lightline#buffer#bufferinfo',
-    \ },
-    \ 'component': {
-    \   'separator': '',
     \ },
     \ }
 
@@ -312,15 +306,15 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 
 " from https://github.com/mxw/vim-jsx/issues/124
 " TODO: store colors in variables
-function! s:base16_customize()
-  call Base16hi("Tag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
-  call Base16hi("xmlTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
-  call Base16hi("jsxRegion", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
-  call Base16hi("xmlTagName", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
-  call Base16hi("xmlEndTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
-endfunction
+" function! s:base16_customize()
+"   call Base16hi("Tag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+"   call Base16hi("xmlTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+"   call Base16hi("jsxRegion", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+"   call Base16hi("xmlTagName", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+"   call Base16hi("xmlEndTag", g:base16_gui0D, "", g:base16_cterm0D, "", "", "")
+" endfunction
 
-autocmd BufNewFile,BufRead  *.js call s:base16_customize()
+" autocmd BufNewFile,BufRead  *.js call s:base16_customize()
 
 "==============================
 " Mappings
