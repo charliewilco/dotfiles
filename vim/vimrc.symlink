@@ -151,6 +151,7 @@ endif
 
 " Highlights
 
+highlight StatusLine cterm=italic
 highlight Comment cterm=italic
 highlight SignColumn ctermfg=DarkBlue ctermbg=NONE
 highlight SignColumnNR ctermbg=black
@@ -315,6 +316,13 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 "==============================
 " Mappings
 "==============================
+
+" CoC.nvim
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Leader
 
