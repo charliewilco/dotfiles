@@ -51,11 +51,6 @@ Plug 'elixir-lang/vim-elixir'
 "" Docker
 Plug 'ekalinin/Dockerfile.vim'
 
-" Interface
-Plug 'itchyny/lightline.vim'
-Plug 'felixjung/vim-base16-lightline'
-Plug 'taohexxx/lightline-buffer'
-Plug 'airblade/vim-gitgutter'
 
 " Utilities
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -76,6 +71,14 @@ Plug 'tommcdo/vim-fubitive' " for BitBucket
 Plug 'gilsondev/searchtasks.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" Interface
+Plug 'itchyny/lightline.vim'
+" Plug 'felixjung/vim-base16-lightline'
+" Plug 'taohexxx/lightline-buffer'
+Plug 'yarisgutierrez/ayu-lightline'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -131,6 +134,8 @@ set showtabline=2
 
 " Colors Themes & Font Settings
 set t_Co=256
+let ayucolor="mirage"
+colorscheme ayu
 
 if has('termguicolors')
 	set termguicolors
@@ -172,30 +177,19 @@ let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 
 " Lightline
-
 let g:lightline = {
-    \ 'colorscheme': 'base16_ocean',
-    \ 'tabline': {
-    \   'left': [ [ 'bufferinfo' ],
-    \             [ 'separator' ],
-    \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
-    \   'right': [ [ 'close' ], ],
-    \ },
-    \ 'component_expand': {
-    \   'buffercurrent': 'lightline#buffer#buffercurrent',
-    \   'bufferbefore': 'lightline#buffer#bufferbefore',
-    \   'bufferafter': 'lightline#buffer#bufferafter',
-    \ },
-    \ 'component_type': {
-    \   'buffercurrent': 'tabsel',
-    \   'bufferbefore': 'raw',
-    \   'bufferafter': 'raw',
-    \ },
-    \ 'component_function': {
-    \   'bufferinfo': 'lightline#buffer#bufferinfo',
-    \ },
-    \ }
+      \ 'colorscheme': 'ayu',
+      \ }
 
+let s:symbol_separator_left     = "\uE0B0"
+let s:symbol_separator_right    = "\uE0B2"
+let s:symbol_subseparator_left  = "\uE0B1"
+let s:symbol_subseparator_right = "\uE0B3"
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.separator        = {'left': s:symbol_separator_left, 'right': s:symbol_separator_right}
+let g:lightline.subseparator     = {'left': s:symbol_subseparator_left, 'right': s:symbol_subseparator_right}
 " Gitgutter
 
 call gitgutter#highlight#define_highlights()
