@@ -134,7 +134,7 @@ set showtabline=2
 
 " Colors Themes & Font Settings
 set t_Co=256
-let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
 
 if has('termguicolors')
@@ -208,10 +208,17 @@ let g:goyo_width = 95
 
 let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
 
-" Netrw
 
-" let g:netrw_liststyle = 3
-
+" CoC.nvim
+let g:coc_global_extensions = [
+  \ 'coc-yank',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ 'coc-explorer', 
+  \ ]
 " Syntastic Checkers
 
 " Prettier
@@ -281,10 +288,18 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 
 " CoC.nvim
 
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap <F2> <Plug>(coc-rename)
+
+nmap ge :CocCommand explorer<CR>
 
 " Leader
 
