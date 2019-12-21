@@ -19,6 +19,9 @@ call plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'ayu-theme/ayu-vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'sainnhe/vim-color-forest-night'
+Plug 'danilo-augusto/vim-afterglow'
 Plug 'chriskempson/base16-vim'
 
 " HTML
@@ -74,7 +77,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Interface
 Plug 'itchyny/lightline.vim'
-" Plug 'felixjung/vim-base16-lightline'
+Plug 'felixjung/vim-base16-lightline'
 " Plug 'taohexxx/lightline-buffer'
 Plug 'yarisgutierrez/ayu-lightline'
 Plug 'mengelbrecht/lightline-bufferline'

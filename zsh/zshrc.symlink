@@ -57,3 +57,14 @@ unset config_files
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
 [[ -f /Users/charles/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/charles/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/charles.peters/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/charles.peters/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/charles.peters/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/charles.peters/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export VOLTA_HOME="$HOME/.volta"
+[ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
+
+export PATH="$VOLTA_HOME/bin:$PATH"
