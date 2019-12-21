@@ -136,9 +136,10 @@ set smartindent
 set showtabline=2
 
 " Colors Themes & Font Settings
+let base16colorspace=256
+
+colorscheme base16-ocean
 set t_Co=256
-let ayucolor="dark"
-colorscheme ayu
 
 if has('termguicolors')
 	set termguicolors
@@ -181,7 +182,7 @@ let g:jsx_pragma_required = 1
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'ayu',
+      \ 'colorscheme': 'base16_ocean',
       \ }
 
 let s:symbol_separator_left     = "\uE0B0"
