@@ -30,7 +30,6 @@ Plug 'tpope/vim-markdown'
 Plug 'nelstrom/vim-markdown-folding'
 
 "" CSS
-Plug 'lilydjwg/colorizer', { 'for': ['css', 'scss', 'postcss.css', 'html', 'javascript', 'javascript.jsx'] }
 Plug 'JulesWang/css.vim'
 
 "" Javascript
@@ -74,14 +73,14 @@ Plug 'tommcdo/vim-fubitive' " for BitBucket
 Plug 'gilsondev/searchtasks.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
+"
 " Interface
 Plug 'itchyny/lightline.vim'
 Plug 'felixjung/vim-base16-lightline'
 " Plug 'taohexxx/lightline-buffer'
 Plug 'yarisgutierrez/ayu-lightline'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -194,15 +193,17 @@ let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline.separator        = {'left': s:symbol_separator_left, 'right': s:symbol_separator_right}
 let g:lightline.subseparator     = {'left': s:symbol_subseparator_left, 'right': s:symbol_subseparator_right}
+
 " Gitgutter
 
-call gitgutter#highlight#define_highlights()
-highlight GitGutterAdd ctermbg=black ctermfg=green
-highlight GitGutterChange ctermbg=black ctermfg=yellow
-highlight GitGutterDelete ctermbg=black ctermfg=red
-highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 
-let g:gitgutter_max_signs = 500
+" call gitgutter#highlight#define_highlights()
+" highlight GitGutterAdd ctermbg=black ctermfg=green
+" highlight GitGutterChange ctermbg=black ctermfg=yellow
+" highlight GitGutterDelete ctermbg=black ctermfg=red
+" highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
+
+" let g:gitgutter_max_signs = 500
 
 " Goyo
 
@@ -218,11 +219,35 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
   \ 'coc-json', 
   \ 'coc-explorer', 
+  \ 'coc-tailwindcss'
   \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+nnoremap <silent> K :call CocAction('doHover')<CR>
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <F2> <Plug>(coc-rename)
+
+nmap ge :CocCommand explorer<CR>
+
+"
 " Syntastic Checkers
 
 " Prettier
@@ -265,7 +290,8 @@ endif
 " MacVim
 if has('gui_running')
   set background=dark
-  set guifont=Input\ Mono\ Condensed:h13
+  set guifont=Input\ Mono:h13
+  set transparency=15
   if (has("termguicolors"))
     set termguicolors
   endif
@@ -292,18 +318,6 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 
 " CoC.nvim
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <F2> <Plug>(coc-rename)
-
-nmap ge :CocCommand explorer<CR>
 
 " Leader
 
