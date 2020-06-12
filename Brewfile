@@ -43,18 +43,12 @@ brew 'libpng'
 brew 'libtiff'
 brew 'imagemagick'
 brew 'jp2a'
-cask 'qlcolorcode'
-cask 'qlmarkdown'
-cask 'quicklook-json'
-cask 'qlimagesize'
-cask 'webpquicklook'
+
 
 # Casks
 cask 'sip'
-cask '1password'
 cask 'spectacle'
 cask 'google-chrome'
-cask 'now'
 cask 'spotify'
 
 # Mac App Store
