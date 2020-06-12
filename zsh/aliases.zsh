@@ -15,4 +15,5 @@ alias flx='hidden-files'
 
 # Git & Apps
 alias tweetbot='open /Applications/Tweetbot.app'
+alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
 alias dotfiles='cd ~/.dotfiles/'

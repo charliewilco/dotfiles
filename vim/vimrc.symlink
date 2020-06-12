@@ -75,6 +75,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "
 " Interface
+Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'felixjung/vim-base16-lightline'
 " Plug 'taohexxx/lightline-buffer'
@@ -133,6 +134,7 @@ set laststatus=2
 set cc=95
 set smartindent
 set showtabline=2
+set foldmethod=manual
 
 " Colors Themes & Font Settings
 let base16colorspace=256
@@ -214,13 +216,15 @@ let g:goyo_width = 95
 let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
 
 
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
 " CoC.nvim
 let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-json', 
-  \ 'coc-explorer', 
   \ 'coc-tailwindcss'
   \ ]
 
@@ -228,8 +232,8 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
 
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
+if isdirectory('./node_modules') && isdirectory('./node_modules/jest')
+  let g:coc_global_extensions += ['coc-jest']
 endif
 
 nnoremap <silent> K :call CocAction('doHover')<CR>
@@ -245,8 +249,18 @@ nmap <silent> gr <Plug>(coc-references)
 
 nmap <F2> <Plug>(coc-rename)
 
-nmap ge :CocCommand explorer<CR>
 
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+
+" Init jest in current cwd, require global jest command exists
+command! JestInit :call CocAction('runCommand', 'jest.init')
 "
 " Syntastic Checkers
 
@@ -291,7 +305,7 @@ endif
 if has('gui_running')
   set background=dark
   set guifont=Input\ Mono:h13
-  set transparency=15
+  " set transparency=15
   if (has("termguicolors"))
     set termguicolors
   endif
