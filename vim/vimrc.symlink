@@ -50,6 +50,12 @@ Plug 'reasonml-editor/vim-reason-plus'
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-lang/vim-elixir'
 
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Rust
+Plug 'rust-lang/rust.vim'
+
 "" Docker
 Plug 'ekalinin/Dockerfile.vim'
 
@@ -143,7 +149,6 @@ set t_Co=256
 
 if has('termguicolors')
 	set termguicolors
-  highlight Comment cterm=italic gui=italic
   " Don't need this in xterm-256color, but do need it inside tmux.
   " (See `:h xterm-true-color`.)
   " if &term =~# 'tmux-256color'
@@ -157,8 +162,9 @@ endif
 
 " Highlights
 
-highlight StatusLine cterm=italic
-highlight Comment cterm=italic
+highlight StatusLine cterm=italic gui=italic
+highlight Comment cterm=italic gui=italic
+highlight SpecialComment cterm=italic gui=italic
 highlight SignColumn ctermfg=DarkBlue ctermbg=NONE
 highlight SignColumnNR ctermbg=black
 highlight LineNr ctermfg=DarkGrey ctermbg=NONE
@@ -301,13 +307,14 @@ endif
 " MacVim
 if has('gui_running')
   set background=dark
-  " set guifont=Operator\ Mono:h13
-  " set transparency=15
+
   if (has("termguicolors"))
     set termguicolors
   endif
 
-  highlight Comment cterm=italic
+  highlight StatusLine cterm=italic gui=italic
+  highlight Comment cterm=italic gui=italic
+  highlight SpecialComment cterm=italic gui=italic
 endif
 
 if filereadable(glob("~/.vimrc.local"))
@@ -357,3 +364,8 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+highlight StatusLine cterm=italic gui=italic
+highlight Comment cterm=italic gui=italic
+highlight SpecialComment cterm=italic gui=italic
+
