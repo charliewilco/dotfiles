@@ -240,6 +240,7 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/jest')
 endif
 
 nnoremap <silent> K :call CocAction('doHover')<CR>
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)

@@ -1,5 +1,4 @@
 cpx
-create-react-app
 diff-so-fancy
 emoji-cli
 empty-trash-cli
@@ -7,15 +6,11 @@ fast-cli
 figlet-cli
 fkill-cli
 hidden-files
-huxley
 inspire-cli
-jsonlint
 lolcatjs
 mf-cli
-micro
 now
 np
-prettier
 prettyjson
 slow-deps
 space-hogs
@@ -23,7 +18,6 @@ spoof
 tern
 tmpin
 trash-cli
+vercel
 vtop
-whattodo
 wifi-password-cli
-xslide
