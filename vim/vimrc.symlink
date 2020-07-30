@@ -87,7 +87,6 @@ Plug 'itchyny/lightline.vim'
 " Plug 'taohexxx/lightline-buffer'
 Plug 'yarisgutierrez/ayu-lightline'
 Plug 'mengelbrecht/lightline-bufferline'
-" Plug 'airblade/vim-gitgutter'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -200,16 +199,6 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline.separator        = {'left': s:symbol_separator_left, 'right': s:symbol_separator_right}
 let g:lightline.subseparator     = {'left': s:symbol_subseparator_left, 'right': s:symbol_subseparator_right}
 
-" Gitgutter
-
-
-" call gitgutter#highlight#define_highlights()
-" highlight GitGutterAdd ctermbg=black ctermfg=green
-" highlight GitGutterChange ctermbg=black ctermfg=yellow
-" highlight GitGutterDelete ctermbg=black ctermfg=red
-" highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
-
-" let g:gitgutter_max_signs = 500
 
 " Goyo
 
