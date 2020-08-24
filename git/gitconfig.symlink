@@ -45,3 +45,5 @@
 	email = charlespeters42@gmail.com
 [merge]
 	tool = vimdiff
+[init]
+	defaultBranch = main
