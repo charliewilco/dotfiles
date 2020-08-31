@@ -72,9 +72,8 @@ if [ -f '/Users/charles.peters/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/charles.peters/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/charles.peters/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export VOLTA_HOME="$HOME/.volta"
-[ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(fnm env --multi)"
+
