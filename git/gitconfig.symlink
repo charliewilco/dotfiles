@@ -10,6 +10,7 @@
 	bb = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
 	aa = add --all
 	st = status
+  openup = !sh -c 'gitup open'
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
 	log-nice = log --graph --oneline --all --decorate
 	log-simple = log --all --oneline --no-merges
