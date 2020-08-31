@@ -3,8 +3,9 @@
 	path = ~/.gitconfig.local
 [color]
 	ui = auto
+[diff]
+  colorMoved = default
 [alias]
-	dsf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
 	open = "!f() { REPO_URL=$(git config remote.origin.url); open x-github-client://openRepo/${REPO_URL%%.git}; }; f"
 	bb = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
 	aa = add --all
@@ -13,6 +14,7 @@
 	log-nice = log --graph --oneline --all --decorate
 	log-simple = log --all --oneline --no-merges
 	push-this = push -u origin HEAD
+  pull-mine = pull -s recursive -X ours
 [filter "media"]
   required = true
   clean = git media clean %f
@@ -24,6 +26,9 @@
 [core]
 	editor = /usr/local/bin/vim
 	excludesfile = ~/.gitignore_global
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -39,7 +44,8 @@
 	user = charlespeters
 [credential]
 	helper = osxkeychain
-
+[delta]
+  side-by-side = true
 [user]
 	name = Charles ⚡
 	email = charlespeters42@gmail.com
