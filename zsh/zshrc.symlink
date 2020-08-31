@@ -39,8 +39,16 @@ do
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit -u
+fi
+
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -67,4 +75,6 @@ if [ -f '/Users/charles.peters/Downloads/google-cloud-sdk/completion.zsh.inc' ];
 export VOLTA_HOME="$HOME/.volta"
 [ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
 
-export PATH="$VOLTA_HOME/bin:$PATH"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(fnm env --multi)"
