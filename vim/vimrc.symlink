@@ -20,8 +20,7 @@ call plug#begin('~/.vim/plugged')
 " Colors
 Plug 'ayu-theme/ayu-vim'
 Plug 'sainnhe/vim-color-forest-night'
-Plug 'jacoborus/tender.vim'
-Plug 'Rigellute/rigel'
+Plug 'joshdick/onedark.vim'
 
 " HTML
 Plug 'othree/html5.vim'
