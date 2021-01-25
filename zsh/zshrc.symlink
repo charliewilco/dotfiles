@@ -3,6 +3,7 @@ plugins+=(zsh-completions)
 
 # User Configuration
 export ZSH=$HOME/.dotfiles
+export PURE_PROMPT_SYMBOL='▲'
 
 export EDITOR='vim'
 export DEFAULT_USER=`whoami`
