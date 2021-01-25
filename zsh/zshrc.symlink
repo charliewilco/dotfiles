@@ -12,7 +12,7 @@ export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:$PAT
 
 . /usr/local/etc/profile.d/z.sh
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -75,5 +75,6 @@ if [ -f '/Users/charles.peters/Downloads/google-cloud-sdk/completion.zsh.inc' ];
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-eval "$(fnm env --multi)"
+eval "$(fnm env)"
 
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
