@@ -3,10 +3,13 @@
 if test $(which nvim)
 then
   echo 'Setting up Vim and NeoVim'
-  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  echo 'Installing vim-plug'
+   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
+  echo 'Linking directories'
   ln -s ~/.vim ~/.config/nvim
   ln -s ~/.vimrc ~/.config/nvim/init.vim
-  yes | vim +PluginClean! +PluginInstall! +qall
+  yes | vim +PlugClean! +PlugInstall! +qall
 fi
 
 exit 0

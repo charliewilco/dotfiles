@@ -6,6 +6,7 @@ tap 'homebrew/cask'
 tap 'homebrew/core'
 tap 'homebrew/sevices'
 tap 'github/gh'
+tap 'mongodb/brew'
 tap 'schniz/tap'
 
 # Utilities
@@ -44,9 +45,6 @@ brew 'neovim'
 brew 'tmux'
 
 # Languages & DBs
-brew 'elixir'
-brew 'ocaml'
-brew 'python3'
 brew 'node'
 brew 'schniz/tap/fnm'
 
@@ -54,8 +52,6 @@ brew 'schniz/tap/fnm'
 # Casks
 cask 'sip'
 cask 'spectacle'
-cask 'vimr'
-cask 'spotify'
 
 # Mac App Store
 mas 'Battery Indicator', id: 1206020918
