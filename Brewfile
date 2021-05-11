@@ -42,13 +42,13 @@ brew 'zsh'
 brew 'zsh-completions'
 
 # Vim
-brew 'vim', args: ['with-lua', 'with-python3']
+brew 'vim'
 brew 'neovim'
 brew 'tmux'
 
 # Languages & DBs
 brew 'node'
-brew 'schniz/tap/fnm'
+brew 'fnm'
 brew 'mongodb/brew/mongodb-community'
 brew 'golang'
 
@@ -64,8 +64,6 @@ mas 'EasyRes', id: 688211836
 mas 'Gifski', id: 1351639930
 mas 'HiddenMe Pro', id: 1007499919
 mas 'iA Writer', id: 775737590
-mas 'Slack', id: 803453959
-mas 'VSee', id: 688688451
 mas 'Xcode', id: 497799835
 mas 'Battery Indicator', id: 1206020918
 mas 'Lungo', id: 1263070803
