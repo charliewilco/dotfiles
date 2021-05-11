@@ -6,8 +6,10 @@ tap 'homebrew/cask'
 tap 'homebrew/core'
 tap 'homebrew/sevices'
 tap 'github/gh'
+tap 'macvim-dev/macvim'
 tap 'mongodb/brew'
 tap 'schniz/tap'
+tap 'nektos/tap'
 
 # Utilities
 brew 'exa'
@@ -47,6 +49,8 @@ brew 'tmux'
 # Languages & DBs
 brew 'node'
 brew 'schniz/tap/fnm'
+brew 'mongodb/brew/mongodb-community'
+brew 'golang'
 
 
 # Casks
@@ -54,6 +58,14 @@ cask 'sip'
 cask 'spectacle'
 
 # Mac App Store
-mas 'Battery Indicator', id: 1206020918
+mas 'Contrast', id: 1254981365
+mas 'Dato', id: 1470584107
+mas 'EasyRes', id: 688211836
+mas 'Gifski', id: 1351639930
+mas 'HiddenMe Pro', id: 1007499919
 mas 'iA Writer', id: 775737590
+mas 'Slack', id: 803453959
+mas 'VSee', id: 688688451
+mas 'Xcode', id: 497799835
+mas 'Battery Indicator', id: 1206020918
 mas 'Lungo', id: 1263070803

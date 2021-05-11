@@ -8,6 +8,7 @@ hidden-files
 inspire-cli
 lolcatjs
 mf-cli
+prettier
 prettyjson
 slow-deps
 space-hogs
@@ -17,3 +18,4 @@ trash-cli
 vercel
 vtop
 wifi-password-cli
+yarn-deduplicate
