@@ -19,7 +19,7 @@ Currently this `.vimrc` has no remap for arrow keys in normal mode.
 |`c`                 | Change                                |
 |`vat`               | Visually selecting around tag         |
 |`vit`               | Visually selecting inside tag         |
-|`Vs<span>`          | Surrond line with `<span>` tag        |
+|`Vs<span>`          | Surround line with `<span>` tag       |
 |`VS<div>`           | Indent line inside `<div>` tag        |
 |`gg=G`              | Reindent the file                     |
 |`Ctrl + P`          | Open file finder                      |
