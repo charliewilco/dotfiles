@@ -5,7 +5,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias dstry='find . -name ".DS_Store" -type f -delete'
-alias git='hub'
+# alias git='hub'
 
 alias ag='ag --path-to-ignore=~/.ignore'
 alias tree='tree -h -I "node_modules*|bower_components*"'

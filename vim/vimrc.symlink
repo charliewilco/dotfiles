@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'ayu-theme/ayu-vim'
-Plug 'sainnhe/vim-color-forest-night'
 Plug 'joshdick/onedark.vim'
 
 "" Language Support
@@ -123,9 +122,10 @@ set foldmethod=manual
 
 " Colors Themes & Font Settings
 
-let ayucolor = 'dark'
 colorscheme ayu
+let ayucolor="mirage"
 set t_Co=256
+set background=dark
 
 if has('termguicolors')
 	set termguicolors
