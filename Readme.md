@@ -7,7 +7,7 @@ First things first, install [Xcode](https://developer.apple.com/xcode/) and open
 Setting up a new machine should be easy. Run:
 
 ```Shell
-bash -c "$(curl -LsS https://raw.githubusercontent.com/charliewilco/dotfiles/main/install.sh)"
+curl -L https://raw.githubusercontent.com/charliewilco/dotfiles/main/init.sh | bash -s -- all
 ```
 
 ### Setup

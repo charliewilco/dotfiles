@@ -310,6 +310,15 @@ case "$1" in
     macos)
         setup_macos
         ;;
+    codespaces)
+        setup_symlinks
+        setup_terminfo
+        setup_homebrew
+        setup_shell
+        setup_vim
+        setup_tmux
+        setup_node
+        ;;
     all)
         setup_symlinks
         setup_terminfo
