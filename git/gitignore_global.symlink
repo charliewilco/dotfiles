@@ -32,8 +32,6 @@ Session.vim
 .sass-cache/
 bower_components
 *.css.map
-node_modules
 _site/
 .publish/
-.grunt
-package-lock.json
+

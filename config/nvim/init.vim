@@ -203,11 +203,6 @@ let g:coc_global_extensions = [
   \ 'coc-go'
   \ ]
 
-if filereadable('./tailwind.config.js') 
-  let g:coc_global_extensions += ['coc-tailwindcss']
-endif
-
-
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif

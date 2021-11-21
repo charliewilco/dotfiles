@@ -6,12 +6,7 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias dstry='find . -name ".DS_Store" -type f -delete'
 
-alias ag='ag --path-to-ignore=~/.ignore'
 alias tree='tree -h -I "node_modules*|bower_components*"'
 alias cat='ccat'
 alias empty='empty-trash'
 alias flx='hidden-files'
-
-# Git & Apps
-alias tweetbot='open /Applications/Tweetbot.app'
-alias dotfiles='cd ~/.dotfiles/'

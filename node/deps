@@ -1,7 +1,4 @@
-cpx
-emoji-cli
 empty-trash-cli
-fast-cli
 figlet-cli
 fkill-cli
 hidden-files
@@ -15,7 +12,5 @@ space-hogs
 spoof
 tmpin
 trash-cli
-vercel
-vtop
 wifi-password-cli
 yarn-deduplicate
