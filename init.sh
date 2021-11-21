@@ -288,6 +288,17 @@ setup_vim() {
     fi
 }
 
+install_dotfiles() {
+    if test $(which git); then
+        git clone https://github.com/charliewilco/dotfiles.git "$HOME/.dotfiles"
+        cd "$HOME/.dotfiles"
+        sh ./install.sh all
+    fi
+}
+
+
+install_dotfiles
+
 case "$1" in
     backup)
         backup
