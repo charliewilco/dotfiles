@@ -42,14 +42,14 @@
 [mergetool]
 	keepBackup = false
 [github]
-	user = charlespeters
+	user = charliewilco
 [credential]
 	helper = osxkeychain
 [delta]
   side-by-side = true
 [user]
 	name = Charlie ⚡
-	email = 4588060+charliewilco@users.noreply.github.com
+	email = charlespeters42@gmail.com
 [merge]
 	tool = vimdiff
 [init]

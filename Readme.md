@@ -7,7 +7,7 @@ First things first, install [Xcode](https://developer.apple.com/xcode/) and open
 Setting up a new machine should be easy. Run:
 
 ```Shell
-bash -c "$(curl -LsS https://raw.github.com/charlespeters/dotfiles/master/scripts/init.sh)"
+bash -c "$(curl -LsS https://raw.githubusercontent.com/charliewilco/dotfiles/main/install.sh)"
 ```
 
 ### Setup
@@ -34,7 +34,6 @@ It solves a lot of isses with macOS Sierra and SSH that didn't exist in previous
 ## tmux colors + _Italics_
 
 There are two files here with the `.terminfo` extension, do the following with them:
-
 
 ```shell
 tic -x xterm-256color-italic.terminfo
@@ -74,15 +73,11 @@ This is the list of dotfiles I've looked through and learned something cool from
 First off, you're awesome for wanting to contribute. Second, please take a second to go over a few things to make this process simpler for everyone. Third, you're awesome.
 
 ### Pull Requests
-- [Fork](https://github.com/charlespeters/dotfiles#fork-destination-box) this repo.
+
+- [Fork](https://github.com/charliewilco/dotfiles#fork-destination-box) this repo.
 - Push to your fork and submit a pull request.
 - Please provide a short explanation of why you made the changes you made.
 
 ## License
-MIT
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The Unlicense

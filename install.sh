@@ -35,6 +35,32 @@ get_linkables() {
     find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
 }
 
+backup() {
+    BACKUP_DIR=$HOME/dotfiles-backup
+
+    echo "Creating backup directory at $BACKUP_DIR"
+    mkdir -p "$BACKUP_DIR"
+
+    for file in $(get_linkables); do
+        filename=".$(basename "$file" '.symlink')"
+        target="$HOME/$filename"
+        if [ -f "$target" ]; then
+            echo "backing up $filename"
+            cp "$target" "$BACKUP_DIR"
+        else
+            warning "$filename does not exist at this location or is a symlink"
+        fi
+    done
+
+    for filename in "$HOME/.config/nvim" "$HOME/.vim" "$HOME/.vimrc"; do
+        if [ ! -L "$filename" ]; then
+            echo "backing up $filename"
+            cp -rf "$filename" "$BACKUP_DIR"
+        else
+            warning "$filename does not exist at this location or is a symlink"
+        fi
+    done
+}
 
 setup_symlinks() {
     title "Creating symlinks"
@@ -89,6 +115,18 @@ setup_symlinks() {
             ln -s "${VALUE}" "${KEY}"
         fi
     done
+}
+
+setup_tmux() {
+    if test $(which tmux)
+    then
+        echo 'Setting up tmux'
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        if "test ! -d ~/.tmux/plugins/tpm"
+        then
+            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
+        fi
+    fi
 }
 
 setup_git() {
@@ -280,6 +318,7 @@ case "$1" in
         setup_git
         setup_macos
         setup_vim
+        setup_tmux
         setup_node
         ;;
     *)
