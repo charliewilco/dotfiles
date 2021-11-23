@@ -14,7 +14,7 @@ filetype off                  " required
 " Plugins
 "==============================
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 
 " Colors
