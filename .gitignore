@@ -3,6 +3,7 @@ config.symlink/
 !config.symlink/hammerspoon/init.lua
 !config.symlink/ranger/rc.conf
 
+config/nvim/plugged
 atom.symlink/.apm
 atom.symlink/.node-gyp
 atom.symlink/.storage

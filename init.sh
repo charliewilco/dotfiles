@@ -235,9 +235,6 @@ setup_macos() {
         echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
         defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-        echo "Enable subpixel font rendering on non-Apple LCDs"
-        defaults write NSGlobalDomain AppleFontSmoothing -int 2
-
         echo "Use current directory as default search scope in Finder"
         defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
