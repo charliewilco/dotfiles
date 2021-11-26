@@ -16,9 +16,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+eval "$(starship init zsh)"
 
 setopt no_verbose
 
@@ -71,5 +69,7 @@ if [ -f "/opt/homebrew/etc/profile.d/z.sh" ]; then . "/opt/homebrew/etc/profile.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(fnm env)"
+
+[ -f ~/.rover/env ] && source "${ZDOTDIR:-$HOME}/.rover/env"
 
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"

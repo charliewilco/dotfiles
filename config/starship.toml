@@ -1,0 +1,18 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+
+[character]
+format = "$symbol "
+success_symbol = "[△](bold blue) "
+error_symbol = "[▽](bold yellow) "
+
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[nodejs]
+symbol='🚀'
+ 

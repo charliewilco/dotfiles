@@ -1,3 +1,6 @@
+# Termset
+set-option -g default-shell /opt/homebrew/bin/zsh
+
 set -g clock-mode-colour cyan
 
 # Enable mouse selections
@@ -21,24 +24,14 @@ bind | split-window -h
 bind - split-window -v
 bind n resize-pane -D 10
 
-# Status Line
-set -g status-left-length 32
-set -g status-right-length 192
-set -g status-left '#{prefix_highlight}'
-set -g status-right 'Online: #{online_status} | Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
-
 # setw -g window-status-current-fg white
 # setw -g window-status-current-attr bright
 
-# Termset
-set-option -g default-shell /usr/local/bin/zsh
-
-# set -g window-status-format '#[fg=brightred,bg=default]#I'
-# set -g pane-border-style 'fg=black'
-# set -g pane-active-border-style 'fg=cyan'
-# set -g status-style 'fg=default,bg=default bold'
-# set -g message-style 'fg=green,bg=black'
-set -g clock-mode-colour cyan
+set -g window-status-format '#[fg=brightred,bg=default]#I'
+set -g pane-border-style 'fg=black'
+set -g pane-active-border-style 'fg=cyan'
+set -g status-style 'fg=default,bg=default bold'
+set -g message-style 'fg=green,bg=black'
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
@@ -56,10 +49,6 @@ setw -g mode-keys vi
 set -g base-index 1
 set -g pane-base-index 1
 
-
-# Fix delay when sending escape key
-set -sg escape-time 0
-
 # Plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
@@ -67,14 +56,22 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-set -g @plugin 'tmux-plugins/tmux-online-status'
+
+run '~/.tmux/plugins/tpm/tpm'
 
 set -g @resurrect-processes 'zsh yarn node z vim'
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 set -g @continuum-restore 'off'
 
-run '~/.tmux/plugins/tpm/tpm'
+# Status Line
+set -g status-left-length 32
+set -g status-right-length 192
+set -g status-left '#{prefix_highlight}'
+set -g status-right 'Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
+
+# Fix delay when sending escape key
+set -sg escape-time 0
 
 set-option -g xterm-keys on
 set-window-option -g xterm-keys on

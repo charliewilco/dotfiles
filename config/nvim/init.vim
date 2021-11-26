@@ -33,11 +33,9 @@ Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-Plug 'slashmili/alchemist.vim'
-Plug 'elixir-lang/vim-elixir'
+Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
-Plug 'ekalinin/Dockerfile.vim'
 Plug 'pantharshit00/vim-prisma'
 
 " Utilities
