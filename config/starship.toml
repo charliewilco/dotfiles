@@ -15,4 +15,7 @@ disabled = true
 
 [nodejs]
 symbol='🚀'
+
+[git_branch]
+symbol = '🌲 '
  

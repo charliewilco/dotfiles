@@ -18,7 +18,7 @@ The config script sets up Vim and copies all my preferences for Vim / NeoVim, tm
 
 ## Cheatsheet
 
-There's a [cheatsheet](https://github.com/charlespeters/dotfiles/blob/master/cheatsheet.md) for very common things I do with Vim and command line utilities (ie `ag`, `hub`, and more to come).
+There's a [cheatsheet](https://github.com/charliewilco/dotfiles/blob/master/cheatsheet.md) for very common things I do with Vim and command line utilities (ie `ag`, `hub`, and more to come).
 
 ## SSH
 
