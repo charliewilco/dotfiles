@@ -324,8 +324,8 @@ vnoremap <leader>k :m '<-2<CR>gv=gv
 
 " FZF
 
-nnoremap <C-p> :Files<CR>
-inoremap <C-p> <ESC>:Files<CR>
+nnoremap <C-p> :GFiles<CR>
+inoremap <C-p> <ESC>:GFiles<CR>
 
 nnoremap <C-b> :Buffers<CR>
 inoremap <C-b> <ESC>:Buffers<CR>
