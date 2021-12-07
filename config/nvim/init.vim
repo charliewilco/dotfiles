@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 
 " Colors
-Plug 'ayu-theme/ayu-vim'
+Plug 'CantoroMC/ayu-nvim'
 Plug 'joshdick/onedark.vim'
 
 "" Language Support
@@ -165,6 +165,7 @@ let g:jsx_ext_required = 1
 let g:jsx_pragma_required = 1
 
 " Lightline
+let g:ayu_mirage = 'true'
 let g:lightline = { 'colorscheme': 'ayu' }
 
 let s:symbol_separator_left     = "\uE0B0"
