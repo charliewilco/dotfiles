@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Colors
 Plug 'CantoroMC/ayu-nvim'
-Plug 'joshdick/onedark.vim'
 
 "" Language Support
 Plug 'othree/html5.vim'
@@ -59,11 +58,8 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "
 " Interface
-Plug 'preservim/nerdtree'
-Plug 'itchyny/lightline.vim'
-" Plug 'taohexxx/lightline-buffer'
-Plug 'yarisgutierrez/ayu-lightline'
-Plug 'mengelbrecht/lightline-bufferline'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -81,7 +77,6 @@ set shell=$SHELL
 set encoding=utf-8
 set number
 set lazyredraw
-set background=dark
 set relativenumber
 set cursorline
 set showcmd
@@ -120,23 +115,13 @@ set foldmethod=manual
 
 " Colors Themes & Font Settings
 
-colorscheme ayu
-let ayucolor="mirage"
+" colorscheme ayu
 set t_Co=256
-set background=dark
 
 if has('termguicolors')
 	set termguicolors
-  " Don't need this in xterm-256color, but do need it inside tmux.
-  " (See `:h xterm-true-color`.)
-  " if &term =~# 'tmux-256color'
-  "   let &t_8f="\e[38;2;%ld;%ld;%ldm"
-  "   let &t_8b="\e[48;2;%ld;%ld;%ldm"
-  " endif
 endif
 
-" hi NonText ctermbg=NONE guibg=NONE
-" hi Normal ctermbg=NONE guibg=NONE
 
 " Highlights
 
@@ -159,37 +144,64 @@ set clipboard+=unnamedplus
 " Plugin Settings
 "==============================
 
-" JSX
 
-let g:jsx_ext_required = 1  
-let g:jsx_pragma_required = 1
+lua << END
+vim.g.ayu_mirage = true
+vim.api.nvim_command('colorscheme ayu')
+vim.api.nvim_command('set background=dark')
 
-" Lightline
-let g:ayu_mirage = 'true'
-let g:lightline = { 'colorscheme': 'ayu' }
+require'nvim-tree'.setup()
 
-let s:symbol_separator_left     = "\uE0B0"
-let s:symbol_separator_right    = "\uE0B2"
-let s:symbol_subseparator_left  = "\uE0B1"
-let s:symbol_subseparator_right = "\uE0B3"
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
-let g:lightline.separator        = {'left': s:symbol_separator_left, 'right': s:symbol_separator_right}
-let g:lightline.subseparator     = {'left': s:symbol_subseparator_left, 'right': s:symbol_subseparator_right}
+ ---[[ Lualine
+require'lualine'.setup {
+  options = {
+    theme = 'ayu'
+  },
+  tabline = {
+    lualine_a = {'buffers'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {'tabs'}
+  }
+}
 
+vim.g.goyo_width = 95
+END
 
-" Goyo
-
-let g:goyo_width = 95
 
 " SearchTasks
-
 let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
 
 
-" NERDTree
-map <C-n> :NERDTreeToggle<CR>
+" Nvim Tree
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★",
+    \   'deleted': "🗑",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "⬆",
+    \   'arrow_closed': "⬇",
+    \   'default': "",
+    \   'open': "",
+    \   'empty': "",
+    \   'empty_open': "",
+    \   'symlink': "🔗",
+    \   'symlink_open': "",
+    \   }
+    \ }
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
 
 " CoC.nvim
 let g:coc_global_extensions = [
@@ -250,13 +262,6 @@ let g:tscompletejob_node_cmd = "/usr/local/bin/node"
 autocmd FileType typescript setlocal completeopt+=menu
 autocmd FileType typescript.tsx setlocal completeopt+=menu
 
-" Snippets
-
-" Not Sure
-
-let g:enable_italic_font = 1
-let g:enable_bold_font = 1
-
 " Markdown
 
 let g:vim_markdown_folding_disabled = 1
@@ -282,10 +287,6 @@ endif
 " MacVim
 if has('gui_running')
   set background=dark
-
-  if (has("termguicolors"))
-    set termguicolors
-  endif
 
   highlight StatusLine cterm=italic gui=italic
   highlight Comment cterm=italic gui=italic

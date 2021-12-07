@@ -3,7 +3,6 @@ plugins+=(zsh-completions)
 
 # User Configuration
 export ZSH=$HOME/.dotfiles
-export PURE_PROMPT_SYMBOL='▲'
 
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
@@ -11,7 +10,6 @@ export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color-italic
 export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:/opt/homebrew/bin:$PATH"
 
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -69,7 +67,5 @@ if [ -f "/opt/homebrew/etc/profile.d/z.sh" ]; then . "/opt/homebrew/etc/profile.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(fnm env)"
-
-[ -f ~/.rover/env ] && source "${ZDOTDIR:-$HOME}/.rover/env"
 
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
