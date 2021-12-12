@@ -25,7 +25,7 @@
 	smudge = git hawser smudge %f
 	required = true
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore_global
   pager = delta
 [interactive]

@@ -60,6 +60,8 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Interface
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -170,9 +172,27 @@ require'lualine'.setup {
 vim.g.goyo_width = 95
 END
 
-
 " SearchTasks
 let g:searchtasks_list=["TODO", "FIXME", "NOTE"]
+
+" CoC.nvim
+let g:coc_global_extensions = [
+  \ 'coc-yank',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-json', 
+  \ 'coc-git',
+  \ 'coc-yaml',
+  \ 'coc-go'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/jest')
+  let g:coc_global_extensions += ['coc-jest']
+endif
 
 
 " Nvim Tree
@@ -199,60 +219,8 @@ let g:nvim_tree_icons = {
     \   'symlink_open': "",
     \   }
     \ }
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
-
-" CoC.nvim
-let g:coc_global_extensions = [
-  \ 'coc-yank',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-json', 
-  \ 'coc-git',
-  \ 'coc-yaml',
-  \ 'coc-go'
-  \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/jest')
-  let g:coc_global_extensions += ['coc-jest']
-endif
-
-nnoremap <silent> K :call CocAction('doHover')<CR>
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <F2> <Plug>(coc-rename)
-
-
-" Run jest for current project
-command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
-
-" Run jest for current file
-command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
-
-" Run jest for current test
-nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
-
-" Init jest in current cwd, require global jest command exists
-command! JestInit :call CocAction('runCommand', 'jest.init')
-"
-" Syntastic Checkers
 
 " Prettier
-
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.vue PrettierAsync
 
@@ -263,10 +231,8 @@ autocmd FileType typescript setlocal completeopt+=menu
 autocmd FileType typescript.tsx setlocal completeopt+=menu
 
 " Markdown
-
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_fenced_languages = ['html', 'css', 'ts=typescript', 'js=javascript.jsx']
 
 
 "==============================
@@ -310,8 +276,6 @@ autocmd BufNewFile,BufRead *.js  set filetype=javascript.jsx
 " Mappings
 "==============================
 
-" CoC.nvim
-
 
 " Leader
 
@@ -323,6 +287,49 @@ inoremap <leader>j <Esc>:m .+1<CR>==gi
 inoremap <leader>k <Esc>:m .-2<CR>==gi
 vnoremap <leader>j :m '>+1<CR>gv=gv
 vnoremap <leader>k :m '<-2<CR>gv=gv
+
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+
+
+" CoC.nvim
+nnoremap <silent> K :call CocAction('doHover')<CR>
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <F2> <Plug>(coc-rename)
+
+
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+
+" Init jest in current cwd, require global jest command exists
+command! JestInit :call CocAction('runCommand', 'jest.init')
+
+
+" NvimTree
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
 
 " FZF
 
