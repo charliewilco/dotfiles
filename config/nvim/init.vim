@@ -148,7 +148,7 @@ set clipboard+=unnamedplus
 
 
 lua << END
-vim.g.ayu_mirage = false
+vim.g.ayu_mirage = true
 vim.api.nvim_command('colorscheme ayu')
 vim.api.nvim_command('set background=dark')
 
