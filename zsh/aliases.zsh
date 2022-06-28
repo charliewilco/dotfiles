@@ -1,4 +1,5 @@
 # Common
+alias p='pnpm'
 alias please='sudo'
 alias ls='ls -a'
 alias ..='cd ..'

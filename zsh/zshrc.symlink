@@ -69,3 +69,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 eval "$(fnm env)"
 
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+
+export PNPM_HOME="/Users/macro/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"

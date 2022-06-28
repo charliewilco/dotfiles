@@ -1,12 +1,13 @@
 {
+  "git.addGBlameToBufferVar": true,
+  "suggest.enablePreview": true,
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "●",
   "diagnostic.hintSign": "○",
-  "git.addGBlameToBufferVar": true,
-  "suggest.enablePreview": true,
-  "codeLens.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "javascript",

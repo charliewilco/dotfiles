@@ -18,7 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 
 " Colors
-Plug 'CantoroMC/ayu-nvim'
+Plug 'glepnir/zephyr-nvim'
+Plug 'fenetikm/falcon'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'projekt0n/github-nvim-theme'
 
 "" Language Support
 Plug 'othree/html5.vim'
@@ -28,18 +31,16 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'neoclide/vim-jsx-improve'
 Plug 'sheerun/vim-json'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'cespare/vim-toml'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 Plug 'pantharshit00/vim-prisma'
 
 " Utilities
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'reedes/vim-pencil'
@@ -54,14 +55,13 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'gilsondev/searchtasks.vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "
 " Interface
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -117,13 +117,13 @@ set foldmethod=manual
 
 " Colors Themes & Font Settings
 
-" colorscheme ayu
 set t_Co=256
 
 if has('termguicolors')
 	set termguicolors
 endif
 
+set background=dark
 
 " Highlights
 
@@ -148,28 +148,50 @@ set clipboard+=unnamedplus
 
 
 lua << END
-vim.g.ayu_mirage = true
-vim.api.nvim_command('colorscheme ayu')
-vim.api.nvim_command('set background=dark')
+require('telescope').setup {
+  extensions = {
+    file_browser = {
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+    },
+  },
+}
+require('github-theme').setup {
+  theme_style = 'dark_default',
+  function_style = 'italic',
+  sidebars = {'qf', 'vista_kind', 'terminal', 'packer'},
 
-require'nvim-tree'.setup()
+  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+  colors = {hint = 'orange', error = '#ff0000'},
+}
 
  ---[[ Lualine
-require'lualine'.setup {
+require('lualine').setup {
   options = {
-    theme = 'ayu'
+    theme = 'auto',
+    section_separators = '',
+    component_separators = ''
   },
   tabline = {
     lualine_a = {'buffers'},
     lualine_b = {'branch'},
     lualine_c = {'filename'},
-    lualine_x = {},
-    lualine_y = {},
+    lualine_x = {'encoding'},
+    lualine_y = {'progress'},
     lualine_z = {'tabs'}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'FugitiveHead', 'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   }
 }
 
 vim.g.goyo_width = 95
+vim.cmd[[colorscheme tokyonight]]
 END
 
 " SearchTasks
@@ -182,8 +204,7 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-json', 
   \ 'coc-git',
-  \ 'coc-yaml',
-  \ 'coc-go'
+  \ 'coc-yaml'
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -195,34 +216,8 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/jest')
 endif
 
 
-" Nvim Tree
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "🗑",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "⬆",
-    \   'arrow_closed': "⬇",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "🔗",
-    \   'symlink_open': "",
-    \   }
-    \ }
-
 " Prettier
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql,*.vue PrettierAsync
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 " TypeScript
 let g:tscompletejob_node_cmd = "/usr/local/bin/node"
@@ -295,8 +290,6 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-
-
 " CoC.nvim
 nnoremap <silent> K :call CocAction('doHover')<CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
@@ -324,20 +317,6 @@ nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 " Init jest in current cwd, require global jest command exists
 command! JestInit :call CocAction('runCommand', 'jest.init')
-
-
-" NvimTree
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
-
-" FZF
-
-nnoremap <C-p> :GFiles<CR>
-inoremap <C-p> <ESC>:GFiles<CR>
-
-nnoremap <C-b> :Buffers<CR>
-inoremap <C-b> <ESC>:Buffers<CR>
 
 " No Remap for Arrow Keys
 
