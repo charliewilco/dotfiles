@@ -20,7 +20,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Colors
 Plug 'glepnir/zephyr-nvim'
 Plug 'fenetikm/falcon'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'projekt0n/github-nvim-theme'
 
 "" Language Support
@@ -156,6 +155,8 @@ require('telescope').setup {
     },
   },
 }
+
+
 require('github-theme').setup {
   theme_style = 'dark_default',
   function_style = 'italic',
@@ -191,7 +192,6 @@ require('lualine').setup {
 }
 
 vim.g.goyo_width = 95
-vim.cmd[[colorscheme tokyonight]]
 END
 
 " SearchTasks
