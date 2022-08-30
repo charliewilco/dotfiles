@@ -168,8 +168,18 @@ require('github-theme').setup {
 
 local auto_dark_mode = require('auto-dark-mode')
 
+
+
+vim.api.nvim_set_option('background', 'dark')
+vim.cmd('colorscheme github_dark_default')
+
+if os.getenv('theme') == 'light' then
+  vim.api.nvim_set_option('background', 'light')
+  vim.cmd('colorscheme github_light_default')
+end
+
 auto_dark_mode.setup({
-	update_interval = 1000,
+	update_interval = 3000,
 	set_dark_mode = function()
 		vim.api.nvim_set_option('background', 'dark')
 		vim.cmd('colorscheme github_dark_default')
@@ -268,9 +278,6 @@ if has('gui_running')
   highlight SpecialComment cterm=italic gui=italic
 endif
 
-if filereadable(glob("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
 
 "==============================
 " File Types
