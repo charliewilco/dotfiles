@@ -61,6 +61,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'f-person/auto-dark-mode.nvim'
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -122,7 +123,6 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-set background=dark
 
 " Highlights
 
@@ -158,13 +158,28 @@ require('telescope').setup {
 
 
 require('github-theme').setup {
-  theme_style = 'dark_default',
+  theme_style = 'light_default',
   function_style = 'italic',
   sidebars = {'qf', 'vista_kind', 'terminal', 'packer'},
 
   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
   colors = {hint = 'orange', error = '#ff0000'},
 }
+
+local auto_dark_mode = require('auto-dark-mode')
+
+auto_dark_mode.setup({
+	update_interval = 1000,
+	set_dark_mode = function()
+		vim.api.nvim_set_option('background', 'dark')
+		vim.cmd('colorscheme github_dark_default')
+	end,
+	set_light_mode = function()
+		vim.api.nvim_set_option('background', 'light')
+		vim.cmd('colorscheme github_light_default')
+	end,
+})
+auto_dark_mode.init()
 
  ---[[ Lualine
 require('lualine').setup {
@@ -202,6 +217,7 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ 'coc-pairs',
   \ 'coc-tsserver',
+  \ 'coc-rust-analyzer',
   \ 'coc-json', 
   \ 'coc-git',
   \ 'coc-yaml'
@@ -247,8 +263,6 @@ endif
 
 " MacVim
 if has('gui_running')
-  set background=dark
-
   highlight StatusLine cterm=italic gui=italic
   highlight Comment cterm=italic gui=italic
   highlight SpecialComment cterm=italic gui=italic
@@ -291,6 +305,45 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " CoC.nvim
+set nobackup
+set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
 nnoremap <silent> K :call CocAction('doHover')<CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
