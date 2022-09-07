@@ -42,7 +42,6 @@ Plug 'pantharshit00/vim-prisma'
 " Utilities
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-emoji'
-Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
@@ -55,6 +54,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'gilsondev/searchtasks.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'github/copilot.vim'
+	
 "
 " Interface
 Plug 'nvim-lualine/lualine.nvim'
