@@ -10,9 +10,6 @@ export LC_CTYPE=en_US.UTF-8
 export TERM=xterm-256color-italic
 export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:/opt/homebrew/bin:$PATH"
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(starship init zsh)"
 
@@ -56,7 +53,6 @@ unset config_files
 
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-# [ -f ~/.fzf.colors ] && source ~/.fzf.colors
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
@@ -70,5 +66,3 @@ eval "$(fnm env)"
 
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
 
-export PNPM_HOME="/Users/macro/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
