@@ -1,7 +1,7 @@
 # Termset
 set-option -g default-shell /opt/homebrew/bin/zsh
 
-set -g clock-mode-colour cyan
+set -g clock-mode-colour blue
 
 # Enable mouse selections
 set -g mouse on
@@ -24,12 +24,11 @@ bind | split-window -h
 bind - split-window -v
 bind n resize-pane -D 10
 
-# setw -g window-status-current-fg white
-# setw -g window-status-current-attr bright
+set -g window-status-format "#[bg=blue,fg=white] #I #[bg=default,fg=default] #{?#{window_name},#W,#{b:pane_current_path}} "
+set -g window-status-current-format "#[bg=green,fg=white,bold] #I #[bg=default,fg=default,bold] #{?#{window_name},#W,#{b:pane_current_path}} "
 
-set -g window-status-format '#[fg=brightred,bg=default]#I'
 set -g pane-border-style 'fg=black'
-set -g pane-active-border-style 'fg=cyan'
+set -g pane-active-border-style 'fg=blue'
 set -g status-style 'fg=default,bg=default bold'
 set -g message-style 'fg=green,bg=black'
 
@@ -57,9 +56,8 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 
-run '~/.tmux/plugins/tpm/tpm'
 
-set -g @resurrect-processes 'zsh yarn node z vim'
+set -g @resurrect-processes 'zsh npm node z vim'
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 set -g @continuum-restore 'off'
@@ -67,8 +65,9 @@ set -g @continuum-restore 'off'
 # Status Line
 set -g status-left-length 32
 set -g status-right-length 192
-set -g status-left '#{prefix_highlight}'
-set -g status-right 'Batt: #{battery_icon} #{battery_percentage} #{battery_remain} | %a %h-%d %H:%M'
+set -g status-left '🌈 '
+battery='Batt: #{battery_icon} #{battery_percentage} #{battery_remain}'
+set -g status-right "#{prefix_highlight} $battery | %a %h-%d %H:%M"
 
 # Fix delay when sending escape key
 set -sg escape-time 0
@@ -77,3 +76,6 @@ set-option -g xterm-keys on
 set-window-option -g xterm-keys on
 set -g default-terminal 'tmux-256color'
 set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
+
+run '~/.tmux/plugins/tpm/tpm'
+

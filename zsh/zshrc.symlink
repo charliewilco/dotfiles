@@ -4,6 +4,8 @@ plugins+=(zsh-completions)
 # User Configuration
 export ZSH=$HOME/.dotfiles
 
+export BAT_THEME='base16-256'
+
 export EDITOR='nvim'
 export DEFAULT_USER=`whoami`
 export LC_CTYPE=en_US.UTF-8
