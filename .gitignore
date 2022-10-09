@@ -4,6 +4,7 @@ config.symlink/
 !config.symlink/ranger/rc.conf
 
 config/nvim/plugged
+config/nvim/plugin/packer_compiled.lua
 
 git/gitconfig.local.symlink
 .tern-port
