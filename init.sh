@@ -274,11 +274,12 @@ setup_node() {
 setup_vim() {
     if test $(which nvim); then
         echo 'Setting up Vim and NeoVim'
-        echo 'Installing vim-plug'
-        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        yes | vim +PlugClean! +PlugInstall! +qall
-    fi
+        echo 'Installing packer.nvim'
+
+        git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+          ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+        yes | nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+   fi
 }
 
 install_dotfiles() {
