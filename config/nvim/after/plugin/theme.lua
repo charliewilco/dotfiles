@@ -1,22 +1,25 @@
+local auto_dark_mode = require('auto-dark-mode')
+local theme_style = 'dark_default'
+
+vim.api.nvim_set_option('background', 'dark')
+
+if os.getenv('theme') == 'light' then
+  vim.api.nvim_set_option('background', 'light')
+  theme_style = 'light_default'
+else
+  vim.api.nvim_set_option('background', 'dark')
+end
+
 require('github-theme').setup {
-  theme_style = 'light_default',
+  theme_style = theme_style,
   function_style = 'italic',
+  comment_style = 'italic',
+  transparent = true,
   sidebars = {'qf', 'vista_kind', 'terminal', 'packer'},
 
   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
   colors = {hint = 'orange', error = '#ff0000'},
 }
-
-
-local auto_dark_mode = require('auto-dark-mode')
-
-vim.api.nvim_set_option('background', 'dark')
-vim.cmd('colorscheme github_dark_default')
-
-if os.getenv('theme') == 'light' then
-  vim.api.nvim_set_option('background', 'light')
-  vim.cmd('colorscheme github_light_default')
-end
 
 auto_dark_mode.setup({
   update_interval = 3000,
