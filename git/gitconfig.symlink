@@ -4,22 +4,22 @@
 [color]
 	ui = auto
 [diff]
-  colorMoved = default
+	colorMoved = default
 [alias]
 	open = "!f() { REPO_URL=$(git config remote.origin.url); open x-github-client://openRepo/${REPO_URL%%.git}; }; f"
 	bb = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
 	aa = add --all
 	st = status
-  openup = !sh -c 'gitup open'
+	openup = !sh -c 'gitup open'
 	current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD | pbcopy'
 	log-nice = log --graph --oneline --all --decorate
 	log-simple = log --all --oneline --no-merges
 	push-this = push -u origin HEAD
-  pull-mine = pull -s recursive -X ours
+	pull-mine = pull -s recursive -X ours
 [filter "media"]
-  required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
@@ -27,9 +27,9 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
-  pager = delta
+	pager = delta
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -46,10 +46,10 @@
 [credential]
 	helper = osxkeychain
 [delta]
-  side-by-side = true
+	side-by-side = true
 [user]
 	name = Charlie ⚡
-	email = charliewilc0@protonmail.com
+	email = charliewilc0@pm.me
 [merge]
 	tool = vimdiff
 [init]

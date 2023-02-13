@@ -31,14 +31,13 @@ opt.clipboard = "unnamedplus"
 
 
 -- Tabs & Spaces
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
+opt.smartindent = true
+opt.expandtab = false
+opt.tabstop = 4
+opt.shiftwidth = 4
 opt.showtabline = 2
 opt.laststatus = 2
 opt.cc = ""
-opt.smartindent = true
 opt.foldmethod = "manual"
 
 opt.backup = false
