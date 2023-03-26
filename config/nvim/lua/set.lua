@@ -1,4 +1,4 @@
-vim.g.mapleader = ","
+vim.g.mapleader = ','
 
 local opt = vim.opt
 
@@ -27,7 +27,7 @@ opt.termguicolors = true
 
 -- Clipboard
 
-opt.clipboard = "unnamedplus"
+opt.clipboard = 'unnamedplus'
 
 
 -- Tabs & Spaces
@@ -37,12 +37,12 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.showtabline = 2
 opt.laststatus = 2
-opt.cc = ""
-opt.foldmethod = "manual"
+opt.cc = ''
+opt.foldmethod = 'manual'
 
 opt.backup = false
 opt.writebackup = false
 
 opt.updatetime = 300
 
-opt.signcolumn = "yes"
+opt.signcolumn = 'yes'
