@@ -5,18 +5,9 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	-- Colors
-	use 'glepnir/zephyr-nvim'
 	use 'fenetikm/falcon'
+	use 'folke/tokyonight.nvim'
 	use 'f-person/auto-dark-mode.nvim'
-
-	use {
-		'rose-pine/neovim',
-		as = 'rose-pine',
-		config = function()
-			require("rose-pine").setup()
-			vim.cmd('colorscheme rose-pine')
-		end
-	}
 
 	-- Language Support
 	use {
@@ -44,6 +35,8 @@ return require('packer').startup(function(use)
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'neovim/nvim-lspconfig'
+	use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+	use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
 
 	-- Interface
 	use 'nvim-lualine/lualine.nvim'
