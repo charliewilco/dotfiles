@@ -1,7 +1,3 @@
-local auto_dark_mode = require('auto-dark-mode')
-
-vim.api.nvim_set_option('background', 'dark')
-
 if os.getenv('theme') == 'light' then
 	vim.api.nvim_set_option('background', 'light')
 else
@@ -9,21 +5,49 @@ else
 end
 
 
-function ColorMyPencils(color)
-	color = color or 'tokyonight'
-	vim.cmd.colorscheme(color)
-	vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-	vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+-- auto_dark_mode.setup({
+-- 	update_interval = 3000,
+-- 	set_dark_mode = function()
+-- 		vim.api.nvim_set_option('background', 'dark')
+-- 	end,
+-- 	set_light_mode = function()
+-- 		vim.api.nvim_set_option('background', 'light')
+-- 	end,
+-- })
+-- auto_dark_mode.init()
 
-end
 
-ColorMyPencils()
+
+
+-- Lualine
+require('lualine').setup {
+	options = {
+		theme = 'auto',
+		section_separators = '',
+		component_separators = ''
+	},
+	tabline = {
+		lualine_a = {'buffers'},
+		lualine_b = {'branch'},
+		lualine_c = {'filename'},
+		lualine_x = {'encoding'},
+		lualine_y = {'progress'},
+		lualine_z = {'tabs'}
+	},
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {'FugitiveHead', 'branch', 'diff', 'diagnostics'},
+		lualine_c = {'filename'},
+		lualine_x = {'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
+	}
+}
 
 require("tokyonight").setup({
 	-- your configuration comes here
 	-- or leave it empty to use the default settings
 	style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-	light_style = "day", -- The theme is used when the background is set to light
 	transparent = true, -- Enable this to disable setting the background color
 	terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
 	styles = {
@@ -55,43 +79,18 @@ require("tokyonight").setup({
 	on_highlights = function(highlights, colors) end,
 })
 
+vim.opt.termguicolors = true
+vim.api.nvim_set_option('background', 'dark')
+vim.cmd.colorscheme('tokyonight')
 
-auto_dark_mode.setup({
-	update_interval = 3000,
-	set_dark_mode = function()
-		vim.api.nvim_set_option('background', 'dark')
-	end,
-	set_light_mode = function()
-		vim.api.nvim_set_option('background', 'light')
-	end,
-})
-auto_dark_mode.init()
+function ColorMyPencils(color)
+	color = color or 'tokyonight'
+	vim.cmd.colorscheme(color)
+	vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+	vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 
--- Lualine
-require('lualine').setup {
-	options = {
-		theme = 'auto',
-		section_separators = '',
-		component_separators = ''
-	},
-	tabline = {
-		lualine_a = {'buffers'},
-		lualine_b = {'branch'},
-		lualine_c = {'filename'},
-		lualine_x = {'encoding'},
-		lualine_y = {'progress'},
-		lualine_z = {'tabs'}
-	},
-	sections = {
-		lualine_a = {'mode'},
-		lualine_b = {'FugitiveHead', 'branch', 'diff', 'diagnostics'},
-		lualine_c = {'filename'},
-		lualine_x = {'filetype'},
-		lualine_y = {'progress'},
-		lualine_z = {'location'}
-	}
-}
-
-local hl = function(thing, opts)
-	vim.api.nvim_set_hl(0, thing, opts)
 end
+
+ColorMyPencils()
+
+
