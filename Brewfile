@@ -8,6 +8,7 @@ tap 'mongodb/brew'
 
 # Utilities
 brew 'exa'
+brew 'zoxide'
 brew 'starship'
 brew 'fd'
 brew 'xplr'
