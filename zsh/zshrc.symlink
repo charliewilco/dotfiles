@@ -14,6 +14,8 @@ export PATH="./bin:/usr/local/bin:/usr/local/sbin:${HOME}/.rvm/bin:$ZSH/bin:/opt
 
 
 eval "$(starship init zsh)"
+eval "$(fnm env --use-on-cd)"
+eval "$(zoxide init zsh)"
 
 setopt no_verbose
 
@@ -56,14 +58,8 @@ unset config_files
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-# tabtab source for yarn package
-# uninstall by removing these lines or running `tabtab uninstall yarn`
-[[ -f ~/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh ]] && . ~/.config/yarn/global/node_modules/tabtab/.completions/yarn.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-eval "$(fnm env --use-on-cd)"
-eval "$(zoxide init zsh)"
 
 export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
 
