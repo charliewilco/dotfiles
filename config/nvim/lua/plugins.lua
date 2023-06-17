@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
 	use 'glepnir/zephyr-nvim'
 	use 'fenetikm/falcon'
 	use 'folke/tokyonight.nvim'
-	use 'f-person/auto-dark-mode.nvim'
 
 	-- Language Support
 
@@ -21,8 +20,6 @@ return require('packer').startup(function(use)
 	-- Utilities
 
 	use 'prettier/vim-prettier'
-	use 'junegunn/goyo.vim'
-	use 'junegunn/vim-emoji'
 	use 'tpope/vim-commentary'
 	use 'tpope/vim-dispatch'
 	use 'tpope/vim-eunuch'
@@ -66,6 +63,7 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-telescope/telescope-file-browser.nvim'
+	use 'folke/zen-mode.nvim'
 	use {
 		'folke/trouble.nvim',
 		requires = "nvim-tree/nvim-web-devicons",
@@ -78,44 +76,4 @@ return require('packer').startup(function(use)
 		end
 	}
 
-	use {
-		'glepnir/dashboard-nvim',
-		event = 'VimEnter',
-		requires = {'nvim-tree/nvim-web-devicons'},
-		config = function() 
-			require('dashboard').setup({
-				theme = 'hyper',
-				config = {
-					week_header = {
-						enable = true
-					},
-					shortcut = {
-						{ desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
-						{
-							icon = ' ',
-							icon_hl = '@variable',
-							desc = 'Files',
-							group = 'Label',
-							action = 'Telescope find_files',
-							key = 'f',
-						},
-						{
-							desc = ' Apps',
-							group = 'DiagnosticHint',
-							action = 'Telescope app',
-							key = 'a',
-						},
-						{
-							desc = ' dotfiles',
-							group = 'Number',
-							action = 'Telescope dotfiles',
-							key = 'd',
-						},
-					},
-				},
-
-			})
-		end
-	}
-
-	end)
+end)

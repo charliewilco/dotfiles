@@ -4,7 +4,7 @@ config.symlink/
 
 config/nvim/plugged
 config/nvim/plugin/packer_compiled.lua
+config/nvim/local
 
 git/gitconfig.local.symlink
 Brewfile.lock.json
-.tern-port
