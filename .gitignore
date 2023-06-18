@@ -1,4 +1,5 @@
 *.swp
+config/nvim/lazy-lock.json
 config.symlink/
 !config.symlink/ranger/rc.conf
 

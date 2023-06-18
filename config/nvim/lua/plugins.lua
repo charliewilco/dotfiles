@@ -1,79 +1,82 @@
-vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+vim.g.mapleader = ','
 
+
+return require('lazy').setup({
 	-- Colors
-
-	use 'glepnir/zephyr-nvim'
-	use 'fenetikm/falcon'
-	use 'folke/tokyonight.nvim'
+	'glepnir/zephyr-nvim',
+	'fenetikm/falcon',
+	'folke/tokyonight.nvim',
 
 	-- Language Support
-
-	use {
+	{
 		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
+		build = ':TSUpdate'
+	},
 
 	-- Utilities
-
-	use 'prettier/vim-prettier'
-	use 'tpope/vim-commentary'
-	use 'tpope/vim-dispatch'
-	use 'tpope/vim-eunuch'
-	use 'tpope/vim-fugitive'
-	use 'tpope/vim-obsession'
-	use 'tpope/vim-repeat'
-	use 'tpope/vim-rhubarb'
-	use 'tpope/vim-sensible'
-	use 'tpope/vim-surround'
-	use 'tpope/vim-vinegar'
-	use 'github/copilot.vim'
+	'prettier/vim-prettier',
+	'tpope/vim-commentary',
+	'tpope/vim-dispatch',
+	'tpope/vim-eunuch',
+	'tpope/vim-fugitive',
+	'tpope/vim-obsession',
+	'tpope/vim-repeat',
+	'tpope/vim-rhubarb',
+	'tpope/vim-sensible',
+	'tpope/vim-surround',
+	'tpope/vim-vinegar',
+	'github/copilot.vim',
 
 	-- LSP
-
-	use {
+	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
-		requires = {
+		dependencies = {
 			-- LSP Support
 			{'neovim/nvim-lspconfig'},             -- Required
-			{'williamboman/mason.nvim'},           -- Optional
-			{'williamboman/mason-lspconfig.nvim'}, -- Optional
+			{                                      -- Optional
+			'williamboman/mason.nvim',
+			build = function()
+				pcall(vim.cmd, 'MasonUpdate')
+			end,
+		},
+		{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},         -- Required
-			{'hrsh7th/cmp-nvim-lsp'},     -- Required
-			{'hrsh7th/cmp-buffer'},       -- Optional
-			{'hrsh7th/cmp-path'},         -- Optional
-			{'saadparwaiz1/cmp_luasnip'}, -- Optional
-			{'hrsh7th/cmp-nvim-lua'},     -- Optional
-
-			-- Snippets
-			{'L3MON4D3/LuaSnip'},             -- Required
-			{'rafamadriz/friendly-snippets'}, -- Optional
-		}
-	}
+		-- Autocompletion
+		{'hrsh7th/nvim-cmp'},     -- Required
+		{'hrsh7th/cmp-nvim-lsp'}, -- Required
+		{'L3MON4D3/LuaSnip'},     -- Required
+	},},
 
 	-- Interface
-
-	use 'nvim-lualine/lualine.nvim'
-	use 'nvim-lua/plenary.nvim'
-	use 'nvim-telescope/telescope.nvim'
-	use 'nvim-telescope/telescope-file-browser.nvim'
-	use 'folke/zen-mode.nvim'
-	use {
+	'nvim-lualine/lualine.nvim',
+	'nvim-lua/plenary.nvim',
+	'nvim-telescope/telescope.nvim',
+	'nvim-telescope/telescope-file-browser.nvim',
+	'folke/zen-mode.nvim',
+	{
 		'folke/trouble.nvim',
-		requires = "nvim-tree/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require('trouble').setup {
 				-- your configuration comes here
-				-- or leave it empty to use the default settings
+				-- or leave it empty to the default settings
 				-- refer to the configuration section below
 			}
 		end
 	}
 
-end)
+})
