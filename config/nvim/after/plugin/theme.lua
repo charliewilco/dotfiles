@@ -8,20 +8,20 @@ end
 require('lualine').setup {
 	options = {
 		theme = 'auto',
-		section_separators = '',
-		component_separators = ''
+		component_separators = { left = '', right = ''},
+		section_separators = { left = '', right = ''},
 	},
 	tabline = {
 		lualine_a = {'buffers'},
-		lualine_b = {'branch'},
-		lualine_c = {'filename'},
+		lualine_b = {''},
+		lualine_c = {''},
 		lualine_x = {'encoding'},
 		lualine_y = {'progress'},
 		lualine_z = {'tabs'}
 	},
 	sections = {
 		lualine_a = {'mode'},
-		lualine_b = {'FugitiveHead', 'branch', 'diff', 'diagnostics'},
+		lualine_b = {'FugitiveHead', 'diff', 'diagnostics'},
 		lualine_c = {'filename'},
 		lualine_x = {'filetype'},
 		lualine_y = {'progress'},

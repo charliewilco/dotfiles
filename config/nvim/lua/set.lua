@@ -8,6 +8,11 @@ opt.showcmd = true
 opt.showmatch = true
 opt.ruler = true
 
+opt.list = true
+opt.listchars= {
+	tab = '→ '
+}
+
 -- Search
 
 opt.incsearch = true
