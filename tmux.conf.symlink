@@ -56,9 +56,10 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'tmux-plugins/tmux-yank'
 
 
-set -g @resurrect-processes 'yarn zsh npm node z vim'
+set -g @resurrect-processes 'yarn zsh npm node z exa nvim'
 set -g @resurrect-strategy-vim 'session'
 set -g @resurrect-strategy-nvim 'session'
 set -g @continuum-restore 'off'
