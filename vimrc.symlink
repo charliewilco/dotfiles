@@ -1,0 +1,139 @@
+"==============================
+"
+"
+" Vim Runtime Configuration
+"
+"
+"==============================
+
+" The following settings are for Vim not Neovim
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+"==============================
+" Plugins
+"==============================
+
+call plug#begin()
+
+Plug 'yuttie/hydrangea-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-emoji'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
+
+filetype plugin indent on    " required
+
+
+"==============================
+" Configuration
+"==============================
+
+" Default Settings
+
+syntax enable
+
+set shell=$SHELL
+set encoding=utf-8
+set number
+set lazyredraw
+set relativenumber
+set cursorline
+set showcmd
+set showmatch
+set ruler
+set mouse=a
+
+" Search Settings
+
+set incsearch
+set ignorecase
+set smartcase
+set nohlsearch
+
+" Window Splits
+
+set splitright
+set splitbelow
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Tabs & Spaces
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set laststatus=2
+set cc=95
+set smartindent
+set showtabline=2
+set foldmethod=manual
+
+" Colors Themes & Font Settings
+
+set t_Co=256
+set termguicolors
+
+if has('termguicolors')
+        set termguicolors
+endif
+
+
+" Highlights
+
+highlight StatusLine cterm=italic gui=italic
+highlight Comment cterm=italic gui=italic
+highlight SpecialComment cterm=italic gui=italic
+highlight SignColumn ctermfg=DarkBlue ctermbg=NONE
+highlight SignColumnNR ctermbg=black
+highlight LineNr ctermfg=DarkGrey ctermbg=NONE
+highlight LineNr ctermfg=DarkGrey ctermbg=NONE
+highlight CursorLineNR ctermbg=NONE ctermfg=Grey cterm=bold
+highlight CursorLine ctermbg=NONE cterm=NONE
+
+" Clipboard
+
+set clipboard=unnamed
+set clipboard+=unnamedplus
+
+" Background
+
+set background=dark
+
+let ayucolor="mirage"   " for dark version of theme
+
+let g:ayucolor = 'dark'
+let g:lightline = { 'colorscheme': 'ayu' }
+
+colorscheme ayu
+
+" Whitespace Rendering
+
+highlight SpecialKey ctermfg=244 guifg=#5c6773
+highlight NonText ctermfg=244 guifg=#5c6773
+
+augroup whitespace_rendering
+  autocmd!
+  autocmd VimEnter * set list | set listchars=tab:▸\ ,space:·,trail:·,nbsp:␣,extends:→,precedes:←
+  autocmd ColorScheme * highlight SpecialKey ctermfg=244 guifg=#5c6773
+  autocmd ColorScheme * highlight NonText ctermfg=244 guifg=#5c6773
+augroup END
