@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-DOTFILES="$(pwd)"
+set -euo pipefail
+
+DOTFILES="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+BACKUP_ROOT="${DOTFILES_BACKUP_DIR:-$HOME/dotfiles-backup}"
+BACKUP_DIR=""
+
 COLOR_GRAY="\033[1;38;5;243m"
 COLOR_BLUE="\033[1;34m"
 COLOR_GREEN="\033[1;32m"
@@ -10,336 +15,458 @@ COLOR_YELLOW="\033[1;33m"
 COLOR_NONE="\033[0m"
 
 title() {
-    echo -e "\n${COLOR_PURPLE}$1${COLOR_NONE}"
-    echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
+	printf "\n%b%s%b\n" "$COLOR_PURPLE" "$1" "$COLOR_NONE"
+	printf "%b%s%b\n\n" "$COLOR_GRAY" "==============================" "$COLOR_NONE"
 }
 
 error() {
-    echo -e "${COLOR_RED}Error: ${COLOR_NONE}$1"
-    exit 1
+	printf "%bError:%b %s\n" "$COLOR_RED" "$COLOR_NONE" "$1" >&2
+	exit 1
 }
 
 warning() {
-    echo -e "${COLOR_YELLOW}Warning: ${COLOR_NONE}$1"
+	printf "%bWarning:%b %s\n" "$COLOR_YELLOW" "$COLOR_NONE" "$1"
 }
 
 info() {
-    echo -e "${COLOR_BLUE}Info: ${COLOR_NONE}$1"
+	printf "%bInfo:%b %s\n" "$COLOR_BLUE" "$COLOR_NONE" "$1"
 }
 
 success() {
-    echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
+	printf "%b%s%b\n" "$COLOR_GREEN" "$1" "$COLOR_NONE"
 }
 
-get_linkables() {
-    find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
+require_command() {
+	command -v "$1" >/dev/null 2>&1 || error "Required command not found: $1"
+}
+
+ensure_backup_dir() {
+	if [ -n "$BACKUP_DIR" ]; then
+		return
+	fi
+
+	BACKUP_DIR="$BACKUP_ROOT/$(date +%Y%m%d-%H%M%S)"
+	mkdir -p "$BACKUP_DIR"
+	info "Using backup directory $BACKUP_DIR"
+}
+
+backup_target() {
+	local target="$1"
+	local relative backup_path
+
+	if [ ! -e "$target" ] && [ ! -L "$target" ]; then
+		return
+	fi
+
+	ensure_backup_dir
+
+	relative="${target#$HOME/}"
+	backup_path="$BACKUP_DIR/$relative"
+	mkdir -p "$(dirname "$backup_path")"
+	mv "$target" "$backup_path"
+	info "Backed up ~/${relative} to ${backup_path}"
+}
+
+iter_linkables() {
+	find -H "$DOTFILES" -maxdepth 3 -type f -name '*.symlink' -print0
+}
+
+iter_config_entries() {
+	if [ ! -d "$DOTFILES/config" ]; then
+		return
+	fi
+
+	find "$DOTFILES/config" -mindepth 1 -maxdepth 1 -print0
+}
+
+link_target() {
+	local source="$1"
+	local target="$2"
+	local mode="$3"
+	local current_link=""
+
+	if [ -L "$target" ]; then
+		current_link="$(readlink "$target")"
+		if [ "$current_link" = "$source" ]; then
+			info "~${target#$HOME} already points at ${source#$DOTFILES/}"
+			return
+		fi
+	fi
+
+	if [ -e "$target" ] || [ -L "$target" ]; then
+		if [ "$mode" = "sync" ]; then
+			backup_target "$target"
+		else
+			warning "~${target#$HOME} already exists. Skipping."
+			return
+		fi
+	fi
+
+	mkdir -p "$(dirname "$target")"
+	ln -s "$source" "$target"
+	info "Linked ~${target#$HOME} -> ${source#$DOTFILES/}"
+}
+
+link_dotfiles() {
+	local mode="$1"
+	local file target
+
+	title "Creating symlinks"
+
+	while IFS= read -r -d '' file; do
+		target="$HOME/.$(basename "$file" '.symlink')"
+		link_target "$file" "$target" "$mode"
+	done < <(iter_linkables)
+
+	info "Installing repo config into ~/.config"
+	mkdir -p "$HOME/.config"
+
+	while IFS= read -r -d '' file; do
+		target="$HOME/.config/$(basename "$file")"
+		link_target "$file" "$target" "$mode"
+	done < <(iter_config_entries)
 }
 
 backup() {
-    BACKUP_DIR=$HOME/dotfiles-backup
+	local file target
 
-    echo "Creating backup directory at $BACKUP_DIR"
-    mkdir -p "$BACKUP_DIR"
+	title "Backing up managed files"
 
-    for file in $(get_linkables); do
-        filename=".$(basename "$file" '.symlink')"
-        target="$HOME/$filename"
-        if [ -f "$target" ]; then
-            echo "backing up $filename"
-            cp "$target" "$BACKUP_DIR"
-        else
-            warning "$filename does not exist at this location or is a symlink"
-        fi
-    done
+	while IFS= read -r -d '' file; do
+		target="$HOME/.$(basename "$file" '.symlink')"
+		backup_target "$target"
+	done < <(iter_linkables)
 
-    for filename in "$HOME/.config/nvim" "$HOME/.vim" "$HOME/.vimrc"; do
-        if [ ! -L "$filename" ]; then
-            echo "backing up $filename"
-            cp -rf "$filename" "$BACKUP_DIR"
-        else
-            warning "$filename does not exist at this location or is a symlink"
-        fi
-    done
-}
+	while IFS= read -r -d '' file; do
+		target="$HOME/.config/$(basename "$file")"
+		backup_target "$target"
+	done < <(iter_config_entries)
 
-setup_symlinks() {
-    title "Creating symlinks"
-
-    for file in $(get_linkables) ; do
-        target="$HOME/.$(basename "$file" '.symlink')"
-        if [ -e "$target" ]; then
-            info "~${target#$HOME} already exists... Skipping."
-        else
-            info "Creating symlink for $file"
-            ln -s "$file" "$target"
-        fi
-    done
-
-    echo -e
-    info "installing to ~/.config"
-    if [ ! -d "$HOME/.config" ]; then
-        info "Creating ~/.config"
-        mkdir -p "$HOME/.config"
-    fi
-
-    config_files=$(find "$DOTFILES/config" -maxdepth 1 2>/dev/null)
-    for config in $config_files; do
-        target="$HOME/.config/$(basename "$config")"
-        if [ -e "$target" ]; then
-            info "~${target#$HOME} already exists... Skipping."
-        else
-            info "Creating symlink for $config"
-            ln -s "$config" "$target"
-        fi
-    done
-
-    # create vim symlinks
-    # As I have moved off of vim as my full time editor in favor of neovim,
-    # I feel it doesn't make sense to leave my vimrc intact in the dotfiles repo
-    # as it is not really being actively maintained. However, I would still
-    # like to configure vim, so lets symlink ~/.vimrc and ~/.vim over to their
-    # neovim equivalent.
-
-    echo -e
-    info "Creating vim symlinks"
-    VIMFILES=( "$HOME/.vim:$DOTFILES/config/nvim"
-            "$HOME/.vimrc:$DOTFILES/config/nvim/init.vim" )
-
-    for file in "${VIMFILES[@]}"; do
-        KEY=${file%%:*}
-        VALUE=${file#*:}
-        if [ -e "${KEY}" ]; then
-            info "${KEY} already exists... skipping."
-        else
-            info "Creating symlink for $KEY"
-            ln -s "${VALUE}" "${KEY}"
-        fi
-    done
+	if [ -z "$BACKUP_DIR" ]; then
+		info "No managed files needed backup."
+	fi
 }
 
 setup_tmux() {
-    if test $(which tmux)
-    then
-        echo 'Setting up tmux'
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        if "test ! -d ~/.tmux/plugins/tpm"
-        then
-            git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
-        fi
-    fi
+	local tpm_dir="$HOME/.tmux/plugins/tpm"
+
+	title "Setting up tmux"
+
+	if ! command -v tmux >/dev/null 2>&1; then
+		warning "tmux is not installed. Skipping."
+		return
+	fi
+
+	if [ ! -d "$tpm_dir" ]; then
+		require_command git
+		info "Installing tmux plugin manager"
+		git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+	else
+		info "tmux plugin manager already installed"
+	fi
+
+	if [ -x "$tpm_dir/bin/install_plugins" ]; then
+		info "Installing tmux plugins"
+		"$tpm_dir/bin/install_plugins"
+	fi
 }
 
 setup_git() {
-    title "Setting up Git"
+	local default_name default_email default_github name email github gitconfig_local
 
-    defaultName=$(git config user.name)
-    defaultEmail=$(git config user.email)
-    defaultGithub=$(git config github.user)
+	title "Setting up Git"
+	require_command git
 
-    read -rp "Name [$defaultName] " name
-    read -rp "Email [$defaultEmail] " email
-    read -rp "Github username [$defaultGithub] " github
+	gitconfig_local="$HOME/.gitconfig.local"
+	if [ ! -f "$gitconfig_local" ] && [ -f "$DOTFILES/git/gitconfig.local.symlink.example" ]; then
+		cp "$DOTFILES/git/gitconfig.local.symlink.example" "$gitconfig_local"
+		info "Created ~/.gitconfig.local from example"
+	fi
 
-    git config -f ~/.gitconfig-local user.name "${name:-$defaultName}"
-    git config -f ~/.gitconfig-local user.email "${email:-$defaultEmail}"
-    git config -f ~/.gitconfig-local github.user "${github:-$defaultGithub}"
+	default_name="$(git config user.name || true)"
+	default_email="$(git config user.email || true)"
+	default_github="$(git config github.user || true)"
 
+	read -r -p "Name [${default_name}] " name
+	read -r -p "Email [${default_email}] " email
+	read -r -p "GitHub username [${default_github}] " github
 
-    if [[ "$(uname)" == "Darwin" ]]; then
-        git config --global credential.helper "osxkeychain"
-    else
-        read -rn 1 -p "Save user and password to an unencrypted file to avoid writing? [y/N] " save
-        if [[ $save =~ ^([Yy])$ ]]; then
-            git config --global credential.helper "store"
-        else
-            git config --global credential.helper "cache --timeout 3600"
-        fi
-    fi
+	git config --file "$gitconfig_local" user.name "${name:-$default_name}"
+	git config --file "$gitconfig_local" user.email "${email:-$default_email}"
+	git config --file "$gitconfig_local" github.user "${github:-$default_github}"
+
+	if [ "$(uname)" = "Darwin" ]; then
+		git config --global credential.helper osxkeychain
+	else
+		local save=""
+		read -r -n 1 -p "Save credentials in plaintext to avoid retyping? [y/N] " save
+		printf "\n"
+		if [[ "$save" =~ ^[Yy]$ ]]; then
+			git config --global credential.helper store
+		else
+			git config --global credential.helper "cache --timeout 3600"
+		fi
+	fi
 }
 
 setup_homebrew() {
-    title "Setting up Homebrew"
+	title "Setting up Homebrew"
 
-    if test ! "$(command -v brew)"; then
-        info "Homebrew not installed. Installing."
-        # Run as a login shell (non-interactive) so that the script doesn't pause for user input
-        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
-    fi
+	if ! command -v brew >/dev/null 2>&1; then
+		info "Homebrew not installed. Installing."
+		curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+	fi
 
-    if [ "$(uname)" == "Linux" ]; then
-        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-    fi
+	if [ "$(uname)" = "Linux" ]; then
+		test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+		test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	fi
 
-    # install brew dependencies from Brewfile
-    brew bundle
-
+	info "Installing Brewfile dependencies"
+	brew bundle --file "$DOTFILES/Brewfile"
 }
 
 setup_shell() {
-    title "Configuring shell"
+	local zsh_path
 
-    [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
-    if ! grep "$zsh_path" /etc/shells; then
-        info "adding $zsh_path to /etc/shells"
-        echo "$zsh_path" | sudo tee -a /etc/shells
-    fi
+	title "Configuring shell"
 
-    if test $(which zsh); then
-        echo 'Installing Prezto'
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-    fi
+	if command -v brew >/dev/null 2>&1; then
+		zsh_path="$(brew --prefix)/bin/zsh"
+	else
+		zsh_path="$(command -v zsh)"
+	fi
 
-    if [[ "$SHELL" != "$zsh_path" ]]; then
-        chsh -s "$zsh_path"
-        info "default shell changed to $zsh_path"
-    fi
+	if [ ! -x "$zsh_path" ]; then
+		zsh_path="$(command -v zsh)"
+	fi
+
+	if ! grep -qx "$zsh_path" /etc/shells; then
+		info "Adding $zsh_path to /etc/shells"
+		printf "%s\n" "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+	fi
+
+	if [ "${SHELL:-}" != "$zsh_path" ]; then
+		chsh -s "$zsh_path"
+		info "Default shell changed to $zsh_path"
+	else
+		info "Default shell already set to $zsh_path"
+	fi
 }
 
 setup_terminfo() {
-    title "Configuring terminfo"
+	title "Configuring terminfo"
 
-    info "adding tmux-256color.terminfo"
-    tic -x "$DOTFILES/resources/tmux-256color.terminfo"
+	require_command tic
+	info "Adding tmux-256color.terminfo"
+	tic -x "$DOTFILES/resources/tmux-256color.terminfo"
 
-    info "adding xterm-256color-italic.terminfo"
-    tic -x "$DOTFILES/resources/xterm-256color-italic.terminfo"
+	info "Adding xterm-256color-italic.terminfo"
+	tic -x "$DOTFILES/resources/xterm-256color-italic.terminfo"
 }
 
 setup_macos() {
-    title "Configuring macOS"
-    if [[ "$(uname)" == "Darwin" ]]; then
-        echo "› sudo softwareupdate -i -a"
-        sudo softwareupdate -i -a
+	title "Configuring macOS"
 
-        echo "Finder: show all filename extensions"
-        defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+	if [ "$(uname)" != "Darwin" ]; then
+		warning "macOS not detected. Skipping."
+		return
+	fi
 
-        echo "show hidden files by default"
-        defaults write com.apple.Finder AppleShowAllFiles -bool false
+	echo "› sudo softwareupdate -i -a"
+	sudo softwareupdate -i -a
 
-        echo "only use UTF-8 in Terminal.app"
-        defaults write com.apple.terminal StringEncodings -array 4
+	echo "Finder: show all filename extensions"
+	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-        echo "expand save dialog by default"
-        defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+	echo "Finder: hide hidden files by default"
+	defaults write com.apple.finder AppleShowAllFiles -bool false
 
-        echo "show the ~/Library folder in Finder"
-        chflags nohidden ~/Library
+	echo "Only use UTF-8 in Terminal.app"
+	defaults write com.apple.terminal StringEncodings -array 4
 
-        echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-        defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+	echo "Expand save dialog by default"
+	defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-        echo "Use current directory as default search scope in Finder"
-        defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+	echo "Show the ~/Library folder in Finder"
+	chflags nohidden ~/Library
 
-        echo "Show Path bar in Finder"
-        defaults write com.apple.finder ShowPathbar -bool true
+	echo "Enable full keyboard access for all controls"
+	defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-        echo "Show Status bar in Finder"
-        defaults write com.apple.finder ShowStatusBar -bool true
+	echo "Use current directory as default search scope in Finder"
+	defaults write com.apple.finder FXDefaultSearchScope -string SCcf
 
-        echo "Disable press-and-hold for keys in favor of key repeat"
-        defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+	echo "Show Path bar in Finder"
+	defaults write com.apple.finder ShowPathbar -bool true
 
-        echo "Set a blazingly fast keyboard repeat rate"
-        defaults write NSGlobalDomain KeyRepeat -int 1
+	echo "Show Status bar in Finder"
+	defaults write com.apple.finder ShowStatusBar -bool true
 
-        echo "Set a shorter Delay until key repeat"
-        defaults write NSGlobalDomain InitialKeyRepeat -int 15
+	echo "Disable press-and-hold for keys in favor of key repeat"
+	defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-        echo "Enable tap to click (Trackpad)"
-        defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+	echo "Set a fast keyboard repeat rate"
+	defaults write NSGlobalDomain KeyRepeat -int 1
 
-        echo "Enable Safari’s debug menu"
-        defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+	echo "Set a shorter delay until key repeat"
+	defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-        echo "Kill affected applications"
+	echo "Enable tap to click (Trackpad)"
+	defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
-        for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
-    else
-        warning "macOS not detected. Skipping."
-    fi
+	echo "Enable Safari's debug menu"
+	defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+	echo "Kill affected applications"
+	for app in Safari Finder Dock Mail SystemUIServer; do
+		killall "$app" >/dev/null 2>&1 || true
+	done
 }
 
 setup_node() {
-    if test $(which npm); then
-        echo 'Setting up all your favorite NPM nicities'
-        cat "$DOTFILES/node/deps" | xargs -n1 npm install --global
-        npm update -g
-    fi
+	local package
+
+	title "Setting up Node"
+
+	if ! command -v npm >/dev/null 2>&1; then
+		warning "npm is not installed. Skipping."
+		return
+	fi
+
+	if [ ! -s "$DOTFILES/node/deps" ]; then
+		info "No global npm packages configured"
+		return
+	fi
+
+	while IFS= read -r package; do
+		[ -n "$package" ] || continue
+		info "Installing npm package $package"
+		npm install --global "$package"
+	done < "$DOTFILES/node/deps"
 }
 
 setup_vim() {
-    if test $(which nvim); then
-        echo 'Setting up Vim and NeoVim'
-        echo 'Installing packer.nvim'
+	title "Setting up Neovim"
 
-        git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-          ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-        yes | nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-   fi
+	if ! command -v nvim >/dev/null 2>&1; then
+		warning "Neovim is not installed. Skipping."
+		return
+	fi
+
+	info "Syncing lazy.nvim plugins"
+	nvim --headless "+Lazy! sync" +qa
 }
 
-install_dotfiles() {
-    if test $(which git); then
-        git clone https://github.com/charliewilco/dotfiles.git "$HOME/.dotfiles"
-        cd "$HOME/.dotfiles"
-        sh ./install.sh all
-    fi
+run_all() {
+	link_dotfiles sync
+	setup_terminfo
+	setup_homebrew
+	setup_shell
+	setup_git
+	setup_macos
+	setup_vim
+	setup_tmux
+	setup_node
 }
 
+run_codespaces() {
+	title "Configuring Codespaces"
 
-install_dotfiles
+	info "Running the repo-safe setup path for Codespaces"
+	info "Skipping Homebrew, shell changes, git prompts, and macOS defaults"
 
-case "$1" in
-    backup)
-        backup
-        ;;
-    link)
-        setup_symlinks
-        ;;
-    git)
-        setup_git
-        ;;
-    homebrew)
-        setup_homebrew
-        ;;
-    shell)
-        setup_shell
-        ;;
-    terminfo)
-        setup_terminfo
-        ;;
-    macos)
-        setup_macos
-        ;;
-    codespaces)
-        setup_symlinks
-        setup_terminfo
-        setup_homebrew
-        setup_shell
-        setup_vim
-        setup_tmux
-        setup_node
-        ;;
-    all)
-        setup_symlinks
-        setup_terminfo
-        setup_homebrew
-        setup_shell
-        setup_git
-        setup_macos
-        setup_vim
-        setup_tmux
-        setup_node
-        ;;
-    *)
-        echo -e $"\nUsage: $(basename "$0") {backup|link|git|homebrew|shell|terminfo|macos|all}\n"
-        exit 1
-        ;;
+	link_dotfiles sync
+
+	if command -v tic >/dev/null 2>&1; then
+		setup_terminfo
+	else
+		warning "tic is not installed. Skipping terminfo."
+	fi
+
+	if command -v nvim >/dev/null 2>&1; then
+		setup_vim
+	else
+		warning "Neovim is not installed. Skipping."
+	fi
+
+	if command -v tmux >/dev/null 2>&1; then
+		setup_tmux
+	else
+		warning "tmux is not installed. Skipping."
+	fi
+
+	if command -v npm >/dev/null 2>&1; then
+		setup_node
+	else
+		warning "npm is not installed. Skipping."
+	fi
+}
+
+usage() {
+	cat <<'EOF'
+
+Usage: ./init.sh {backup|link|sync|git|homebrew|shell|terminfo|macos|vim|tmux|node|codespaces|all}
+
+Commands:
+  backup     Move existing managed files into ~/dotfiles-backup/<timestamp>
+  link       Create missing symlinks without touching existing files
+  sync       Refresh managed symlinks, backing up conflicting files first
+  codespaces Run the repo-safe setup path for GitHub Codespaces
+  all        Run sync plus the bootstrap helpers
+
+EOF
+}
+
+case "${1:-}" in
+	backup)
+		backup
+		;;
+	link)
+		link_dotfiles link
+		;;
+	sync)
+		link_dotfiles sync
+		;;
+	git)
+		setup_git
+		;;
+	homebrew)
+		setup_homebrew
+		;;
+	shell)
+		setup_shell
+		;;
+	terminfo)
+		setup_terminfo
+		;;
+	macos)
+		setup_macos
+		;;
+	vim)
+		setup_vim
+		;;
+	tmux)
+		setup_tmux
+		;;
+	node)
+		setup_node
+		;;
+	codespaces)
+		run_codespaces
+		;;
+	all)
+		run_all
+		;;
+	help|-h|--help|"")
+		usage
+		exit 0
+		;;
+	*)
+		usage
+		exit 1
+		;;
 esac
 
-echo -e
+printf "\n"
 success "Done."

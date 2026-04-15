@@ -1,20 +1,69 @@
 # Dotfiles
 
-First things first, install [Xcode](https://developer.apple.com/xcode/) and open it or try and run `xcode-select --install`. Also if you're not me, please do not install dotfiles verbatim from this repo.
+Install [Xcode](https://developer.apple.com/xcode/) first and open it once, or run `xcode-select --install`.
 
-## Inital Setup & Config
+This repo is tuned for my machine. If you're not me, copy the parts you want instead of applying it wholesale.
 
-Setting up a new machine should be easy. Run:
+## Setup
 
-```Shell
-curl -L https://raw.githubusercontent.com/charliewilco/dotfiles/main/init.sh | bash -s -- all
+Clone the repo locally and run the bootstrap from the checkout:
+
+```sh
+git clone https://github.com/charliewilco/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./setup.sh
 ```
 
-### Setup
+`setup.sh` is a thin wrapper around `./init.sh all`.
 
-This installs [Homebrew](http://brew.sh/) & [Cask](http://caskroom.io/) and executes a bunch of `brew install` commands to go and setup iTerm2, Vundle, tpm a collection of awesome utility apps, MongoDB, Node.js (this is my preferred method of installing Node it normally prevents you from having to run `sudo` all the time).
+## Codespaces
 
-The config script sets up Vim and copies all my preferences for Vim / NeoVim, tmux, OhMyZSH, Hammerspoon, and puts them in their proper places. Plus exports [Oceanic Next](https://github.com/mhartington/oceanic-next-iterm) color palettes from Github and drops the ones for iTerm2 in `~/Downloads/`.
+For GitHub Codespaces, use the lighter path:
+
+```sh
+./init.sh codespaces
+```
+
+That mode intentionally skips the host-level steps that do not make sense in a containerized dev environment:
+
+- Homebrew installation
+- shell changes via `chsh`
+- interactive git identity prompts
+- macOS defaults
+
+It still refreshes managed links and runs repo-local setup for terminfo, Neovim, tmux, and global npm tools when those commands are available in the Codespace.
+
+## Syncing
+
+The ongoing maintenance path is explicit now:
+
+```sh
+./init.sh link
+./init.sh sync
+./init.sh backup
+```
+
+- `link` only creates missing symlinks.
+- `sync` refreshes managed symlinks and moves conflicting files into `~/dotfiles-backup/<timestamp>`.
+- `backup` only backs up managed targets without relinking.
+
+Managed top-level dotfiles come from `*.symlink`, and top-level entries in `config/` are linked into `~/.config/`.
+
+## Bootstrap Commands
+
+`./init.sh all` runs the full bootstrap flow:
+
+- sync dotfile symlinks
+- install terminfo entries
+- install Brewfile dependencies
+- set the default shell
+- configure git
+- apply macOS defaults
+- sync Neovim plugins
+- install tmux plugins
+- install global npm packages from `node/deps`
+
+For backwards compatibility, `./install.sh` and `./setup.sh` both delegate to `./init.sh`.
 
 ## Cheatsheet
 
@@ -29,7 +78,7 @@ Host *
     UseKeychain yes
 ```
 
-It solves a lot of isses with macOS Sierra and SSH that didn't exist in previous versions.
+It solves a lot of issues with macOS and SSH.
 
 ## tmux colors + _Italics_
 
