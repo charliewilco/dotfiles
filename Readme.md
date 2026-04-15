@@ -16,6 +16,23 @@ cd ~/.dotfiles
 
 `setup.sh` is a thin wrapper around `./init.sh all`.
 
+## Codespaces
+
+For GitHub Codespaces, use the lighter path:
+
+```sh
+./init.sh codespaces
+```
+
+That mode intentionally skips the host-level steps that do not make sense in a containerized dev environment:
+
+- Homebrew installation
+- shell changes via `chsh`
+- interactive git identity prompts
+- macOS defaults
+
+It still refreshes managed links and runs repo-local setup for terminfo, Neovim, tmux, and global npm tools when those commands are available in the Codespace.
+
 ## Syncing
 
 The ongoing maintenance path is explicit now:

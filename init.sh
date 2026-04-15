@@ -370,15 +370,49 @@ run_all() {
 	setup_node
 }
 
+run_codespaces() {
+	title "Configuring Codespaces"
+
+	info "Running the repo-safe setup path for Codespaces"
+	info "Skipping Homebrew, shell changes, git prompts, and macOS defaults"
+
+	link_dotfiles sync
+
+	if command -v tic >/dev/null 2>&1; then
+		setup_terminfo
+	else
+		warning "tic is not installed. Skipping terminfo."
+	fi
+
+	if command -v nvim >/dev/null 2>&1; then
+		setup_vim
+	else
+		warning "Neovim is not installed. Skipping."
+	fi
+
+	if command -v tmux >/dev/null 2>&1; then
+		setup_tmux
+	else
+		warning "tmux is not installed. Skipping."
+	fi
+
+	if command -v npm >/dev/null 2>&1; then
+		setup_node
+	else
+		warning "npm is not installed. Skipping."
+	fi
+}
+
 usage() {
 	cat <<'EOF'
 
-Usage: ./init.sh {backup|link|sync|git|homebrew|shell|terminfo|macos|vim|tmux|node|all}
+Usage: ./init.sh {backup|link|sync|git|homebrew|shell|terminfo|macos|vim|tmux|node|codespaces|all}
 
 Commands:
   backup     Move existing managed files into ~/dotfiles-backup/<timestamp>
   link       Create missing symlinks without touching existing files
   sync       Refresh managed symlinks, backing up conflicting files first
+  codespaces Run the repo-safe setup path for GitHub Codespaces
   all        Run sync plus the bootstrap helpers
 
 EOF
@@ -417,6 +451,9 @@ case "${1:-}" in
 		;;
 	node)
 		setup_node
+		;;
+	codespaces)
+		run_codespaces
 		;;
 	all)
 		run_all
